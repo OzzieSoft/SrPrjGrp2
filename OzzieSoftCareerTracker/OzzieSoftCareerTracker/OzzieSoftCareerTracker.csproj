@@ -190,7 +190,6 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
     <Compile Include="Models\Skill.cs" />
-    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
