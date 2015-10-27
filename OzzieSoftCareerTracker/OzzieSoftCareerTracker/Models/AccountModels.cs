@@ -16,6 +16,8 @@ namespace OzzieSoftCareerTracker.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+
+		public DbSet<Artifact> Artifacts { get; set; }
     }
 
     [Table("UserProfile")]
