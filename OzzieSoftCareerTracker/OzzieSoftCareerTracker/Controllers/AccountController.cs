@@ -79,7 +79,14 @@ namespace OzzieSoftCareerTracker.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new
+                    {
+                         FirstName = model.FirstName,
+                         LastName = model.LastName,
+                         Age = model.Age,
+                         Email = model.Email
+
+                    });
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
                 }
@@ -127,6 +134,7 @@ namespace OzzieSoftCareerTracker.Controllers
 
         public ActionResult Manage(ManageMessageId? message)
         {
+
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
