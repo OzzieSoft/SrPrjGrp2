@@ -199,7 +199,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
-    <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\OzzieSoftCareerTrackerContext.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
