@@ -16,5 +16,7 @@ namespace OzzieSoftCareerTracker.Models {
         }
 
 		public DbSet<Artifact> Artifacts { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<Goal> Goals { get; set; }
 	}
 }
