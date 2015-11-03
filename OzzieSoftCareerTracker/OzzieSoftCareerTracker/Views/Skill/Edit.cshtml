@@ -24,11 +24,19 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.SkillDescription)
+            @Html.LabelFor(model => model.SkillType)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.SkillDescription)
-            @Html.ValidationMessageFor(model => model.SkillDescription)
+            @Html.EditorFor(model => model.SkillType)
+            @Html.ValidationMessageFor(model => model.SkillType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SkillDesc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SkillDesc)
+            @Html.ValidationMessageFor(model => model.SkillDesc)
         </div>
 
         <p>

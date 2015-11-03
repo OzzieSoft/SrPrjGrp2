@@ -18,10 +18,17 @@
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.SkillDescription)
+         @Html.DisplayNameFor(model => model.SkillType)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.SkillDescription)
+        @Html.DisplayFor(model => model.SkillType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SkillDesc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SkillDesc)
     </div>
 </fieldset>
 @using (Html.BeginForm()) {

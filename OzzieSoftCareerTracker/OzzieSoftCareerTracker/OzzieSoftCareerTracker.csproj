@@ -202,6 +202,7 @@
     <Compile Include="Models\Artifact.cs" />
     <Compile Include="Models\OzzieSoftCareerTrackerContext.cs" />
     <Compile Include="Models\Skill.cs" />
+    <Compile Include="Models\SkillContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

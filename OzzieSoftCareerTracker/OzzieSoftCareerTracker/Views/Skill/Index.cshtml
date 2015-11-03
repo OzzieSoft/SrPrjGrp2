@@ -15,7 +15,10 @@
             @Html.DisplayNameFor(model => model.SkillName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SkillDescription)
+            @Html.DisplayNameFor(model => model.SkillType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SkillDesc)
         </th>
         <th></th>
     </tr>
@@ -26,7 +29,10 @@
             @Html.DisplayFor(modelItem => item.SkillName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SkillDescription)
+            @Html.DisplayFor(modelItem => item.SkillType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SkillDesc)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SkillID }) |

@@ -11,7 +11,7 @@ namespace OzzieSoftCareerTracker.Controllers
 {
     public class SkillController : Controller
     {
-        private OzzieSoftCareerTrackerContext db = new OzzieSoftCareerTrackerContext();
+        private SkillContext db = new SkillContext();
 
         //
         // GET: /Skill/
