@@ -1,0 +1,45 @@
+﻿@model OzzieSoftCareerTracker.Models.Skill
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Skill</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SkillName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SkillName)
+            @Html.ValidationMessageFor(model => model.SkillName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SkillDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SkillDescription)
+            @Html.ValidationMessageFor(model => model.SkillDescription)
+        </div>
+        
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
