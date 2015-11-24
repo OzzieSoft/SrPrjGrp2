@@ -19,7 +19,19 @@ namespace CareerTracker.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Skills.ToList());
+            List<Skill> returnList = new List<Skill>();
+            try
+            {
+                foreach (Skill s in db.Skills.ToList())
+                {
+                    if (s.User.UserId == int.Parse(Session["CurrentID"].ToString()))
+                    {
+                        returnList.Add(s);
+                    }
+                }
+            }
+            catch (NullReferenceException e) { }
+            return View(returnList);
         }
 
         //
@@ -50,8 +62,10 @@ namespace CareerTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Skill skill)
         {
+            int currID = int.Parse(Session["CurrentID"].ToString());
             if (ModelState.IsValid)
             {
+                skill.User = db.UserProfiles.FirstOrDefault(u => u.UserId == currID);
                 db.Skills.Add(skill);
                 db.SaveChanges();
                 return RedirectToAction("Index");

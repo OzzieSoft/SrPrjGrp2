@@ -1,9 +1,13 @@
 ﻿@model CareerTracker.Models.Goal
+@using Microsoft.Web.Mvc;
 
 @{
     ViewBag.Title = "Create";
 }
 
+<h1>
+    @Session["CurrentID"]
+</h1>
 <h2>Create</h2>
 
 @using (Html.BeginForm()) {
@@ -37,6 +41,8 @@
             @Html.ValidationMessageFor(model => model.Description)
         </div>
 
+        @Html.DisplayFor(model => model.User)
+
         <p>
             <input type="submit" value="Create" />
         </p>
@@ -44,6 +50,7 @@
 }
 
 <div>
+    
     @Html.ActionLink("Back to List", "Index")
 </div>
 

@@ -18,6 +18,8 @@ namespace CareerTracker.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        private CTContext db = new CTContext();
+
         //
         // GET: /Account/Login
 
@@ -38,6 +40,7 @@ namespace CareerTracker.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                Session["CurrentID"] = db.UserProfiles.FirstOrDefault(u => u.UserName == model.UserName).UserId;
                 return RedirectToLocal(returnUrl);
             }
 
@@ -54,7 +57,7 @@ namespace CareerTracker.Controllers
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
-
+            Session["CurrentID"] = -1;
             return RedirectToAction("Index", "Home");
         }
 
@@ -80,9 +83,16 @@ namespace CareerTracker.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        DateOfBirth = model.DateOfBirth,
+                        Email = model.Email
+                    });
+                    //WebSecurity.Login(model.UserName, model.Password);
+                    return RedirectToAction("Login", "Account");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -103,7 +113,7 @@ namespace CareerTracker.Controllers
         {
             string ownerAccount = OAuthWebSecurity.GetUserName(provider, providerUserId);
             ManageMessageId? message = null;
-
+            
             // Only disassociate the account if the currently logged in user is the owner
             if (ownerAccount == User.Identity.Name)
             {

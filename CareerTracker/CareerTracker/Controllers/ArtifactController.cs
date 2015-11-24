@@ -19,7 +19,19 @@ namespace CareerTracker.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Artifacts.ToList());
+            List<Artifact> returnList = new List<Artifact>();
+            try
+            {
+                foreach (Artifact a in db.Artifacts.ToList())
+                {
+                    if (a.User.UserId == int.Parse(Session["CurrentID"].ToString()))
+                    {
+                        returnList.Add(a);
+                    }
+                }
+            }
+            catch (NullReferenceException e) { }
+            return View(returnList);
         }
 
         //
@@ -50,8 +62,10 @@ namespace CareerTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Artifact artifact)
         {
+            int currID = int.Parse(Session["CurrentID"].ToString());
             if (ModelState.IsValid)
             {
+                artifact.User = db.UserProfiles.FirstOrDefault(u => u.UserId == currID);
                 db.Artifacts.Add(artifact);
                 db.SaveChanges();
                 return RedirectToAction("Index");

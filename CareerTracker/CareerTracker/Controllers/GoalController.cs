@@ -19,7 +19,19 @@ namespace CareerTracker.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Goals.ToList());
+            List<Goal> returnList = new List<Goal>();
+            try
+            {
+                foreach (Goal g in db.Goals.ToList()) 
+                {
+                    if (g.User.UserId == int.Parse(Session["CurrentID"].ToString()))
+                    {
+                        returnList.Add(g);
+                    }
+                }
+            }
+            catch (NullReferenceException e) { }
+            return View(returnList);
         }
 
         //
@@ -50,8 +62,10 @@ namespace CareerTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Goal goal)
         {
+            int currID = int.Parse(Session["CurrentID"].ToString());
             if (ModelState.IsValid)
             {
+                goal.User = db.UserProfiles.FirstOrDefault(u => u.UserId == currID);
                 db.Goals.Add(goal);
                 db.SaveChanges();
                 return RedirectToAction("Index");
