@@ -199,6 +199,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CombinedViewModel.cs" />
     <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\GoalStep.cs" />
     <Compile Include="Models\Skill.cs" />
@@ -330,6 +331,7 @@
     <Content Include="Views\Skill\Create.cshtml" />
     <Content Include="Views\Skill\Edit.cshtml" />
     <Content Include="Views\Skill\Delete.cshtml" />
+    <Content Include="Views\Account\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
