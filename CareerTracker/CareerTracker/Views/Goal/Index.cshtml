@@ -25,7 +25,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr style="margin-left:30px">
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -41,6 +41,24 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
+    foreach (var step in item.Steps)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => step.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => step.DueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => step.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = step.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = step.ID })
+            </td>
+        </tr>
+    }
 }
 
 </table>

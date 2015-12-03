@@ -10,122 +10,113 @@ using CareerTracker.DAL;
 
 namespace CareerTracker.Controllers
 {
-    public class GoalController : Controller
+    public class GoalStepController : Controller
     {
         private CTContext db = new CTContext();
 
         //
-        // GET: /Goal/
+        // GET: /GoalStep/
 
         public ActionResult Index()
         {
-            List<Goal> returnList = new List<Goal>();
-            try
-            {
-                foreach (Goal g in db.Goals.ToList()) 
-                {
-                    if (g.User.UserId == int.Parse(Session["CurrentID"].ToString()))
-                    {
-                        returnList.Add(g);
-                    }
-                }
-            }
-            catch (NullReferenceException e) { }
-            return View(returnList);
+            return View(db.GoalSteps.ToList());
         }
 
         //
-        // GET: /Goal/Details/5
+        // GET: /GoalStep/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            Goal goal = db.Goals.Find(id);
-            if (goal == null)
+            GoalStep goalstep = db.GoalSteps.Find(id);
+            if (goalstep == null)
             {
                 return HttpNotFound();
             }
-            return View(goal);
+            return View(goalstep);
         }
 
         //
-        // GET: /Goal/Create
+        // GET: /GoalStep/Create
 
-        public ActionResult Create()
+        public ActionResult Create(int goalid = 0)
         {
+            //Session["goal"] = goalid;
             return View();
         }
 
         //
-        // POST: /Goal/Create
+        // POST: /GoalStep/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Goal goal)
+        public ActionResult Create(GoalStep goalstep)
         {
-            int currID = int.Parse(Session["CurrentID"].ToString());
             if (ModelState.IsValid)
             {
-                goal.User = db.UserProfiles.FirstOrDefault(u => u.UserId == currID);
-                db.Goals.Add(goal);
+                int goalid = int.Parse(Session["goal"].ToString());
+                Goal goal = db.Goals.Find(goalid);
+                goal.Steps.Add(goalstep);
+                db.GoalSteps.Add(goalstep);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("edit", "Goal", new { id = goalid });
             }
 
-            return View(goal);
+            return View(goalstep);
         }
 
         //
-        // GET: /Goal/Edit/5
+        // GET: /GoalStep/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            Goal goal = db.Goals.Find(id);
-            if (goal == null)
+            GoalStep goalstep = db.GoalSteps.Find(id);
+            if (goalstep == null)
             {
                 return HttpNotFound();
             }
-            Session["goal"] = id;
-            return View(goal);
+            return View(goalstep);
         }
 
         //
-        // POST: /Goal/Edit/5
+        // POST: /GoalStep/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Goal goal)
+        public ActionResult Edit(GoalStep goalstep)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(goal).State = EntityState.Modified;
+                db.Entry(goalstep).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(goal);
+            return View(goalstep);
         }
 
         //
-        // GET: /Goal/Delete/5
+        // GET: /GoalStep/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            Goal goal = db.Goals.Find(id);
-            if (goal == null)
+            GoalStep goalstep = db.GoalSteps.Find(id);
+            if (goalstep == null)
             {
                 return HttpNotFound();
             }
-            return View(goal);
+            return View(goalstep);
         }
 
         //
-        // POST: /Goal/Delete/5
+        // POST: /GoalStep/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Goal goal = db.Goals.Find(id);
-            db.Goals.Remove(goal);
+            GoalStep goalstep = db.GoalSteps.Find(id);
+            Goal goal = goalstep.Goal;
+            goal.Steps.Remove(goalstep);
+            db.GoalSteps.Remove(goalstep);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
