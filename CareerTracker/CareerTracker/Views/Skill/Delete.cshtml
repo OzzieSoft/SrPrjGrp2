@@ -11,17 +11,17 @@
     <legend>Skill</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+        <b> @Html.DisplayNameFor(model => model.Name)</b>
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(model => model.Name)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Description)
+        <b> @Html.DisplayNameFor(model => model.Description)</b>
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(model => model.Description)
     </div>
 </fieldset>
 @using (Html.BeginForm()) {

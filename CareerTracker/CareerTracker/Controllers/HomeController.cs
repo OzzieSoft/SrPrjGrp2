@@ -10,21 +10,21 @@ namespace CareerTracker.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "";
+            ViewBag.Message = "to the Osprey Career Portfolio Tracker.";
 
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "";
+            ViewBag.Message = "Your app description page.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "";
+            ViewBag.Message = "Your contact page.";
 
             return View();
         }

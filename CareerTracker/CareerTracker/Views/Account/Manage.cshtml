@@ -1,8 +1,7 @@
 ﻿@model CareerTracker.Models.LocalPasswordModel
 @{
-    ViewBag.Title = "User Management";
+    ViewBag.Title = "Manage Account";
 }
-
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
@@ -17,7 +16,7 @@
     @Html.Partial("_ChangePasswordPartial")
 }
 else
-{
+{ 
     @Html.Partial("_SetPasswordPartial")
 }
 
@@ -31,4 +30,3 @@ else
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-

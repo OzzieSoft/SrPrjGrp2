@@ -20,11 +20,6 @@ namespace CareerTracker.Controllers
     {
         private CTContext db = new CTContext();
 
-        public ActionResult UserProfile()
-        {
-            return View();
-        }
-
         //
         // GET: /Account/Login
 
