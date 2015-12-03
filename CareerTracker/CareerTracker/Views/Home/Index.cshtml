@@ -20,9 +20,26 @@
         </div>
     </section>
 }
-<h3>We suggest the following:</h3>
-<div>
-    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 
-</div>
+    @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        <h3>We suggest the following:</h3>
+        <div>
+            <ul>
+                <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            </ul>
+        </div>
+    }
+    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        <h3>We suggest the following:</h3>
+        <div>
+            <ul>
+                <li>@Html.ActionLink("Artifacts", "Index", "Artifact")</li>
+                <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
+                <li>@Html.ActionLink("Goals", "Index", "Goal")</li>
+            </ul>
+        </div>
+    }
+
