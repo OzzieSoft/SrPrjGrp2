@@ -40,7 +40,6 @@ namespace CareerTracker.Controllers
 
         public ActionResult Create(int goalid = 0)
         {
-            //Session["goal"] = goalid;
             return View();
         }
 
@@ -49,12 +48,12 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(GoalStep goalstep)
+        public ActionResult Create(GoalStep goalstep, int goalid)
         {
             if (ModelState.IsValid)
             {
-                int goalid = int.Parse(Session["goal"].ToString());
                 Goal goal = db.Goals.Find(goalid);
+                goalstep.Goal = goal;
                 goal.Steps.Add(goalstep);
                 db.GoalSteps.Add(goalstep);
                 db.SaveChanges();
@@ -88,7 +87,10 @@ namespace CareerTracker.Controllers
             {
                 db.Entry(goalstep).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(
+                    actionName:"Edit",
+                    controllerName:"Goal",
+                    routeValues: new { id=goalstep.Goal.ID});
             }
             return View(goalstep);
         }
@@ -118,7 +120,8 @@ namespace CareerTracker.Controllers
             goal.Steps.Remove(goalstep);
             db.GoalSteps.Remove(goalstep);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return RedirectToAction("Index", "Goal");
         }
 
         protected override void Dispose(bool disposing)

@@ -13,6 +13,7 @@
     <fieldset>
         <legend>Goal</legend>
 
+
         @Html.HiddenFor(model => model.ID)
 
         <div class="editor-label">
@@ -53,28 +54,28 @@
                     <th></th>
                 </tr>
 
-                @foreach (var item in Model.Steps)
+                @foreach (var step in Model.Steps)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Name)
+                            @Html.DisplayFor(modelItem => step.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Description)
+                            @Html.DisplayFor(modelItem => step.Description)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DueDate)
+                            @Html.DisplayFor(modelItem => step.DueDate)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            @Html.ActionLink("Edit", "Edit", "GoalStep", new { id = step.ID }, null) |
+                            @Html.ActionLink("Delete", "Delete", "GoalStep", new { id = step.ID }, null)
                         </td>
                     </tr>
                 }
-                <p>
-                    @Html.ActionLink("Add a step", "Create", "GoalStep")
-                </p>
+                <tr>
+                    <td></td><td></td><td></td>
+                    <td>@Html.ActionLink("Add a step", "Create", "GoalStep", new { goalid = Model.ID }, null)</td>
+                </tr>
             </table>
         </div>
 
