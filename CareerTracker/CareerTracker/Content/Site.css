@@ -90,6 +90,12 @@ h5, h6 {
         text-decoration: none;
     }
 
+div.bold {
+    font-weight:bold;
+}
+div.left-padded {
+    padding-left: 30px;
+}
 
 /* main layout
 ----------------------------------------------------------*/
@@ -105,13 +111,12 @@ h5, h6 {
 }
 
     .main-content {
-        background: url("../Images/accent.png") no-repeat;
         padding-left: 10px;
         padding-top: 30px;
     }
 
-    .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
+     .home-page {
+        padding-top:5px;
     }
 
 header .content-wrapper {
@@ -128,16 +133,15 @@ footer {
 
 /* site title
 ----------------------------------------------------------*/
-.site-title {
-    color: #c8c8c8;
+p.site-title {
+    }
+
+a.site-title, a.site-title:hover, a.site-title:active {
+color: #c8c8c8;
     font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
     font-size: 2.3em;
     margin: 0;
-}
-
-.site-title a, .site-title a:hover, .site-title a:active {
     background: none;
-    color: #c8c8c8;
     outline: none;
     text-decoration: none;
 }
@@ -213,13 +217,11 @@ ul#menu {
 }
 
     .featured .content-wrapper {
-        background-color: #7ac0da;
-        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
-        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        color: #3e5667;
+        background: -moz-linear-gradient(top, #c4c4c4 0%, #2989d8 0%, #207cca 49%, #3174af 98%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #c4c4c4 0%,#2989d8 0%,#207cca 49%,#3174af 98%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #c4c4c4 0%,#2989d8 0%,#207cca 49%,#3174af 98%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c4c4c4', endColorstr='#3174af',GradientType=0 ); /* IE6-9 */
+        color: #272727;
         padding: 20px 40px 30px 40px;
     }
 
@@ -586,6 +588,19 @@ tr.pager td {
     padding: 0 0.25em 0 0;
 }
 
+    /* Model Tables */
+    .model-table {
+        width:100%;
+    }
+    .name-header {
+        width:20%;
+    }
+    .description-header {
+        width:45%;
+    }
+    .goalStep-name {
+        padding-left:3%;
+    }
 
 /********************
 *   Mobile Styles   *

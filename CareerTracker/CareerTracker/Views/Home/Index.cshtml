@@ -15,7 +15,14 @@
                 professtional interests and asperations. 
                 <br />
                 <br />
-                Please log in to work on your online resume or keep track of your professional goals.
+                @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    <span>Please log in to work on your online resume or keep track of your professional goals.</span>
+                }
+                @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    <span>Hello, </span>@HttpContext.Current.User.Identity.Name<span>, welcome to the Ozziesoft Career Tracker.</span>
+                }
             </p>
         </div>
     </section>
