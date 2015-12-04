@@ -68,7 +68,7 @@ namespace CareerTracker.Controllers
                 goal.User = db.UserProfiles.FirstOrDefault(u => u.UserId == currID);
                 db.Goals.Add(goal);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", new { id = goal.ID });
             }
 
             return View(goal);
