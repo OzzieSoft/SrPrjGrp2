@@ -196,6 +196,10 @@
     <Compile Include="Migrations\201511192328554_InitialCreate.Designer.cs">
       <DependentUpon>201511192328554_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512061744223_fixDateAttributes.cs" />
+    <Compile Include="Migrations\201512061744223_fixDateAttributes.Designer.cs">
+      <DependentUpon>201512061744223_fixDateAttributes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
@@ -347,6 +351,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201511192328554_InitialCreate.resx">
       <DependentUpon>201511192328554_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512061744223_fixDateAttributes.resx">
+      <DependentUpon>201512061744223_fixDateAttributes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

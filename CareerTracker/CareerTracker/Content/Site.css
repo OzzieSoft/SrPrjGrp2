@@ -30,6 +30,9 @@ a {
     a:hover {
         background-color: #c7d1d6;
     }
+    a.no-delete:hover {
+        cursor:no-drop
+    }
 
 header, footer, hgroup,
 nav, section {
@@ -95,6 +98,9 @@ div.bold {
 }
 div.left-padded {
     padding-left: 30px;
+}
+div.inline-block {
+    display:inline-block;
 }
 
 /* main layout
@@ -470,6 +476,10 @@ textarea {
         font-size: 1em;
         padding: 4px;
         margin-right: 4px;
+    }
+
+    input[type="date"] {
+        width:6em;
     }
 
 /* info and errors */

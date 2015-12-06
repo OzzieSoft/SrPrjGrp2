@@ -66,7 +66,7 @@ namespace CareerTracker.Controllers
         //
         // GET: /GoalStep/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(int id = 0, int goalID = 0)
         {
             GoalStep goalstep = db.GoalSteps.Find(id);
             if (goalstep == null)
@@ -81,16 +81,16 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(GoalStep goalstep)
+        public ActionResult Edit(GoalStep goalstep, int goalID)
         {
             if (ModelState.IsValid)
-            {
+            {   
                 db.Entry(goalstep).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction(
                     actionName:"Edit",
                     controllerName:"Goal",
-                    routeValues: new { id=goalstep.Goal.ID});
+                    routeValues: new { id = goalID});
             }
             return View(goalstep);
         }
@@ -98,7 +98,7 @@ namespace CareerTracker.Controllers
         //
         // GET: /GoalStep/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(int id = 0, int returnto = -1)
         {
             GoalStep goalstep = db.GoalSteps.Find(id);
             if (goalstep == null)
@@ -113,7 +113,7 @@ namespace CareerTracker.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, int returnto)
         {
             GoalStep goalstep = db.GoalSteps.Find(id);
             Goal goal = goalstep.Goal;
@@ -121,7 +121,16 @@ namespace CareerTracker.Controllers
             db.GoalSteps.Remove(goalstep);
             db.SaveChanges();
 
-            return RedirectToAction("Index", "Goal");
+            ActionResult redirect;
+            if (returnto == -1)
+            {
+                redirect = RedirectToAction("Index", "Goal");
+            }
+            else
+            {
+                redirect = RedirectToAction("Edit", "Goal", new { id = returnto });
+            }
+            return redirect;
         }
 
         protected override void Dispose(bool disposing)

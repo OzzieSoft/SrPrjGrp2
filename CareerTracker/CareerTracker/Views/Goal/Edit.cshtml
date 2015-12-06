@@ -16,20 +16,24 @@
 
         @Html.HiddenFor(model => model.ID)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
+        <div class="inline-block">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.DueDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DueDate)
-            @Html.ValidationMessageFor(model => model.DueDate)
+        <div class="inline-block">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DueDate)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DueDate, "{0:MM/dd/yyyy}", new { type = "date", placeholder = "MM/dd/yyyy" })
+                @Html.ValidationMessageFor(model => model.DueDate)
+            </div>
         </div>
 
         <div class="editor-label">
@@ -42,10 +46,10 @@
         <div class="editor-label">
             <table>
                 <tr>
-                    <th style="width:20%">
+                    <th class="name-header">
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
-                    <th style="width:40%">
+                    <th class="description-header">
                         @Html.DisplayNameFor(model => model.Description)
                     </th>
                     <th>
@@ -54,8 +58,10 @@
                     <th></th>
                 </tr>
 
-                @foreach (var step in Model.Steps)
+                @if (Model.Steps.Count > 0)
                 {
+                    foreach (var step in Model.Steps)
+                    {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => step.Name)
@@ -64,13 +70,14 @@
                             @Html.DisplayFor(modelItem => step.Description)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => step.DueDate)
+                            @Html.DisplayFor(modelItem => step.DueDate, "{0:dd-MMM-yyyy}", new { type = "date", placeholder = "MM/dd/yyyy" })
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", "GoalStep", new { id = step.ID }, null) |
-                            @Html.ActionLink("Delete", "Delete", "GoalStep", new { id = step.ID }, null)
+                            @Html.ActionLink("Edit", "Edit", "GoalStep", new { id = step.ID, goalID = Model.ID }, null) |
+                            @Html.ActionLink("Delete", "Delete", "GoalStep", new { id = step.ID, returnto = Model.ID }, null)
                         </td>
                     </tr>
+                    }
                 }
                 <tr>
                     <td></td><td></td><td></td>

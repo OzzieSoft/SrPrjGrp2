@@ -19,6 +19,9 @@ namespace CareerTracker.Models
         public string email { get; set; }
         public string lastName { get; set; }
         public string firstName { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public string dateOfBirth { get; set; }
 
         public virtual ICollection<Goal> goals { get; set; }
@@ -96,7 +99,9 @@ namespace CareerTracker.Models
 
         [Required]
         [Display(Name = "Date of Birth")]
-        public string DateOfBirth { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/ddyyyy}")]
+        public DateTime DateOfBirth { get; set; }
 
         [Required]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]

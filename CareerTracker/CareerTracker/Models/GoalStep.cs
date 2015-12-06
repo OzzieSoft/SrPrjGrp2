@@ -11,7 +11,10 @@ namespace CareerTracker.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string DueDate { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/dd/yyyy}")]
+        public DateTime DueDate { get; set; }
 
         public virtual Goal Goal { get; set; }
     }

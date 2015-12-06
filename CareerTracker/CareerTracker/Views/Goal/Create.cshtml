@@ -34,7 +34,7 @@
             @Html.LabelFor(model => model.DueDate)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.DueDate)
+            @Html.TextBoxFor(model => model.DueDate, "{0:MM/dd/yyyy}", new { type = "date", placeholder = "MM/dd/yyyy" })
             @Html.ValidationMessageFor(model => model.DueDate)
         </div>
 
