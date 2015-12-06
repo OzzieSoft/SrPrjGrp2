@@ -4,17 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Skills</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
+<table class="model-table">
     <tr>
-        <th>
+        <th class="name-header">
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
+        <th class="description-header">
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th></th>

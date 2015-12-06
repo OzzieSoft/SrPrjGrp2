@@ -14,5 +14,11 @@ namespace CareerTracker.Models
 
         public virtual UserProfile User { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
+
+        public List<Artifact> getArtifact()
+        {
+            List<Artifact> artifacts = new List<Artifact>();
+            return artifacts;
+        }
     }
 }

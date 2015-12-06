@@ -9,17 +9,17 @@
 <fieldset>
     <legend>Skill</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+    <div class="display-label bold">
+        <b> @Html.DisplayNameFor(model => model.Name)</b>
     </div>
-    <div class="display-field">
+    <div class="display-field left-padded">
         @Html.DisplayFor(model => model.Name)
     </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Description)
-    </div>
-    <div class="display-field">
+    <br />
+    <div class="display-label bold">
+        <b>@Html.DisplayNameFor(model => model.Description)</b>
+</div>
+    <div class="display-field left-padded">
         @Html.DisplayFor(model => model.Description)
     </div>
 </fieldset>
