@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CareerTracker.Models.Goal>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Goals";
 }
 
-<h2>Index</h2>
+<h2>Goals</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -16,7 +16,7 @@
         <th class="description-header">
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
+        <th class="description-header">
             @Html.DisplayNameFor(model => model.DueDate)
         </th>
         <th></th>
