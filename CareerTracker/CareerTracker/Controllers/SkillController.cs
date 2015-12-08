@@ -62,7 +62,6 @@ namespace CareerTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Skill skill)
         {
-            int currID = int.Parse(Session["CurrentID"].ToString());
             if (ModelState.IsValid)
             {
                 skill.User = db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name);
