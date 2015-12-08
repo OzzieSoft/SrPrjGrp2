@@ -24,7 +24,7 @@ namespace CareerTracker.Controllers
             {
                 foreach (Skill s in db.Skills.ToList())
                 {
-                    if (s.User.UserId == int.Parse(Session["CurrentID"].ToString()))
+                    if (s.User.UserId == db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name).UserId)
                     {
                         returnList.Add(s);
                     }
@@ -65,7 +65,7 @@ namespace CareerTracker.Controllers
             int currID = int.Parse(Session["CurrentID"].ToString());
             if (ModelState.IsValid)
             {
-                skill.User = db.UserProfiles.FirstOrDefault(u => u.UserId == currID);
+                skill.User = db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name);
                 db.Skills.Add(skill);
                 db.SaveChanges();
                 return RedirectToAction("Index");

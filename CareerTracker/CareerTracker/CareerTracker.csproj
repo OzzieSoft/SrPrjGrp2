@@ -341,6 +341,7 @@
     <Content Include="Views\GoalStep\Create.cshtml" />
     <Content Include="Views\GoalStep\Edit.cshtml" />
     <Content Include="Views\GoalStep\Delete.cshtml" />
+    <Content Include="Views\Account\ViewProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

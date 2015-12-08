@@ -20,9 +20,13 @@ namespace CareerTracker.Controllers
     {
         private CTContext db = new CTContext();
 
-        public ActionResult UserProfile()
+        [AllowAnonymous]
+        public ActionResult ViewProfile()
         {
-            return View();
+            UserProfile prof;
+            //prof = db.UserProfiles.Find(4);
+            prof = db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            return View(prof);
         }
 
         //

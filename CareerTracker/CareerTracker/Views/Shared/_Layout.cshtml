@@ -23,7 +23,7 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                            
@@ -31,7 +31,8 @@
                                 <li>@Html.ActionLink("Artifacts", "Index", "Artifact")</li>
                                 <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
                                 <li>@Html.ActionLink("Goals", "Index","Goal")</li>
-                            }
+                                <li>@Html.ActionLink("My Account", "ViewProfile", "Account")</li>
+                             }
                              
                         </ul>
                     </nav>

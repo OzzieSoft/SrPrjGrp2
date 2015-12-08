@@ -24,7 +24,7 @@ namespace CareerTracker.Controllers
             {
                 foreach (Artifact a in db.Artifacts.ToList())
                 {
-                    if (a.User.UserId == int.Parse(Session["CurrentID"].ToString()))
+                    if (a.User.UserId == db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name).UserId)
                     {
                         returnList.Add(a);
                     }
@@ -62,10 +62,9 @@ namespace CareerTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Artifact artifact)
         {
-            int currID = int.Parse(Session["CurrentID"].ToString());
             if (ModelState.IsValid)
             {
-                artifact.User = db.UserProfiles.FirstOrDefault(u => u.UserId == currID);
+                artifact.User = db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name);
                 db.Artifacts.Add(artifact);
                 db.SaveChanges();
                 return RedirectToAction("Index");
