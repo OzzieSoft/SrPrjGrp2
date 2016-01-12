@@ -188,6 +188,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="DAL\CTContext.cs" />
+    <Compile Include="DataRepository\ArtifactRepo.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

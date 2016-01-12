@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using CareerTracker.Models;
 using CareerTracker.DAL;
+using CareerTracker.DataRepository;
 
 namespace CareerTracker.Controllers
 {
@@ -78,7 +79,7 @@ namespace CareerTracker.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Artifact artifact = db.Artifacts.Find(id);
+            Artifact artifact = ArtifactRepo.getArtifact(id,User.Identity.ToString());
             if (artifact == null)
             {
                 return HttpNotFound();
