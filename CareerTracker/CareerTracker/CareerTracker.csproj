@@ -201,11 +201,16 @@
     <Compile Include="Migrations\201512061744223_fixDateAttributes.Designer.cs">
       <DependentUpon>201512061744223_fixDateAttributes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601182059296_fixCategoryForeignKeys.cs" />
+    <Compile Include="Migrations\201601182059296_fixCategoryForeignKeys.Designer.cs">
+      <DependentUpon>201601182059296_fixCategoryForeignKeys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CombinedViewModel.cs" />
+    <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\GoalStep.cs" />
     <Compile Include="Models\Skill.cs" />
@@ -356,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512061744223_fixDateAttributes.resx">
       <DependentUpon>201512061744223_fixDateAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601182059296_fixCategoryForeignKeys.resx">
+      <DependentUpon>201601182059296_fixCategoryForeignKeys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
