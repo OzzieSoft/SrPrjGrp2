@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201601182059296_fixCategoryForeignKeys.Designer.cs">
       <DependentUpon>201601182059296_fixCategoryForeignKeys.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601262155206_addCourseClass.cs" />
+    <Compile Include="Migrations\201601262155206_addCourseClass.Designer.cs">
+      <DependentUpon>201601262155206_addCourseClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
@@ -364,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601182059296_fixCategoryForeignKeys.resx">
       <DependentUpon>201601182059296_fixCategoryForeignKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601262155206_addCourseClass.resx">
+      <DependentUpon>201601262155206_addCourseClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

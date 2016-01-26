@@ -27,6 +27,8 @@ namespace CareerTracker.Models
         public virtual ICollection<Goal> goals { get; set; }
         public virtual ICollection<Artifact> artifacts { get; set; }
         public virtual ICollection<Skill> skills { get; set; }
+
+        public virtual ICollection<Course> Course { get; set; }
     }
 
     public class RegisterExternalLoginModel
