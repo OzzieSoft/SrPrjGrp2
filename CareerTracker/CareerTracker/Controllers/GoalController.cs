@@ -24,7 +24,7 @@ namespace CareerTracker.Controllers
             {
                 foreach (Goal g in db.Goals.ToList()) 
                 {
-                    if (g.User.UserId == int.Parse(Session["CurrentID"].ToString()))
+                    if (g.User.UserId == db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name).UserId)
                     {
                         returnList.Add(g);
                     }
@@ -62,10 +62,9 @@ namespace CareerTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Goal goal)
         {
-            int currID = int.Parse(Session["CurrentID"].ToString());
             if (ModelState.IsValid)
             {
-                goal.User = db.UserProfiles.FirstOrDefault(u => u.UserId == currID);
+                goal.User = db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name);
                 db.Goals.Add(goal);
                 db.SaveChanges();
                 return RedirectToAction("Edit", new { id = goal.ID });

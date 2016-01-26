@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using CareerTracker.Models;
 using CareerTracker.DAL;
+using CareerTracker.DataRepository;
 
 namespace CareerTracker.Controllers
 {
@@ -19,18 +20,7 @@ namespace CareerTracker.Controllers
 
         public ActionResult Index()
         {
-            List<Artifact> returnList = new List<Artifact>();
-            try
-            {
-                foreach (Artifact a in db.Artifacts.ToList())
-                {
-                    if (a.User.UserId == int.Parse(Session["CurrentID"].ToString()))
-                    {
-                        returnList.Add(a);
-                    }
-                }
-            }
-            catch (NullReferenceException e) { }
+            List<Artifact> returnList = ArtifactRepo.getUserArtifacts(User.Identity.Name.ToString());
             return View(returnList);
         }
 
@@ -39,7 +29,7 @@ namespace CareerTracker.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Artifact artifact = db.Artifacts.Find(id);
+            Artifact artifact = null;//ArtifactRepo.getArtifact(id, User.Identity.Name.ToString());
             if (artifact == null)
             {
                 return HttpNotFound();
@@ -62,12 +52,9 @@ namespace CareerTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Artifact artifact)
         {
-            int currID = int.Parse(Session["CurrentID"].ToString());
             if (ModelState.IsValid)
             {
-                artifact.User = db.UserProfiles.FirstOrDefault(u => u.UserId == currID);
-                db.Artifacts.Add(artifact);
-                db.SaveChanges();
+                ArtifactRepo.createArtifact(artifact, User.Identity.Name.ToString());
                 return RedirectToAction("Index");
             }
 
@@ -79,7 +66,13 @@ namespace CareerTracker.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Artifact artifact = db.Artifacts.Find(id);
+            //Artifact artifact = ArtifactRepo.getArtifact(id,User.Identity.Name.ToString());
+            Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
+            string username = User.Identity.Name.ToString();
+            if (artifact.User.UserName != username)
+            {
+                artifact = null;
+            }
             if (artifact == null)
             {
                 return HttpNotFound();
@@ -108,7 +101,12 @@ namespace CareerTracker.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Artifact artifact = db.Artifacts.Find(id);
+            Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
+            string username = User.Identity.Name.ToString();
+            if (artifact.User.UserName != username)
+            {
+                artifact = null;
+            }; //ArtifactRepo.getArtifact(id, User.Identity.Name.ToString());
             if (artifact == null)
             {
                 return HttpNotFound();
@@ -123,9 +121,7 @@ namespace CareerTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Artifact artifact = db.Artifacts.Find(id);
-            db.Artifacts.Remove(artifact);
-            db.SaveChanges();
+            ArtifactRepo.deleteArtifact(id, User.Identity.Name.ToString());
             return RedirectToAction("Index");
         }
 

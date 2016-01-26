@@ -1,0 +1,122 @@
+﻿@model CareerTracker.Models.UserProfile
+@{
+    ViewBag.Title = "My Profile";
+}
+
+<h1>My Profile</h1>
+
+<br/>
+
+<h3>@Html.ActionLink("My Artifacts", "Index", "Artifact")</h3>
+
+<table class="model-table">
+    
+        <tr>
+            <th class="name-header">
+                @Html.DisplayName("Name")
+            </th>
+            <th class="description-header">
+                @Html.DisplayName("Description")
+            </th>
+            <th>
+                @Html.DisplayName("URL")
+            </th>
+        </tr>
+    
+
+    @foreach (var item in Model.artifacts)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p style="height:20px;"/>
+
+<h3>@Html.ActionLink("My Skills", "Index", "Skill")</h3>
+
+<table class="model-table">
+
+    <tr>
+        <th class="name-header">
+            @Html.DisplayName("Name")
+        </th>
+        <th class="description-header">
+            @Html.DisplayName("Description")
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model.skills)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p style="height:20px;"/>
+
+<h3>@Html.ActionLink("My Goals", "Index", "Goal")</h3>
+
+<table class="model-table">
+
+    <tr>
+        <th class="name-header">
+            @Html.DisplayName("Name")
+        </th>
+        <th class="description-header">
+            @Html.DisplayName("Description")
+        </th>
+        <th>
+            @Html.DisplayName("Due Date")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.goals)
+    {
+        <tr style="border-top: 1px solid lightgray">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+        </tr>
+        foreach (var step in item.Steps)
+        {
+            <tr>
+                <td style="padding-left:3%">
+                    @Html.DisplayFor(modelItem => step.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => step.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => step.DueDate)
+                </td>
+            </tr>
+        }
+    }
+
+</table>
