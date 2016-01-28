@@ -134,15 +134,15 @@ namespace CareerTracker.Controllers
         public ActionResult ActivateConfirmed(int id)
         {
             UserProfile userprofile = db.UserProfiles.Find(id);
-            userprofile.active = false;
+            userprofile.active = true;
             db.Entry(userprofile).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("ActivatedIndex");
         }
 
-        public ActionResult DeactivatedIndex()
+        public ActionResult ActivatedIndex()
         {
-            List<UserProfile> usrs = db.UserProfiles.Where(x => x.active == false).ToList();
+            List<UserProfile> usrs = db.UserProfiles.Where(x => x.active == true).ToList();
             return View(usrs);
         }
 
