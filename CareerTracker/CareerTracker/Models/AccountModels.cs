@@ -19,6 +19,7 @@ namespace CareerTracker.Models
         public string email { get; set; }
         public string lastName { get; set; }
         public string firstName { get; set; }
+        public bool active { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]

@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201601262155206_addCourseClass.Designer.cs">
       <DependentUpon>201601262155206_addCourseClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601282118208_addedActiveFlag.cs" />
+    <Compile Include="Migrations\201601282118208_addedActiveFlag.Designer.cs">
+      <DependentUpon>201601282118208_addedActiveFlag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
@@ -357,6 +361,7 @@
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Admin\DeactivatedIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -376,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601262155206_addCourseClass.resx">
       <DependentUpon>201601262155206_addCourseClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601282118208_addedActiveFlag.resx">
+      <DependentUpon>201601282118208_addedActiveFlag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

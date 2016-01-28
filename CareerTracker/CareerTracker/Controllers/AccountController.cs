@@ -98,7 +98,8 @@ namespace CareerTracker.Controllers
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         DateOfBirth = model.DateOfBirth,
-                        Email = model.Email
+                        Email = model.Email,
+                        Active = true
                     });
                     //WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Login", "Account");
