@@ -23,10 +23,8 @@
         <th></th>
     </tr>
 
-
-    @{
-        using (Html.BeginForm("Status", "AdminController", FormMethod.Post)) { 
-    @foreach (var item in Model)
+@using (Html.BeginForm("Deactivate", "AdminController", FormMethod.Post)) {
+    foreach (var item in Model)
     {
         <tr>
             <td>
@@ -46,7 +44,7 @@
             </td>
 
             <td>
-                
+                <input type="submit" value="Deactivate" />
             </td>
             @*--<td>
                @Html.ActionLink("Deactivate", "Deactivate", new { id = item.UserId })
@@ -54,10 +52,8 @@
             <td>
                 @Html.ActionLink("Activate", "Activate", new { id = item.UserId })
             </td>*@ 
-            
 
         </tr>
-    }
     }
     }
 </table>

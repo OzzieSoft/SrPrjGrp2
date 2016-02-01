@@ -110,14 +110,14 @@ namespace CareerTracker.Controllers
             userprofile.active = false; 
             db.Entry(userprofile).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("DeactivatedIndex");
+            return RedirectToAction("Index");
         }
 
-        public ActionResult DeactivatedIndex() 
+        /*public ActionResult DeactivatedIndex() 
         {
             List<UserProfile> usrs = db.UserProfiles.Where(x => x.active == false).ToList();
             return View(usrs);
-        }
+        } */
 
         public ActionResult Activate(int id = 0)
         {
@@ -137,14 +137,14 @@ namespace CareerTracker.Controllers
             userprofile.active = true;
             db.Entry(userprofile).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("ActivatedIndex");
+            return RedirectToAction("Index");
         }
 
-        public ActionResult ActivatedIndex()
+        /* public ActionResult ActivatedIndex()
         {
             List<UserProfile> usrs = db.UserProfiles.Where(x => x.active == true).ToList();
             return View(usrs);
-        }
+        } */
 
         protected override void Dispose(bool disposing)
         {

@@ -26,6 +26,7 @@
     @foreach (var item in Model)
     {
         <tr>
+            @Html.HiddenFor(model => model.ID)
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
@@ -39,10 +40,12 @@
                 @Html.DisplayFor(modelItem => item.active)
             </td>
             <td>
-                @Html.ActionLink("Deactivate", "Deactivate", new { id = item.UserId })
+                <input type="submit" value="Deactivate" />
+                @Html.ActionLink("Deactivate", "DeactivateIndex", new { id = item.UserId })
             </td>
             <td>
-                @Html.ActionLink("Activate", "Activate", new { id = item.UserId })
+                <input type="submit" value="Activate" />
+                @Html.ActionLink("Activate", "ActivateIndex", new { id = item.UserId })
             </td>
         </tr>
     }
