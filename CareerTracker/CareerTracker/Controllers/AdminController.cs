@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using CareerTracker.Models;
 using CareerTracker.DAL;
+using System.Web.Security;
 
 namespace CareerTracker.Controllers
 {
@@ -140,11 +141,11 @@ namespace CareerTracker.Controllers
             return RedirectToAction("ActivatedIndex");
         }
 
-        public ActionResult DeactivatedIndex()
-        {
-            List<UserProfile> usrs = db.UserProfiles.Where(x => x.active == false).ToList();
-            return View(usrs);
-        }
+        //public ActionResult DeactivatedIndex()
+        //{
+        //    List<UserProfile> usrs = db.UserProfiles.Where(x => x.active == false).ToList();
+        //    return View(usrs);
+        //}
 
         protected override void Dispose(bool disposing)
         {

@@ -49,7 +49,7 @@ namespace CareerTracker.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                Session["CurrentID"] = db.UserProfiles.FirstOrDefault(u => u.UserName == model.UserName).UserId;
+                
                 return RedirectToLocal(returnUrl);
             }
 
@@ -101,7 +101,8 @@ namespace CareerTracker.Controllers
                         Email = model.Email,
                         Active = true
                     });
-                    //WebSecurity.Login(model.UserName, model.Password);
+                    WebSecurity.Login(model.UserName, model.Password);
+                    
                     return RedirectToAction("Login", "Account");
                 }
                 catch (MembershipCreateUserException e)
