@@ -70,6 +70,7 @@ namespace CareerTracker.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(userprofile);
         }
 
@@ -82,7 +83,8 @@ namespace CareerTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(userprofile).State = EntityState.Modified;
+				db.UserProfiles.Attach(userprofile);
+                db.Entry(userprofile).Property(x => x.active).IsModified = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
