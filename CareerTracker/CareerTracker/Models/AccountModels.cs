@@ -15,12 +15,17 @@ namespace CareerTracker.Models
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
+        [Display(Name = "Username")]
         public string UserName { get; set; }
+        [Display(Name = "Email")]
         public string email { get; set; }
+        [Display(Name = "Last Name")]
         public string lastName { get; set; }
+        [Display(Name = "First Name")]
         public string firstName { get; set; }
+        [Display(Name = "Active Account")]
         public bool active { get; set; }
-
+        [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public string dateOfBirth { get; set; }

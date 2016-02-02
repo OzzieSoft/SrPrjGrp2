@@ -103,7 +103,7 @@ namespace CareerTracker.Controllers
                     });
                     WebSecurity.Login(model.UserName, model.Password);
                     
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
                 {
