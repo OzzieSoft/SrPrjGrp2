@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CareerTracker.Models.UserProfile>
 
 @{
-    ViewBag.Title = "DeactivatedIndex";
+    ViewBag.Title = "ActivatedIndex";
 }
 
-<h2>DeactivatedIndex</h2>
+<h2>ActivatedIndex</h2>
 
 <table class="model-table">
     <tr>
@@ -23,10 +23,13 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+@using (Html.BeginForm("Deactivate", "AdminController", FormMethod.Post)) {
+    foreach (var item in Model)
     {
         <tr>
-            @Html.HiddenFor(model => model.ID)
+            <td>
+                @Html.HiddenFor(modelItem => item.UserId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
@@ -39,15 +42,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.active)
             </td>
+
             <td>
                 <input type="submit" value="Deactivate" />
-                @Html.ActionLink("Deactivate", "DeactivateIndex", new { id = item.UserId })
+            </td>
+            @*--<td>
+               @Html.ActionLink("Deactivate", "Deactivate", new { id = item.UserId })
             </td>
             <td>
-                <input type="submit" value="Activate" />
-                @Html.ActionLink("Activate", "ActivateIndex", new { id = item.UserId })
-            </td>
+                @Html.ActionLink("Activate", "Activate", new { id = item.UserId })
+            </td>*@ 
+
         </tr>
     }
-
+    }
 </table>
