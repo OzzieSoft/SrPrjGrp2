@@ -151,5 +151,11 @@ namespace CareerTracker.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+       
+        public FileResult Download(string fileName)
+        {
+            var FileVirtualPath = "/Artifacts/" + fileName;
+            return File(FileVirtualPath, "application/force-download", Path.GetFileName(FileVirtualPath));
+        }  
     }
 }

@@ -32,7 +32,8 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Location)
+            @Html.ActionLink(item.Location, "Download", new { fileName = item.Location })
+            <!--@Html.DisplayFor(modelItem => item.Location)-->
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
