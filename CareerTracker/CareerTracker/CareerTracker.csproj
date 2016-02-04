@@ -214,6 +214,10 @@
     <Compile Include="Migrations\201601282118208_addedActiveFlag.Designer.cs">
       <DependentUpon>201601282118208_addedActiveFlag.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602022125556_urlToLocation.cs" />
+    <Compile Include="Migrations\201602022125556_urlToLocation.Designer.cs">
+      <DependentUpon>201602022125556_urlToLocation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
@@ -297,7 +301,9 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -384,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601282118208_addedActiveFlag.resx">
       <DependentUpon>201601282118208_addedActiveFlag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602022125556_urlToLocation.resx">
+      <DependentUpon>201602022125556_urlToLocation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
