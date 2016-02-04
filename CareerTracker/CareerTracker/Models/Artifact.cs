@@ -10,7 +10,7 @@ namespace CareerTracker.Models
         public bool IsResume { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
+        [Display(Name = "File Name")]
         public string Location { get; set; }
 
         public virtual UserProfile User { get; set; }
