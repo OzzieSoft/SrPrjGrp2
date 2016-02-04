@@ -19,19 +19,23 @@ namespace CareerTracker.Controllers
 
         public ActionResult Index()
         {
-            List<Skill> returnList = new List<Skill>();
-            try
+            if (User.Identity.IsAuthenticated)
             {
-                foreach (Skill s in db.Skills.ToList())
+                List<Skill> returnList = new List<Skill>();
+                try
                 {
-                    if (s.User.UserId == db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name).UserId)
+                    foreach (Skill s in db.Skills.ToList())
                     {
-                        returnList.Add(s);
+                        if (s.User.UserId == db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name).UserId)
+                        {
+                            returnList.Add(s);
+                        }
                     }
                 }
+                catch (NullReferenceException e) { }
+                return View(returnList);
             }
-            catch (NullReferenceException e) { }
-            return View(returnList);
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
@@ -39,12 +43,16 @@ namespace CareerTracker.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Skill skill = db.Skills.Find(id);
-            if (skill == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return HttpNotFound();
+                Skill skill = db.Skills.Find(id);
+                if (skill == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(skill);
             }
-            return View(skill);
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
@@ -52,7 +60,11 @@ namespace CareerTracker.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
@@ -78,12 +90,16 @@ namespace CareerTracker.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Skill skill = db.Skills.Find(id);
-            if (skill == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return HttpNotFound();
+                Skill skill = db.Skills.Find(id);
+                if (skill == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(skill);
             }
-            return View(skill);
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
@@ -107,12 +123,16 @@ namespace CareerTracker.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Skill skill = db.Skills.Find(id);
-            if (skill == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return HttpNotFound();
+                Skill skill = db.Skills.Find(id);
+                if (skill == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(skill);
             }
-            return View(skill);
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //

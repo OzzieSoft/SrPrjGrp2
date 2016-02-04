@@ -21,8 +21,12 @@ namespace CareerTracker.Controllers
 
         public ActionResult Index()
         {
-            List<Artifact> returnList = ArtifactRepo.getUserArtifacts(User.Identity.Name.ToString());
-            return View(returnList);
+            if(User.Identity.IsAuthenticated)
+            {
+                List<Artifact> returnList = ArtifactRepo.getUserArtifacts(User.Identity.Name.ToString());
+                return View(returnList);
+            }
+            return RedirectToAction("PleaseLogIn", "Home");
         }
 
         //
@@ -30,17 +34,21 @@ namespace CareerTracker.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
-            string username = User.Identity.Name.ToString();
-            if (artifact.User.UserName != username)
+            if (User.Identity.IsAuthenticated)
             {
-                artifact = null;
+                Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
+                string username = User.Identity.Name.ToString();
+                if (artifact.User.UserName != username)
+                {
+                    artifact = null;
+                }
+                if (artifact == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(artifact);
             }
-            if (artifact == null)
-            {
-                return HttpNotFound();
-            }
-            return View(artifact);
+            return RedirectToAction("PleaseLogIn", "Home");
         }
 
         //
@@ -48,7 +56,11 @@ namespace CareerTracker.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            if(User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
@@ -87,18 +99,22 @@ namespace CareerTracker.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            //Artifact artifact = ArtifactRepo.getArtifact(id,User.Identity.Name.ToString());
-            Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
-            string username = User.Identity.Name.ToString();
-            if (artifact.User.UserName != username)
+            if (User.Identity.IsAuthenticated)
             {
-                artifact = null;
+                //Artifact artifact = ArtifactRepo.getArtifact(id,User.Identity.Name.ToString());
+                Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
+                string username = User.Identity.Name.ToString();
+                if (artifact.User.UserName != username)
+                {
+                    artifact = null;
+                }
+                if (artifact == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(artifact);
             }
-            if (artifact == null)
-            {
-                return HttpNotFound();
-            }
-            return View(artifact);
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
@@ -122,17 +138,21 @@ namespace CareerTracker.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
-            string username = User.Identity.Name.ToString();
-            if (artifact.User.UserName != username)
+            if (User.Identity.IsAuthenticated)
             {
-                artifact = null;
-            }; //ArtifactRepo.getArtifact(id, User.Identity.Name.ToString());
-            if (artifact == null)
-            {
-                return HttpNotFound();
+                Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
+                string username = User.Identity.Name.ToString();
+                if (artifact.User.UserName != username)
+                {
+                    artifact = null;
+                }; //ArtifactRepo.getArtifact(id, User.Identity.Name.ToString());
+                if (artifact == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(artifact);
             }
-            return View(artifact);
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
