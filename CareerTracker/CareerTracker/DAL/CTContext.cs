@@ -1,15 +1,10 @@
 ﻿using CareerTracker.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using System.Globalization;
-using System.Web.Security;
 
 namespace CareerTracker.DAL
 {
-    public class CTContext : DbContext
+    public class CTContext : IdentityDbContext<User>
     {
         public CTContext() : base("DefaultConnection") { }
 

@@ -29,7 +29,7 @@ namespace CareerTracker.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Artifact artifact = null;//ArtifactRepo.getArtifact(id, User.Identity.Name.ToString());
+            Artifact artifact = ArtifactRepo.getArtifact(id, User.Identity.Name.ToString());
             if (artifact == null)
             {
                 return HttpNotFound();

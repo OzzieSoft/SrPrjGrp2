@@ -11,6 +11,9 @@ using WebMatrix.WebData;
 using CareerTracker.Filters;
 using CareerTracker.Models;
 using CareerTracker.DAL;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 
 namespace CareerTracker.Controllers
 {
@@ -92,16 +95,22 @@ namespace CareerTracker.Controllers
                 // Attempt to register the user
                 try
                 {
-
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new
-                    {
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        DateOfBirth = model.DateOfBirth,
+                    UserStore<IdentityUser> userStore = new UserStore<IdentityUser>();
+                    UserManager<IdentityUser> manager = new UserManager<IdentityUser>(userStore);
+                    IdentityUser user = new IdentityUser() {
+                        UserName = model.UserName,
                         Email = model.Email,
-                        Active = true
-                    });
-                    WebSecurity.Login(model.UserName, model.Password);
+                    };
+
+                    //WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new
+                    //{
+                    //    FirstName = model.FirstName,
+                    //    LastName = model.LastName,
+                    //    DateOfBirth = model.DateOfBirth,
+                    //    Email = model.Email,
+                    //    Active = true
+                    //});
+                    //WebSecurity.Login(model.UserName, model.Password);
                     
                     return RedirectToAction("Index", "Home");
                 }
