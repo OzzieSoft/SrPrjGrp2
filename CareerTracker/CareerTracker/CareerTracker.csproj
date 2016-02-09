@@ -369,6 +369,7 @@
     <Content Include="Views\Administrator\Edit.cshtml" />
     <Content Include="Views\Administrator\Delete.cshtml" />
     <Content Include="Views\Home\PleaseLogIn.cshtml" />
+    <Content Include="Views\Account\SearchIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

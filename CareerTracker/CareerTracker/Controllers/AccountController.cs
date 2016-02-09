@@ -350,6 +350,19 @@ namespace CareerTracker.Controllers
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
 
+		public ActionResult SearchIndex(string searchString) 
+		{
+			var users = from x in db.UserProfiles select x;
+
+			if (!String.IsNullOrEmpty(searchString)) 
+			{
+				users = users.Where(s => s.UserName.Contains(searchString) || s.firstName.Contains(searchString) 
+					|| s.lastName.Contains(searchString));
+			}
+
+			return View(users);
+		}
+
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
         {
