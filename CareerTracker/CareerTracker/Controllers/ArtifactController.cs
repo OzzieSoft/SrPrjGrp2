@@ -38,7 +38,7 @@ namespace CareerTracker.Controllers
             {
                 Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
                 string username = User.Identity.Name.ToString();
-                if (artifact.User.UserName != username)
+                if (artifact.User.UserName.ToLower() != username.ToLower())
                 {
                     artifact = null;
                 }
@@ -77,7 +77,7 @@ namespace CareerTracker.Controllers
                     {
                         string usr = User.Identity.Name.ToString();
                         string test = Path.GetFileNameWithoutExtension(file.FileName);
-                        var fileName = test + usr + System.IO.Path.GetExtension(file.FileName);
+                        var fileName = test + "-" + usr + System.IO.Path.GetExtension(file.FileName);
                         string path = Path.Combine(Server.MapPath("/Artifacts"), fileName);
                         file.SaveAs(path);
                         artifact.Location = fileName;
@@ -104,7 +104,7 @@ namespace CareerTracker.Controllers
                 //Artifact artifact = ArtifactRepo.getArtifact(id,User.Identity.Name.ToString());
                 Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
                 string username = User.Identity.Name.ToString();
-                if (artifact.User.UserName != username)
+                if (artifact.User.UserName.ToLower() != username.ToLower())
                 {
                     artifact = null;
                 }
@@ -142,7 +142,7 @@ namespace CareerTracker.Controllers
             {
                 Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
                 string username = User.Identity.Name.ToString();
-                if (artifact.User.UserName != username)
+                if (artifact.User.UserName.ToLower() != username.ToLower())
                 {
                     artifact = null;
                 }; //ArtifactRepo.getArtifact(id, User.Identity.Name.ToString());
