@@ -80,7 +80,7 @@ namespace CareerTracker.Controllers
                         string test = Path.GetFileNameWithoutExtension(file.FileName);
                         var fileName = test + "-" + usr + System.IO.Path.GetExtension(file.FileName);
                         string path = Path.Combine(Server.MapPath("/Artifacts"), fileName);
-                        if ((System.IO.Path.GetExtension(file.FileName)).ToString() == ".exe" || (System.IO.Path.GetExtension(file.FileName)).ToString() == ".bat")
+                        if ((System.IO.Path.GetExtension(file.FileName)).ToString().Equals(".exe") || (System.IO.Path.GetExtension(file.FileName)).ToString().Equals(".bat"))
                         {
                             Response.Write(@"<script language='javascript'>alert('Please do not upload .exe or .bat files.');</script>");
                         }
