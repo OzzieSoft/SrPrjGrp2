@@ -370,6 +370,7 @@
     <Content Include="Views\Administrator\Delete.cshtml" />
     <Content Include="Views\Home\PleaseLogIn.cshtml" />
     <Content Include="Views\Account\SearchIndex.cshtml" />
+    <Content Include="Views\Account\OutsideViewProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
