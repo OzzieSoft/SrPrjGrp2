@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CareerTracker.Models
 {
@@ -20,6 +22,25 @@ namespace CareerTracker.Models
             FailedPasswordAnswerAttemptWindowStart = DateTime.Parse("1/1/1754");
             FailedPasswordAttemptWindowStart = DateTime.Parse("1/1/1754");
         }
+
+        //[Display(Name = "Username")]
+        //public string UserName { get; set; }
+        [Display(Name = "Last Name")]
+        public string lastName { get; set; }
+        [Display(Name = "First Name")]
+        public string firstName { get; set; }
+        [Display(Name = "Active Account")]
+        public bool active { get; set; }
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime dateOfBirth { get; set; }
+
+        public virtual ICollection<Goal> goals { get; set; }
+        public virtual ICollection<Artifact> artifacts { get; set; }
+        public virtual ICollection<Skill> skills { get; set; }
+
+        public virtual ICollection<Course> Course { get; set; }
 
         public System.Guid ApplicationId { get; set; }
         public string MobileAlias { get; set; }

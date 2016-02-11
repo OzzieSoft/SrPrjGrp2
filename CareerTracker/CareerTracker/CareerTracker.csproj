@@ -98,6 +98,10 @@
     <Reference Include="System.Web.Http.Owin">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -123,9 +127,6 @@
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -249,6 +250,18 @@
     <Compile Include="Migrations\201601282118208_addedActiveFlag.cs" />
     <Compile Include="Migrations\201601282118208_addedActiveFlag.Designer.cs">
       <DependentUpon>201601282118208_addedActiveFlag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602112119390_migrateToClaims.cs" />
+    <Compile Include="Migrations\201602112119390_migrateToClaims.Designer.cs">
+      <DependentUpon>201602112119390_migrateToClaims.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602112149154_thisShouldHaveHappenedInTheLastMigrationButVisualStudioIsStupid.cs" />
+    <Compile Include="Migrations\201602112149154_thisShouldHaveHappenedInTheLastMigrationButVisualStudioIsStupid.Designer.cs">
+      <DependentUpon>201602112149154_thisShouldHaveHappenedInTheLastMigrationButVisualStudioIsStupid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602112200148_sillyFixToUserClass.cs" />
+    <Compile Include="Migrations\201602112200148_sillyFixToUserClass.Designer.cs">
+      <DependentUpon>201602112200148_sillyFixToUserClass.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -423,6 +436,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601282118208_addedActiveFlag.resx">
       <DependentUpon>201601282118208_addedActiveFlag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602112119390_migrateToClaims.resx">
+      <DependentUpon>201602112119390_migrateToClaims.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602112149154_thisShouldHaveHappenedInTheLastMigrationButVisualStudioIsStupid.resx">
+      <DependentUpon>201602112149154_thisShouldHaveHappenedInTheLastMigrationButVisualStudioIsStupid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602112200148_sillyFixToUserClass.resx">
+      <DependentUpon>201602112200148_sillyFixToUserClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

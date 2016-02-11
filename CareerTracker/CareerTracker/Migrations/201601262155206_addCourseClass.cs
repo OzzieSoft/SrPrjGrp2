@@ -8,7 +8,7 @@ namespace CareerTracker.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Course",
+                "dbo.Courses",
                 c => new
                 {
                     ID = c.Int(nullable:false, identity:true),
@@ -24,7 +24,7 @@ namespace CareerTracker.Migrations
                     UserProfile_ID = c.Int(nullable: false),
                 })
                 .PrimaryKey(t => new { t.Course_ID, t.UserProfile_ID })
-                .ForeignKey("dbo.Course", t => t.Course_ID, cascadeDelete: true)
+                .ForeignKey("dbo.Courses", t => t.Course_ID, cascadeDelete: true)
                 .ForeignKey("dbo.UserProfile", t => t.UserProfile_ID, cascadeDelete: true)
                 .Index(t => t.Course_ID)
                 .Index(t => t.UserProfile_ID);
@@ -34,10 +34,10 @@ namespace CareerTracker.Migrations
         {
             DropIndex("dbo.CourseUserProfile", new[] {"Course_ID"});
             DropIndex("dbo.CourseUserProfile", new[] {"UserProfile_ID"});
-            DropForeignKey("dbo.CourseUserProfile", "Course_ID", "dbo.Course");
+            DropForeignKey("dbo.CourseUserProfile", "Course_ID", "dbo.Courses");
             DropForeignKey("dbo.CourseUserProfile", "UserProfile_ID", "dbo.UserProfile");
             DropTable("dbo.CourseUserProfile");
-            DropTable("dbo.Course");
+            DropTable("dbo.Courses");
         }
     }
 }

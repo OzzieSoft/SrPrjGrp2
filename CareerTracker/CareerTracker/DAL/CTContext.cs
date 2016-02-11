@@ -6,7 +6,7 @@ namespace CareerTracker.DAL
 {
     public class CTContext : IdentityDbContext<User>
     {
-        public CTContext() : base("DefaultConnection") { }
+        public CTContext() : base("DefaultConnection", throwIfV1Schema: false) { }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Goal> Goals { get; set; }
@@ -14,5 +14,7 @@ namespace CareerTracker.DAL
         public DbSet<Artifact> Artifacts { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        
     }
 }

@@ -97,10 +97,26 @@ namespace CareerTracker.Controllers
                 {
                     UserStore<IdentityUser> userStore = new UserStore<IdentityUser>();
                     UserManager<IdentityUser> manager = new UserManager<IdentityUser>(userStore);
-                    IdentityUser user = new IdentityUser() {
+                    User user = new User() {
                         UserName = model.UserName,
+                        firstName = model.FirstName,
+                        lastName = model.LastName,
+                        dateOfBirth = model.DateOfBirth,
                         Email = model.Email,
+                        active = true
+                        
+                        
                     };
+                    IdentityResult result = manager.Create(user, model.Password);
+
+                    if (result.Succeeded)
+                    {
+                        ViewBag.Title = string.Format("User {0} was created successfully!", user.UserName);
+                    }
+                    else
+                    {
+                        ViewBag.Title = result.Errors.FirstOrDefault();
+                    }
 
                     //WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new
                     //{
@@ -112,7 +128,7 @@ namespace CareerTracker.Controllers
                     //});
                     //WebSecurity.Login(model.UserName, model.Password);
                     
-                    return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
                 {
