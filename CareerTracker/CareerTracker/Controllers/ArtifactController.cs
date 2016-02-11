@@ -9,6 +9,7 @@ using CareerTracker.Models;
 using CareerTracker.DAL;
 using CareerTracker.DataRepository;
 using System.IO;
+using System.Web.UI;
 
 namespace CareerTracker.Controllers
 {
@@ -79,6 +80,10 @@ namespace CareerTracker.Controllers
                         string test = Path.GetFileNameWithoutExtension(file.FileName);
                         var fileName = test + "-" + usr + System.IO.Path.GetExtension(file.FileName);
                         string path = Path.Combine(Server.MapPath("/Artifacts"), fileName);
+                        if ((System.IO.Path.GetExtension(file.FileName)).ToString() == ".exe" || (System.IO.Path.GetExtension(file.FileName)).ToString() == ".bat")
+                        {
+                            Response.Write(@"<script language='javascript'>alert('Please do not upload .exe or .bat files.');</script>");
+                        }
                         file.SaveAs(path);
                         artifact.Location = fileName;
                         ArtifactRepo.createArtifact(artifact, User.Identity.Name.ToString());
