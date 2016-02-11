@@ -34,7 +34,7 @@
                                 <li>@Html.ActionLink("My Account", "ViewProfile", "Account")</li>
                              }
                              
-                            @using (Html.BeginForm()) {
+                            @using (Html.BeginForm("SearchIndex", "Account", FormMethod.Get)) {
                             <li>
                                 @Html.TextBox("SearchString")
                                 <input type="submit" value="Search" />

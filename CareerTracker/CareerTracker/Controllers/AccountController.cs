@@ -350,6 +350,7 @@ namespace CareerTracker.Controllers
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
 
+		[AllowAnonymous]
 		public ActionResult SearchIndex(string searchString) 
 		{
 			var users = from x in db.UserProfiles select x;
