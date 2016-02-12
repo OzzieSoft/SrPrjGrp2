@@ -40,10 +40,10 @@ namespace CareerTracker.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         UserName = c.String(nullable: false, maxLength: 256),
-                        lastName = c.String(),
-                        firstName = c.String(),
-                        active = c.Boolean(nullable: false),
-                        dateOfBirth = c.DateTime(nullable: false),
+                        LastName = c.String(),
+                        FirstName = c.String(),
+                        Active = c.Boolean(nullable: false),
+                        DateOfBirth = c.DateTime(nullable: false),
                         ApplicationId = c.Guid(nullable: false),
                         MobileAlias = c.String(),
                         IsAnonymous = c.Boolean(nullable: false),
@@ -74,6 +74,7 @@ namespace CareerTracker.Migrations
                         LockoutEndDateUtc = c.DateTime(),
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
+                        
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex");

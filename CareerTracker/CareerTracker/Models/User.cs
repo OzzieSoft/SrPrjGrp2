@@ -21,26 +21,27 @@ namespace CareerTracker.Models
             LastLockoutDate = DateTime.Parse("1/1/1754");
             FailedPasswordAnswerAttemptWindowStart = DateTime.Parse("1/1/1754");
             FailedPasswordAttemptWindowStart = DateTime.Parse("1/1/1754");
+
         }
 
         //[Display(Name = "Username")]
         //public string UserName { get; set; }
         [Display(Name = "Last Name")]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
         [Display(Name = "First Name")]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
         [Display(Name = "Active Account")]
-        public bool active { get; set; }
+        public bool Active { get; set; }
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
-        public DateTime dateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
-        public virtual ICollection<Goal> goals { get; set; }
-        public virtual ICollection<Artifact> artifacts { get; set; }
-        public virtual ICollection<Skill> skills { get; set; }
+        public virtual ICollection<Goal> Goals { get; set; }
+        public virtual ICollection<Artifact> Artifacts { get; set; }
+        public virtual ICollection<Skill> Skills { get; set; }
 
-        public virtual ICollection<Course> Course { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
 
         public System.Guid ApplicationId { get; set; }
         public string MobileAlias { get; set; }

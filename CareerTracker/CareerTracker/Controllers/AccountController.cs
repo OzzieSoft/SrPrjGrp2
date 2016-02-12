@@ -95,17 +95,14 @@ namespace CareerTracker.Controllers
                 // Attempt to register the user
                 try
                 {
-                    UserStore<IdentityUser> userStore = new UserStore<IdentityUser>();
-                    UserManager<IdentityUser> manager = new UserManager<IdentityUser>(userStore);
+                    UserManager manager = new UserManager();
                     User user = new User() {
                         UserName = model.UserName,
-                        firstName = model.FirstName,
-                        lastName = model.LastName,
-                        dateOfBirth = model.DateOfBirth,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        DateOfBirth = model.DateOfBirth,
                         Email = model.Email,
-                        active = true
-                        
-                        
+                        Active = true
                     };
                     IdentityResult result = manager.Create(user, model.Password);
 
