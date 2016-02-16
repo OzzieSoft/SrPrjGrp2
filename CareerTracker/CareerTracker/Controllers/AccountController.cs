@@ -14,6 +14,7 @@ using CareerTracker.DAL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using System.Web.Helpers;
 
 namespace CareerTracker.Controllers
 {
@@ -39,6 +40,7 @@ namespace CareerTracker.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            SetANewRequestVerificationTokenManuallyInCookieAndOnTheForm();
             return View();
         }
 
@@ -50,15 +52,41 @@ namespace CareerTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+
+            UserManager userManager = new UserManager();
+            User user = userManager.Find(model.UserName, model.Password);
+
+            if (user != null)
             {
+                var authManager = System.Web.HttpContext.Current.GetOwinContext().Authentication;
+                var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                authManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
                 
-                return RedirectToLocal(returnUrl);
+                return RedirectToAction("Index", "Home");
             }
 
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
+        }
+
+        private void SetANewRequestVerificationTokenManuallyInCookieAndOnTheForm()
+        {
+            if (Response == null)
+                return;
+
+            string cookieToken, formToken;
+            AntiForgery.GetTokens(null, out cookieToken, out formToken);
+            SetCookie("__RequestVerificationToken", cookieToken);
+            ViewBag.FormToken = formToken;
+        }
+        private void SetCookie(string name, string value)
+        {
+            if (Response.Cookies.AllKeys.Contains(name))
+                Response.Cookies[name].Value = value;
+            else
+                Response.Cookies.Add(new HttpCookie(name, value));
         }
 
         //
@@ -68,8 +96,7 @@ namespace CareerTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
-            Session["CurrentID"] = -1;
+            System.Web.HttpContext.Current.GetOwinContext().Authentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
@@ -109,27 +136,23 @@ namespace CareerTracker.Controllers
                     if (result.Succeeded)
                     {
                         ViewBag.Title = string.Format("User {0} was created successfully!", user.UserName);
+                        
+                        // log in
+                        System.Web.HttpContext.Current.GetOwinContext().Authentication.SignIn(
+                            new AuthenticationProperties() { IsPersistent = false },
+                            manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie)
+                        );
                     }
                     else
                     {
                         ViewBag.Title = result.Errors.FirstOrDefault();
                     }
 
-                    //WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new
-                    //{
-                    //    FirstName = model.FirstName,
-                    //    LastName = model.LastName,
-                    //    DateOfBirth = model.DateOfBirth,
-                    //    Email = model.Email,
-                    //    Active = true
-                    //});
-                    //WebSecurity.Login(model.UserName, model.Password);
-                    
-                    //return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                    ModelState.AddModelError("", ErrorCodeToString(e));
                 }
             }
 

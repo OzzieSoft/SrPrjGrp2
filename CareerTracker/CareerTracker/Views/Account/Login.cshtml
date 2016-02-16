@@ -3,6 +3,14 @@
 @{
     ViewBag.Title = "Log in";
 }
+@if (ViewBag.FormToken != null)
+{
+    <text><input name="__RequestVerificationToken" type="hidden" value="@ViewBag.FormToken" /></text>
+}
+else
+{
+    <text>@Html.AntiForgeryToken()</text>
+}
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
