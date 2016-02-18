@@ -152,7 +152,7 @@ namespace CareerTracker.Controllers
                 }
                 catch (MembershipCreateUserException e)
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(e));
+                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
                 }
             }
 
