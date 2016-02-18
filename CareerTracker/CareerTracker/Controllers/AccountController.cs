@@ -364,10 +364,11 @@ namespace CareerTracker.Controllers
 			return View(users);
 		}
 
+		
 		[AllowAnonymous]
 		public ActionResult OutsideViewProfile(int id) {
-			var prof = from x in db.UserProfiles select x;
-			prof = db.UserProfiles.Where(u => u.UserId.Equals(id));
+			UserProfile prof;
+			prof = db.UserProfiles.FirstOrDefault(u => u.UserId.Equals(id));
 			return View(prof);
 		}
         #region Helpers
