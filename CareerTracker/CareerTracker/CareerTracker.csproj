@@ -263,7 +263,6 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\CombinedViewModel.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\GoalStep.cs" />
