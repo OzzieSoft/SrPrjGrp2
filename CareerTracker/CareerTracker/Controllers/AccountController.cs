@@ -395,6 +395,27 @@ namespace CareerTracker.Controllers
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
 
+		[AllowAnonymous]
+		public ActionResult SearchIndex(string searchString) 
+		{
+			var users = from x in db.UserProfiles select x;
+
+			if (!String.IsNullOrEmpty(searchString)) 
+			{
+				users = users.Where(s => s.UserName.Contains(searchString) || s.firstName.Contains(searchString) 
+					|| s.lastName.Contains(searchString));
+			}
+
+			return View(users);
+		}
+
+		
+		[AllowAnonymous]
+		public ActionResult OutsideViewProfile(int id) {
+			UserProfile prof;
+			prof = db.UserProfiles.FirstOrDefault(u => u.UserId.Equals(id));
+			return View(prof);
+		}
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
         {

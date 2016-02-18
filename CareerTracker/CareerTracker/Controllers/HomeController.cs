@@ -28,5 +28,12 @@ namespace CareerTracker.Controllers
 
             return View();
         }
+
+        public ActionResult PleaseLogIn() 
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
     }
 }

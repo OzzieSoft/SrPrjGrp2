@@ -24,10 +24,10 @@
     </div>
 
     <div class="display-label bold">
-         @Html.DisplayNameFor(model => model.Url)
+         @Html.DisplayNameFor(model => model.Location)
     </div>
     <div class="display-field left-padded">
-        @Html.DisplayFor(model => model.Url)
+        @Html.ActionLink(Model.Location, "Download", new { fileName = Model.Location })
     </div>
 </fieldset>
 <p>

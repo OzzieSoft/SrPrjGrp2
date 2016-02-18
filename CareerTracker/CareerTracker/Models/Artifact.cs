@@ -10,9 +10,8 @@ namespace CareerTracker.Models
         public bool IsResume { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        [Display(Name="URL")]
-        [Url(ErrorMessage="Please Enter a valid URL.")]
-        public string Url { get; set; }
+        [Display(Name = "File Name")]
+        public string Location { get; set; }
 
         public virtual UserProfile User { get; set; }
         public virtual ICollection<Category> Categories { get; set; }

@@ -3,29 +3,32 @@
     ViewBag.Title = "My Profile";
 }
 
-<h1>My Profile</h1>
+<h1>Profile</h1>
 
-<br/>
+<br />
 
-<h3>@Html.ActionLink("My Artifacts", "Index", "Artifact")</h3>
+<h3>User Info</h3>
+
+Html.DisplayFor(Model.firstName)
+
+<h3>Artifacts</h3>
 
 <table class="model-table">
-    
-        <tr>
-            <th class="name-header">
-                @Html.DisplayName("Name")
-            </th>
-            <th class="description-header">
-                @Html.DisplayName("Description")
-            </th>
-            <th>
-                @Html.DisplayName("Location")
-            </th>
-        </tr>
-    
 
-    @foreach (var item in Model.artifacts)
-    {
+    <tr>
+        <th class="name-header">
+            @Html.DisplayName("Name")
+        </th>
+        <th class="description-header">
+            @Html.DisplayName("Description")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model.artifacts) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -41,9 +44,9 @@
 
 </table>
 
-<p style="height:20px;"/>
+<p style="height:20px;" />
 
-<h3>@Html.ActionLink("My Skills", "Index", "Skill")</h3>
+<h3>Skills</h3>
 
 <table class="model-table">
 
@@ -58,8 +61,7 @@
     </tr>
 
 
-    @foreach (var item in Model.skills)
-    {
+    @foreach (var item in Model.skills) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -72,9 +74,9 @@
 
 </table>
 
-<p style="height:20px;"/>
+<p style="height:20px;" />
 
-<h3>@Html.ActionLink("My Goals", "Index", "Goal")</h3>
+<h3>Goals</h3>
 
 <table class="model-table">
 
@@ -90,8 +92,7 @@
         </th>
     </tr>
 
-    @foreach (var item in Model.goals)
-    {
+    @foreach (var item in Model.goals) {
         <tr style="border-top: 1px solid lightgray">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -103,8 +104,7 @@
                 @Html.DisplayFor(modelItem => item.DueDate)
             </td>
         </tr>
-        foreach (var step in item.Steps)
-        {
+        foreach (var step in item.Steps) {
             <tr>
                 <td style="padding-left:3%">
                     @Html.DisplayFor(modelItem => step.Name)
@@ -120,3 +120,4 @@
     }
 
 </table>
+

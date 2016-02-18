@@ -19,7 +19,11 @@ namespace CareerTracker.Controllers
 
         public ActionResult Index()
         {
-            return View(db.GoalSteps.ToList());
+            if (User.Identity.IsAuthenticated)
+            {
+                return View(db.GoalSteps.ToList());
+            }
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
@@ -27,12 +31,16 @@ namespace CareerTracker.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            GoalStep goalstep = db.GoalSteps.Find(id);
-            if (goalstep == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return HttpNotFound();
+                GoalStep goalstep = db.GoalSteps.Find(id);
+                if (goalstep == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(goalstep);
             }
-            return View(goalstep);
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
@@ -40,7 +48,11 @@ namespace CareerTracker.Controllers
 
         public ActionResult Create(int goalid = 0)
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
@@ -68,12 +80,16 @@ namespace CareerTracker.Controllers
 
         public ActionResult Edit(int id = 0, int goalID = 0)
         {
-            GoalStep goalstep = db.GoalSteps.Find(id);
-            if (goalstep == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return HttpNotFound();
+                GoalStep goalstep = db.GoalSteps.Find(id);
+                if (goalstep == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(goalstep);
             }
-            return View(goalstep);
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
@@ -100,12 +116,16 @@ namespace CareerTracker.Controllers
 
         public ActionResult Delete(int id = 0, int returnto = -1)
         {
-            GoalStep goalstep = db.GoalSteps.Find(id);
-            if (goalstep == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return HttpNotFound();
+                GoalStep goalstep = db.GoalSteps.Find(id);
+                if (goalstep == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(goalstep);
             }
-            return View(goalstep);
+            return RedirectToAction("NotLoggedIn", "Home");
         }
 
         //
