@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using CareerTracker.Models;
 using CareerTracker.DAL;
 using CareerTracker.DataRepository;
+using System.IO;
 
 namespace CareerTracker.Controllers
 {
@@ -50,16 +51,46 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Artifact artifact)
+        public ActionResult Create(Artifact artifact, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                ArtifactRepo.createArtifact(artifact, User.Identity.Name.ToString());
-                return RedirectToAction("Index");
+                if (file != null && file.ContentLength > 0)
+                {
+                    try
+                    {
+                        //string usr = User.Identity.Name.ToString();
+                        //string test = Path.GetFileNameWithoutExtension(file.FileName);
+                        var dirPath = Server.MapPath("/Artifacts/" + User.Identity.Name);
+                        Directory.CreateDirectory(dirPath);
+                        //var fileName = test + "-" + usr + System.IO.Path.GetExtension(file.FileName);
+                        string path = Path.Combine(dirPath, file.FileName);
+                        if ((System.IO.Path.GetExtension(file.FileName)).ToString().Equals(".exe") || (System.IO.Path.GetExtension(file.FileName)).ToString().Equals(".bat"))
+                        {
+                            Response.Write(@"<script language='javascript'>alert('Please do not upload .exe or .bat files.');</script>");
+                            throw new InvalidDataException("bat and exe files can't be uploaded.");
+                        }
+                        file.SaveAs(path);
+                        artifact.Location = file.FileName;
+                        ArtifactRepo.createArtifact(artifact, User.Identity.Name.ToString());
+                        return RedirectToAction("Index");
+                        //ViewBag.Message = "File uploaded successfully";
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    }
+                }
             }
-
             return View(artifact);
         }
+
+
+        public FileResult Download(string fileName)
+        {
+            var FileVirtualPath = "/Artifacts/" + User.Identity.Name +"/" + fileName;
+            return File(FileVirtualPath, "application/force-download", Path.GetFileName(FileVirtualPath));
+        }  
 
         //
         // GET: /Artifact/Edit/5

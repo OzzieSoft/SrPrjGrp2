@@ -13,13 +13,8 @@ namespace CareerTracker.Models
         [Display(Name = "File Name")]
         public string Location { get; set; }
 
-        public virtual UserProfile User { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
 
-        public List<Artifact> getArtifact()
-        {
-            List<Artifact> artifacts = new List<Artifact>();
-            return artifacts;
-        }
     }
 }

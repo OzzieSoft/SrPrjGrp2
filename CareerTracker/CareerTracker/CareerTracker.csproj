@@ -259,6 +259,10 @@
     <Compile Include="Migrations\201602112149154_thisShouldHaveHappenedInTheLastMigrationButVisualStudioIsStupid.Designer.cs">
       <DependentUpon>201602112149154_thisShouldHaveHappenedInTheLastMigrationButVisualStudioIsStupid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602182223570_changeURLtoLocationForSomeOddReason.cs" />
+    <Compile Include="Migrations\201602182223570_changeURLtoLocationForSomeOddReason.Designer.cs">
+      <DependentUpon>201602182223570_changeURLtoLocationForSomeOddReason.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
@@ -437,6 +441,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602112149154_thisShouldHaveHappenedInTheLastMigrationButVisualStudioIsStupid.resx">
       <DependentUpon>201602112149154_thisShouldHaveHappenedInTheLastMigrationButVisualStudioIsStupid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602182223570_changeURLtoLocationForSomeOddReason.resx">
+      <DependentUpon>201602182223570_changeURLtoLocationForSomeOddReason.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

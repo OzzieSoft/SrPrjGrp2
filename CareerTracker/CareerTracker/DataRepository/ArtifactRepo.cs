@@ -30,7 +30,7 @@ namespace CareerTracker.DataRepository
         public static void createArtifact(Artifact artifact, string username)
         {
             CTContext db = new CTContext();
-            artifact.User = db.UserProfiles.FirstOrDefault(u => u.UserName == username);
+            artifact.User = db.Users.FirstOrDefault(u => u.UserName == username);
             db.Artifacts.Add(artifact);
             db.SaveChanges();
         }
