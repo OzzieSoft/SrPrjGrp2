@@ -15,6 +15,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System.Web.Helpers;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace CareerTracker.Controllers
 {
@@ -49,18 +51,16 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
 
             UserManager userManager = new UserManager();
             User user = userManager.Find(model.UserName, model.Password);
-
             if (user != null)
             {
                 var authManager = System.Web.HttpContext.Current.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-
                 authManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
                 
                 return RedirectToAction("Index", "Home");
@@ -93,7 +93,7 @@ namespace CareerTracker.Controllers
         // POST: /Account/LogOff
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             System.Web.HttpContext.Current.GetOwinContext().Authentication.SignOut();
@@ -114,8 +114,8 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterModel model)
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
@@ -137,6 +137,14 @@ namespace CareerTracker.Controllers
                     {
                         ViewBag.Title = string.Format("User {0} was created successfully!", user.UserName);
                         
+                        // for testing, this will be taken out.
+                        if (model.UserName.Equals("admin"))
+                        {
+                            Console.Out.Write("user is an admin.");
+                            await manager.AddClaimAsync(manager.getIdFromUsername(model.UserName), new Claim(ClaimTypes.Role, "admin"));
+                            ViewBag.message = manager.GetClaims(manager.getIdFromUsername(model.UserName)).FirstOrDefault();
+                        }
+
                         // log in
                         System.Web.HttpContext.Current.GetOwinContext().Authentication.SignIn(
                             new AuthenticationProperties() { IsPersistent = false },
@@ -145,10 +153,10 @@ namespace CareerTracker.Controllers
                     }
                     else
                     {
-                        ViewBag.Title = result.Errors.FirstOrDefault();
+                        ViewBag.message = result.Errors.FirstOrDefault();
                     }
 
-                    return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
                 {

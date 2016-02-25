@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNet.Identity.EntityFramework;
 using CareerTracker.DAL;
+using CareerTracker.Models;
 
 namespace CareerTracker.Models
 {
@@ -19,6 +20,25 @@ namespace CareerTracker.Models
             this.PasswordHasher = new SQLPasswordHasher();
         }
 
+        public User findByUserName(string name)
+        {
+            User returnval;
+            returnval = Users.FirstOrDefault(u => u.UserName == name);
+            return returnval;
+        }
+        public string getIdFromUsername(string name)
+        {
+            string returnval;
+            try
+            {
+                returnval = Users.FirstOrDefault(u => u.UserName == name).Id;
+            }
+            catch (NullReferenceException nre)
+            {
+                returnval = null;
+            }
+            return returnval;
+        }
     }
 
 
