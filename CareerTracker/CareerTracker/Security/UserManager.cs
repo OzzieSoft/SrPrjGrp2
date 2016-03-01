@@ -13,6 +13,16 @@ using CareerTracker.Models;
 
 namespace CareerTracker.Models
 {
+    /*
+     * GETTING AND SETTING CLAIMS
+     * 
+     * await manager.AddClaimAsync(manager.getIdFromUsername(model.UserName), new Claim(ClaimTypes.Role, "admin"));
+     *      need the await keyword or it won't work.
+     *      
+     * 
+     * manager.GetClaims(manager.getIdFromUsername(model.UserName)).FirstOrDefault();
+     */
+
     public class UserManager : UserManager<User>
     {
         public UserManager() : base(new UserStore<User>(new CTContext()))

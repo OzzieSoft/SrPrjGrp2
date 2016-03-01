@@ -11,6 +11,7 @@ using WebMatrix.WebData;
 using CareerTracker.Filters;
 using CareerTracker.Models;
 using CareerTracker.DAL;
+using CareerTracker.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -115,7 +116,7 @@ namespace CareerTracker.Controllers
         [HttpPost]
         [AllowAnonymous]
         //[ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterModel model)
+        public ActionResult Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
@@ -138,11 +139,11 @@ namespace CareerTracker.Controllers
                         ViewBag.Title = string.Format("User {0} was created successfully!", user.UserName);
                         
                         // for testing, this will be taken out.
-                        if (model.UserName.Equals("admin"))
+                        if (model.UserName.Equals("admin2"))
                         {
-                            Console.Out.Write("user is an admin.");
-                            await manager.AddClaimAsync(manager.getIdFromUsername(model.UserName), new Claim(ClaimTypes.Role, "admin"));
+                            manager.AddClaim(manager.getIdFromUsername(model.UserName), new Claim(ClaimTypes.Role, "admin"));
                             ViewBag.message = manager.GetClaims(manager.getIdFromUsername(model.UserName)).FirstOrDefault();
+                            
                         }
 
                         // log in
