@@ -12,7 +12,7 @@ namespace CareerTracker.Models
         public string Description { get; set; }
 
 
-        public virtual UserProfile User { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
     }
 

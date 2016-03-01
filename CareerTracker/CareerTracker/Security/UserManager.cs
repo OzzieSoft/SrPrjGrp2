@@ -30,6 +30,11 @@ namespace CareerTracker.Security
             this.PasswordHasher = new SQLPasswordHasher();
         }
 
+        public UserManager(CTContext context) : base(new UserStore<User>(context))
+        {
+            this.PasswordHasher = new SQLPasswordHasher();
+        }
+
         public User findByUserName(string name)
         {
             User returnval;

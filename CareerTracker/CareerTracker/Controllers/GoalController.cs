@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using CareerTracker.Models;
 using CareerTracker.DAL;
+using CareerTracker.Security;
 
 namespace CareerTracker.Controllers
 {
@@ -20,12 +21,13 @@ namespace CareerTracker.Controllers
         public ActionResult Index()
         {
             if(User.Identity.IsAuthenticated){
+                UserManager manager = new UserManager();
                 List<Goal> returnList = new List<Goal>();
                 try
                 {
                     foreach (Goal g in db.Goals.ToList()) 
                     {
-                        if (g.User.UserId == db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name).UserId)
+                        if (g.User.Id.Equals(manager.getIdFromUsername(User.Identity.Name)))
                         {
                             returnList.Add(g);
                         }
@@ -75,7 +77,8 @@ namespace CareerTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                goal.User = db.UserProfiles.FirstOrDefault(u => u.UserName == User.Identity.Name);
+                UserManager manager = new UserManager(db);
+                goal.User = manager.findByUserName(User.Identity.Name);
                 db.Goals.Add(goal);
                 db.SaveChanges();
                 return RedirectToAction("Edit", new { id = goal.ID });

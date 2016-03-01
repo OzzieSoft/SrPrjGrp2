@@ -8,7 +8,7 @@ using System.Web.Security;
 
 namespace CareerTracker.Models
 {
-
+    /*
     [Table("UserProfile")]
     public class UserProfile
     {
@@ -36,6 +36,7 @@ namespace CareerTracker.Models
 
         public virtual ICollection<Course> Course { get; set; }
     }
+    */
 
     public class RegisterExternalLoginModel
     {

@@ -8,7 +8,6 @@ namespace CareerTracker.DAL
     {
         public CTContext() : base("DefaultConnection", throwIfV1Schema: false) { }
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Goal> Goals { get; set; }
         public DbSet<GoalStep> GoalSteps { get; set; }
         public DbSet<Artifact> Artifacts { get; set; }

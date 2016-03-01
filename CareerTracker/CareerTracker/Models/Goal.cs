@@ -17,7 +17,7 @@ namespace CareerTracker.Models
 
         public virtual ICollection<GoalStep> Steps { get; set; }
 
-        public virtual UserProfile User { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
     }
 }
