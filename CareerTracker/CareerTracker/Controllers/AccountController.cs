@@ -143,7 +143,6 @@ namespace CareerTracker.Controllers
                         {
                             manager.AddClaim(manager.getIdFromUsername(model.UserName), new Claim(ClaimTypes.Role, "admin"));
                             ViewBag.message = manager.GetClaims(manager.getIdFromUsername(model.UserName)).FirstOrDefault();
-                            
                         }
 
                         // log in

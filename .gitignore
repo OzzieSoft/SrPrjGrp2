@@ -226,3 +226,5 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+CareerTracker/CareerTracker/App_Data/CareerTracker.mdf
+CareerTracker/CareerTracker/App_Data/CareerTracker_log.ldf

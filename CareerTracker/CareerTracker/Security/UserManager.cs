@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using CareerTracker.DAL;
 using CareerTracker.Models;
 
-namespace CareerTracker.Models
+namespace CareerTracker.Security
 {
     /*
      * GETTING AND SETTING CLAIMS
