@@ -61,7 +61,7 @@ namespace CareerTracker.Controllers
                     {
                         //string usr = User.Identity.Name.ToString();
                         //string test = Path.GetFileNameWithoutExtension(file.FileName);
-                        var dirPath = Server.MapPath("/Artifacts/" + User.Identity.Name);
+                        var dirPath = Server.MapPath("/Artifacts/" + User.Identity.Name + "/");
                         Directory.CreateDirectory(dirPath);
                         //var fileName = test + "-" + usr + System.IO.Path.GetExtension(file.FileName);
                         string path = Path.Combine(dirPath, file.FileName);
@@ -99,8 +99,9 @@ namespace CareerTracker.Controllers
         {
             //Artifact artifact = ArtifactRepo.getArtifact(id,User.Identity.Name.ToString());
             Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);
+            Session["location"] = artifact.Location;
             string username = User.Identity.Name.ToString();
-            if (artifact.User.UserName != username)
+            if (artifact.User.UserName.ToLower() != username.ToLower())
             {
                 artifact = null;
             }
@@ -116,12 +117,41 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Artifact artifact)
+        public ActionResult Edit(Artifact artifact, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                FileDeletion(Session["location"].ToString());
+                Session["location"] = null;
+                artifact.Location = file.FileName;
                 db.Entry(artifact).State = EntityState.Modified;
                 db.SaveChanges();
+                if (file != null && file.ContentLength > 0)
+                {
+                    try
+                    {
+                        //string usr = User.Identity.Name.ToString();
+                        //string test = Path.GetFileNameWithoutExtension(file.FileName);
+                        var dirPath = Server.MapPath("/Artifacts/" + User.Identity.Name + "/");
+                        Directory.CreateDirectory(dirPath);
+                        //var fileName = test + "-" + usr + System.IO.Path.GetExtension(file.FileName);
+                        string path = Path.Combine(dirPath, file.FileName);
+                        if ((System.IO.Path.GetExtension(file.FileName)).ToString().Equals(".exe") || (System.IO.Path.GetExtension(file.FileName)).ToString().Equals(".bat"))
+                        {
+                            Response.Write(@"<script language='javascript'>alert('Please do not upload .exe or .bat files.');</script>");
+                            throw new InvalidDataException("bat and exe files can't be uploaded.");
+                        }
+                        file.SaveAs(path);
+                        artifact.Location = file.FileName;
+                        ArtifactRepo.createArtifact(artifact, User.Identity.Name.ToString());
+                        return RedirectToAction("Index");
+                        //ViewBag.Message = "File uploaded successfully";
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    }
+                }
                 return RedirectToAction("Index");
             }
             return View(artifact);
@@ -160,6 +190,15 @@ namespace CareerTracker.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        public void FileDeletion(string fileName)
+        {
+            string fullPath = Request.MapPath("~/Artifacts/" + User.Identity.Name + "/" + fileName);
+            if(System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
         }
     }
 }

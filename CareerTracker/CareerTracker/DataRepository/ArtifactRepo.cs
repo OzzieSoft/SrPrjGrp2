@@ -40,8 +40,19 @@ namespace CareerTracker.DataRepository
             Artifact artifact = db.Artifacts.Find(id);
             if (artifact.User.UserName.Equals(username))
             {
+                FileDeletion(artifact.Location, username);
                 db.Artifacts.Remove(artifact);
                 db.SaveChanges();
+            }
+        }
+
+        public static void FileDeletion(string fileName, string userName)
+        {
+            var Request = HttpContext.Current.Request;
+            string fullPath = Request.MapPath("~/Artifacts/" + userName + "/" + fileName);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
             }
         }
 
