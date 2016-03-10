@@ -31,13 +31,12 @@
                                 <li>@Html.ActionLink("Artifacts", "Index", "Artifact")</li>
                                 <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
                                 <li>@Html.ActionLink("Goals", "Index","Goal")</li>
-                                <li>@Html.ActionLink("My Account", "ViewProfile", "Account")</li>
                              }
                              
                             @using (Html.BeginForm("SearchIndex", "Account", FormMethod.Get)) {
                             <li>
-                                @Html.TextBox("SearchString")
-                                <input type="submit" value="Search" />
+                                @Html.TextBox("SearchString", null, new { style = "padding:1px" })
+                                <input type="submit" value="Search" class="searchBar" style="padding:0px;"/>
                             </li>
                             } 
                         </ul>

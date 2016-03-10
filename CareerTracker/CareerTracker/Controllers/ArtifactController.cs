@@ -72,7 +72,7 @@ namespace CareerTracker.Controllers
                         }
                         if(System.IO.File.Exists(path))
                         {
-                            Response.Write(@"<script language='javascript'>alert('A file with that name has already been uploaded. Please update your artifact through the edit link, if you wish to update your file.');</script>");
+                            Response.Write(@"<script language='javascript'>alert('A file with that name has already been uploaded by you. Please update your artifact through the edit link, if you wish to update your file.');</script>");
                             throw new Exception("File already uploaded");
                         }
                         file.SaveAs(path);
