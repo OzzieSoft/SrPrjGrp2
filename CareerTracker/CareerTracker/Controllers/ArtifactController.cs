@@ -70,6 +70,11 @@ namespace CareerTracker.Controllers
                             Response.Write(@"<script language='javascript'>alert('Please do not upload .exe or .bat files.');</script>");
                             throw new InvalidDataException("bat and exe files can't be uploaded.");
                         }
+                        if(System.IO.File.Exists(path))
+                        {
+                            Response.Write(@"<script language='javascript'>alert('A file with that name has already been uploaded. Please update your artifact through the edit link, if you wish to update your file.');</script>");
+                            throw new Exception("File already uploaded");
+                        }
                         file.SaveAs(path);
                         artifact.Location = file.FileName;
                         ArtifactRepo.createArtifact(artifact, User.Identity.Name.ToString());

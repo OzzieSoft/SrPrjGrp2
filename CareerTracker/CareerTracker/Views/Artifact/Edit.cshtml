@@ -42,9 +42,14 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.Location)
         </div>
+        <div class="editor-label">
+            <p>Click here to download your file. Please back up your files before uploading a new file to the server.</p>
+            @Html.ActionLink(Model.Location, "Download", new { fileName = Model.Location })
+            <p></p>
+        </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Location)
-            @Html.ValidationMessageFor(model => model.Location)
+            <label for=" file">Upload New File</label>
+            <input type="file" name="file" id="file" />
         </div>
 
         <p>

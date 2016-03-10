@@ -28,7 +28,7 @@
          @Html.DisplayNameFor(model => model.Location)
     </div>
     <div class="display-field left-padded">
-        @Html.DisplayFor(model => model.Location)
+        @Html.ActionLink(Model.Location, "Download", new { fileName = Model.Location })
     </div>
 </fieldset>
 @using (Html.BeginForm()) {
