@@ -381,10 +381,8 @@
     <Content Include="Views\GoalStep\Delete.cshtml" />
     <Content Include="Views\Account\ViewProfile.cshtml" />
     <Content Include="Views\Administrator\Index.cshtml" />
-    <Content Include="Views\Administrator\Details.cshtml" />
-    <Content Include="Views\Administrator\Create.cshtml" />
     <Content Include="Views\Administrator\Edit.cshtml" />
-    <Content Include="Views\Administrator\Delete.cshtml" />
+    <Content Include="Views\Account\OutsideProfileView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

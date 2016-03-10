@@ -41,6 +41,11 @@ namespace CareerTracker.Security
             returnval = Users.FirstOrDefault(u => u.UserName == name);
             return returnval;
         }
+		public User findById(string id) {
+			User returnval;
+			returnval = Users.FirstOrDefault(u => u.Id == id);
+			return returnval;
+		}
         public string getIdFromUsername(string name)
         {
             string returnval;

@@ -1,4 +1,4 @@
-﻿@model CareerTracker.Models.UserProfile
+﻿@model CareerTracker.Models.User
 
 @{
     ViewBag.Title = "Edit";
@@ -12,13 +12,13 @@
 
     <fieldset>
         <legend>User</legend>
-        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.Id)
         <div class="editor-label">
             Activate user?
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.active)
-            @Html.ValidationMessageFor(model => model.active)
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
         </div>
 
         <p>
