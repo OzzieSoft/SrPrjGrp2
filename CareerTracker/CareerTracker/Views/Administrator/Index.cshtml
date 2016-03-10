@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CareerTracker.Models.UserProfile>
+﻿@model IEnumerable<CareerTracker.Models.User>
 
 @{
     ViewBag.Title = "Index";
@@ -12,16 +12,16 @@
             @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
+            @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lastName)
+            @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.firstName)
+            @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.active)
+            @Html.DisplayNameFor(model => model.Active)
         </th>
         <th></th>
     </tr>
@@ -32,19 +32,19 @@
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.email)
+            @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.lastName)
+            @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.firstName)
+            @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.active)
+            @Html.DisplayFor(modelItem => item.Active)
         </td>
         <td>
-            @Html.ActionLink("Change Status", "Edit", new { id=item.UserId })
+            @Html.ActionLink("Change Status", "Edit", new { id=item.Id })
         </td>
     </tr>
 }
