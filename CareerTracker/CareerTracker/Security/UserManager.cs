@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Security;
-using System.Security.Claims;
 using Microsoft.AspNet.Identity;
 using System.Security.Cryptography;
 using System.Text;
@@ -25,14 +21,14 @@ namespace CareerTracker.Security
 
     public class UserManager : UserManager<User>
     {
-        public UserManager() : base(new UserStore<User>(new CTContext()))
-        {
-            this.PasswordHasher = new SQLPasswordHasher();
-        }
+        public UserManager() : this(new UserStore<User>(new CTContext())) { }        
 
-        public UserManager(CTContext context) : base(new UserStore<User>(context))
+        public UserManager(CTContext context) : this(new UserStore<User>(context)) { }
+        
+        public UserManager(UserStore<User> store) : base(store)
         {
             this.PasswordHasher = new SQLPasswordHasher();
+            store.AutoSaveChanges = true;
         }
 
         public User findByUserName(string name)
@@ -44,6 +40,7 @@ namespace CareerTracker.Security
 		public User findById(string id) {
 			User returnval;
 			returnval = Users.FirstOrDefault(u => u.Id == id);
+            
 			return returnval;
 		}
         public string getIdFromUsername(string name)

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using CareerTracker.Models;
 using CareerTracker.DAL;
 using CareerTracker.Security;
+using Microsoft.AspNet.Identity;
 
 namespace CareerTracker.Controllers
 {
@@ -42,15 +43,20 @@ namespace CareerTracker.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(User userprofile) {
-			if (ModelState.IsValid) {
-				//UserManager manager = new UserManager();
-				db.Users.Attach(userprofile);
-				db.Entry(userprofile).Property(x => x.Active).IsModified = true;
-				db.SaveChanges();
+		public ActionResult Edit(User input) {
+            UserManager manager = new UserManager();
+            User user = manager.findById(input.Id);
+            if (ModelState.IsValid) {
+                //db.Users.Attach(userprofile);
+                //db.Entry(userprofile).Property(x => x.Active).IsModified = true;
+                //db.SaveChanges();
+
+                user.Active = input.Active;
+                manager.Update(user);
+
 				return RedirectToAction("Index");
 			}
-			return View(userprofile);
+			return View(user);
 		}
 
 
