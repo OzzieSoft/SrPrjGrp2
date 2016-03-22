@@ -128,7 +128,7 @@ namespace CareerTracker.Controllers
             {
                 FileDeletion(Session["location"].ToString());
                 Session["location"] = null;
-                artifact.Location = file.FileName;
+                //artifact.Location = file.FileName;
                 db.Entry(artifact).State = EntityState.Modified;
                 db.SaveChanges();
                 if (file != null && file.ContentLength > 0)

@@ -44,6 +44,7 @@ namespace CareerTracker.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(User userprofile) {
 			if (ModelState.IsValid) {
+				//UserManager manager = new UserManager();
 				db.Users.Attach(userprofile);
 				db.Entry(userprofile).Property(x => x.Active).IsModified = true;
 				db.SaveChanges();
