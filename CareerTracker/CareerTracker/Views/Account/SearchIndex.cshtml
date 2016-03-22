@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CareerTracker.Models.UserProfile>
+﻿@model IEnumerable<CareerTracker.Models.User>
 
 @{
     ViewBag.Title = "SearchIndex";
@@ -12,10 +12,10 @@
             @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.firstName)
+            @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lastName)
+            @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th></th>
     </tr>
@@ -23,13 +23,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink(item.UserName, "OutsideViewProfile", new { id = item.UserId })
+            @Html.ActionLink(item.UserName, "OutsideViewProfile", new { id = item.Id })
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.firstName)
+            @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.lastName)
+            @Html.DisplayFor(modelItem => item.LastName)
         </td>
     </tr>
 }

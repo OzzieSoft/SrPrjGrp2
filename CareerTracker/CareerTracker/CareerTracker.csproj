@@ -383,6 +383,7 @@
     <Content Include="Views\Administrator\Index.cshtml" />
     <Content Include="Views\Administrator\Edit.cshtml" />
     <Content Include="Views\Account\OutsideProfileView.cshtml" />
+    <Content Include="Views\Account\SearchIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
