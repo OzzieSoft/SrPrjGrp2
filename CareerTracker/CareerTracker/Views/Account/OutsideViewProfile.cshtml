@@ -1,4 +1,4 @@
-﻿@model CareerTracker.Models.UserProfile
+﻿@model CareerTracker.Models.User
 @{
     ViewBag.Title = "My Profile";
 }
@@ -28,7 +28,7 @@ Html.DisplayFor(Model.firstName)
     </tr>
 
 
-    @foreach (var item in Model.artifacts) {
+    @foreach (var item in Model.Artifacts) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -61,7 +61,7 @@ Html.DisplayFor(Model.firstName)
     </tr>
 
 
-    @foreach (var item in Model.skills) {
+    @foreach (var item in Model.Skills) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -92,7 +92,7 @@ Html.DisplayFor(Model.firstName)
         </th>
     </tr>
 
-    @foreach (var item in Model.goals) {
+    @foreach (var item in Model.Goals) {
         <tr style="border-top: 1px solid lightgray">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
