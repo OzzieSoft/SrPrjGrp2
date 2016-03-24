@@ -18,7 +18,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Artifact/
-
+		[Authorize]
         public ActionResult Index()
         {
             List<Artifact> returnList = ArtifactRepo.getUserArtifacts(User.Identity.Name.ToString());
@@ -27,7 +27,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Artifact/Details/5
-
+		[Authorize]
         public ActionResult Details(int id = 0)
         {
             Artifact artifact = ArtifactRepo.getArtifact(id, User.Identity.Name.ToString());
@@ -40,7 +40,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Artifact/Create
-
+		[Authorize]
         public ActionResult Create()
         {
             return View();
@@ -99,7 +99,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Artifact/Edit/5
-
+		[Authorize]
         public ActionResult Edit(int id = 0)
         {
             //Artifact artifact = ArtifactRepo.getArtifact(id,User.Identity.Name.ToString());
@@ -164,7 +164,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Artifact/Delete/5
-
+		[Authorize]
         public ActionResult Delete(int id = 0)
         {
             Artifact artifact = db.Artifacts.FirstOrDefault(a => a.ID == id);

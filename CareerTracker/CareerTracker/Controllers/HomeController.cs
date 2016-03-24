@@ -32,8 +32,13 @@ namespace CareerTracker.Controllers
         public ActionResult PleaseLogIn() 
         {
             ViewBag.Message = "";
-
             return View();
         }
+
+		public ActionResult NotActive() 
+		{
+			ViewBag.Message = "";
+			return View();
+		}
     }
 }

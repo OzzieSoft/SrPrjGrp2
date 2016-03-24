@@ -17,7 +17,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Skill/
-
+		[Authorize]
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
@@ -42,7 +42,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Skill/Details/5
-
+		[Authorize]
         public ActionResult Details(int id = 0)
         {
             if (User.Identity.IsAuthenticated)
@@ -59,7 +59,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Skill/Create
-
+		[Authorize]
         public ActionResult Create()
         {
             if (User.Identity.IsAuthenticated)
@@ -90,7 +90,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Skill/Edit/5
-
+		[Authorize]
         public ActionResult Edit(int id = 0)
         {
             if (User.Identity.IsAuthenticated)
@@ -123,7 +123,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Skill/Delete/5
-
+		[Authorize]
         public ActionResult Delete(int id = 0)
         {
             if (User.Identity.IsAuthenticated)

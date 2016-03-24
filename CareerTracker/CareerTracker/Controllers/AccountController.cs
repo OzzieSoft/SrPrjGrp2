@@ -61,6 +61,10 @@ namespace CareerTracker.Controllers
             User user = userManager.Find(model.UserName, model.Password);
             if (user != null)
             {
+				if (user.Active != true) 
+				{
+					return RedirectToAction("NotActive", "Home");
+				}
                 var authManager = System.Web.HttpContext.Current.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);

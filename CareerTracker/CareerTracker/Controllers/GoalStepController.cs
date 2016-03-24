@@ -16,7 +16,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /GoalStep/
-
+		[Authorize]
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
@@ -28,7 +28,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /GoalStep/Details/5
-
+		[Authorize]
         public ActionResult Details(int id = 0)
         {
             if (User.Identity.IsAuthenticated)
@@ -45,7 +45,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /GoalStep/Create
-
+		[Authorize]
         public ActionResult Create(int goalid = 0)
         {
             if (User.Identity.IsAuthenticated)
@@ -77,7 +77,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /GoalStep/Edit/5
-
+		[Authorize]
         public ActionResult Edit(int id = 0, int goalID = 0)
         {
             if (User.Identity.IsAuthenticated)
@@ -113,7 +113,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /GoalStep/Delete/5
-
+		[Authorize]
         public ActionResult Delete(int id = 0, int returnto = -1)
         {
             if (User.Identity.IsAuthenticated)

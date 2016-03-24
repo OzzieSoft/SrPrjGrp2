@@ -384,6 +384,7 @@
     <Content Include="Views\Administrator\Edit.cshtml" />
     <Content Include="Views\Account\OutsideProfileView.cshtml" />
     <Content Include="Views\Account\SearchIndex.cshtml" />
+    <Content Include="Views\Home\NotActive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

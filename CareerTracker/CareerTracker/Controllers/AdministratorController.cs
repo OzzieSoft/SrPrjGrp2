@@ -9,6 +9,7 @@ using CareerTracker.Models;
 using CareerTracker.DAL;
 using CareerTracker.Security;
 using Microsoft.AspNet.Identity;
+using System.Security.Claims;
 
 namespace CareerTracker.Controllers
 {
@@ -18,16 +19,24 @@ namespace CareerTracker.Controllers
 
         //
         //// GET: /Administrator/
-
+		[Authorize]
         public ActionResult Index()
         {
+			var userId = (ClaimsIdentity)User.Identity;
+			var claims = userId.Claims;
+			var roleClaimType = userId.RoleClaimType;
+			var roles = claims.Where(x => x.Type == ClaimTypes.Role).ToList();
+			if(roles.Count == 0)
+			{
+				return RedirectToAction("Index", "Home");
+			}
 			UserManager manager = new UserManager();
             return View(db.Users.ToList());
         }
 
         ////
         //// GET: /Administrator/Edit/5
-
+		[Authorize]
 		public ActionResult Edit(string id) {
 			UserManager manager = new UserManager();
 			User user = manager.findById(id);
