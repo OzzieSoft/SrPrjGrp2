@@ -63,13 +63,13 @@
                     {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => step.Name)
+                            @step.Name
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => step.Description)
+                            @step.Description
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => step.DueDate, "{0:dd-MMM-yyyy}", new { type = "date", placeholder = "MM/dd/yyyy" })
+                            @step.DueDate.ToShortDateString()
                         </td>
                         <td>
                             @Html.ActionLink("Edit", "Edit", "GoalStep", new { id = step.ID, goalID = Model.ID }, null) |

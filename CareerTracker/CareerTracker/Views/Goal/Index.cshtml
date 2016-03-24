@@ -50,13 +50,13 @@
     {
         <tr>
             <td style="padding-left:3%">
-                @Html.DisplayFor(modelItem => step.Name)
+                @step.Name
             </td>
             <td>
-                @Html.DisplayFor(modelItem => step.Description)
+                @step.Description
             </td>
             <td>
-                @Html.DisplayFor(modelItem => step.DueDate)
+                @step.DueDate.ToShortDateString()
             </td>
             <td>
                 @Html.ActionLink("Delete", "Delete", "GoalStep", new { id = step.ID, returnto = -1 }, null)
