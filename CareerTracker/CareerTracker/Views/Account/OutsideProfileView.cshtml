@@ -1,9 +1,24 @@
 ﻿@model CareerTracker.Models.User
 @{
-    ViewBag.Title = "My Profile";
+    ViewBag.Title = "User Profile";
 }
 
-<h1>@Model.UserName 's Profile</h1>
+<h3>User Info</h3>
+<p>
+    @Model.FirstName @Model.LastName's Profile
+</p>
+<p>
+Username: @Model.UserName
+</p>
+<p>
+    Email: @Model.Email
+</p>
+<h4>
+    Description
+</h4>
+<p>
+@Model.Description
+</p>    
 
 <br />
 
