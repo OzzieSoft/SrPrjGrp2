@@ -239,6 +239,10 @@
     <Compile Include="Migrations\201603291939110_addedDescriptionBioToUser.Designer.cs">
       <DependentUpon>201603291939110_addedDescriptionBioToUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603292020009_addedPublicPrivateFlag.cs" />
+    <Compile Include="Migrations\201603292020009_addedPublicPrivateFlag.Designer.cs">
+      <DependentUpon>201603292020009_addedPublicPrivateFlag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
@@ -403,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603291939110_addedDescriptionBioToUser.resx">
       <DependentUpon>201603291939110_addedDescriptionBioToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603292020009_addedPublicPrivateFlag.resx">
+      <DependentUpon>201603292020009_addedPublicPrivateFlag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

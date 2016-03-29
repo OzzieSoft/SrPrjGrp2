@@ -296,7 +296,7 @@ namespace CareerTracker.Controllers
 
 		
 		[AllowAnonymous]
-		public ActionResult OutsideViewProfile(string id) {
+		public ActionResult OutsideProfileView(string id) {
 			User prof;
             UserManager manager = new UserManager();
 			prof = manager.FindById(id);

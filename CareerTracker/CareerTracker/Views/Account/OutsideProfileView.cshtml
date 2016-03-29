@@ -23,6 +23,7 @@
 
 
     @foreach (var item in Model.Artifacts) {
+        if (item.Visible == true) { 
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -34,6 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Location)
             </td>
         </tr>
+        }
     }
 
 </table>
@@ -54,6 +56,8 @@
 
 
     @foreach (var item in Model.Skills) {
+        if (item.Visible.Equals(true)) 
+        { 
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -62,6 +66,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
         </tr>
+        }
     }
 
 </table>
@@ -83,6 +88,7 @@
     </tr>
 
     @foreach (var item in Model.Goals) {
+        if (item.Visible == true) {    
         <tr style="border-top: 1px solid lightgray">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -95,6 +101,7 @@
             </td>
         </tr>
         foreach (var step in item.Steps) {
+            if (item.Visible == true) { 
             <tr>
                 <td style="padding-left:3%">
                     @Html.DisplayFor(modelItem => step.Name)
@@ -107,6 +114,7 @@
                 </td>
             </tr>
         }
+        }
     }
-
+    }
 </table>

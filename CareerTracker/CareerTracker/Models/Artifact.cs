@@ -13,6 +13,9 @@ namespace CareerTracker.Models
         [Display(Name = "File Name")]
         public string Location { get; set; }
 
+		[Display(Name= "Public or Private?")]
+		public bool Visible { get; set; }
+
         public virtual User User { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
 

@@ -12,6 +12,10 @@ namespace CareerTracker.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
+		[Display(Name = "Public or Private?")]
+		public bool Visible { get; set; }
+
+		[Display(Name = "Due Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/dd/yyyy}")]
         public DateTime DueDate { get; set; }
