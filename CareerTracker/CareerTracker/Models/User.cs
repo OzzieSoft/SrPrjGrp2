@@ -37,6 +37,8 @@ namespace CareerTracker.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DateOfBirth { get; set; }
 
+		public string Description { get; set; }
+
         public virtual ICollection<Goal> Goals { get; set; }
         public virtual ICollection<Artifact> Artifacts { get; set; }
         public virtual ICollection<Skill> Skills { get; set; }

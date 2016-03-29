@@ -276,7 +276,6 @@ namespace CareerTracker.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -303,6 +302,33 @@ namespace CareerTracker.Controllers
 			prof = manager.FindById(id);
 			return View(prof);
 		}
+
+		[Authorize]
+		public ActionResult EditDesc(string id) {
+			UserManager manager = new UserManager();
+			User user = manager.findById(id);
+			if (user == null) {
+				return HttpNotFound();
+			}
+
+			return View(user);
+		}
+
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult EditDesc(User input) {
+			UserManager manager = new UserManager();
+			User user = manager.findById(input.Id);
+			if (ModelState.IsValid) {
+				user.Description = input.Description;
+				manager.Update(user);
+
+				return RedirectToAction("ViewProfile");
+			}
+			return View(user);
+		}
+
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
         {
