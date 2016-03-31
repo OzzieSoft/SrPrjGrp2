@@ -46,6 +46,9 @@
         <td>
             @Html.ActionLink("Change Status", "Edit", new { id=item.Id })
         </td>
+        <td>
+            @Html.ActionLink("User Info", "AdminProfileView", new { id = item.Id })
+        </td>
     </tr>
 }
 

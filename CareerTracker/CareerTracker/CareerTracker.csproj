@@ -394,6 +394,7 @@
     <Content Include="Views\Account\SearchIndex.cshtml" />
     <Content Include="Views\Home\NotActive.cshtml" />
     <Content Include="Views\Account\EditDesc.cshtml" />
+    <Content Include="Views\Administrator\AdminProfileView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
