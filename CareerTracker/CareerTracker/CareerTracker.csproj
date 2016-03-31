@@ -235,6 +235,14 @@
     <Compile Include="Migrations\201603012228457_initial.Designer.cs">
       <DependentUpon>201603012228457_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603291939110_addedDescriptionBioToUser.cs" />
+    <Compile Include="Migrations\201603291939110_addedDescriptionBioToUser.Designer.cs">
+      <DependentUpon>201603291939110_addedDescriptionBioToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603292020009_addedPublicPrivateFlag.cs" />
+    <Compile Include="Migrations\201603292020009_addedPublicPrivateFlag.Designer.cs">
+      <DependentUpon>201603292020009_addedPublicPrivateFlag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artifact.cs" />
@@ -385,6 +393,8 @@
     <Content Include="Views\Account\OutsideProfileView.cshtml" />
     <Content Include="Views\Account\SearchIndex.cshtml" />
     <Content Include="Views\Home\NotActive.cshtml" />
+    <Content Include="Views\Account\EditDesc.cshtml" />
+    <Content Include="Views\Administrator\AdminProfileView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -395,6 +405,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603012228457_initial.resx">
       <DependentUpon>201603012228457_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603291939110_addedDescriptionBioToUser.resx">
+      <DependentUpon>201603291939110_addedDescriptionBioToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603292020009_addedPublicPrivateFlag.resx">
+      <DependentUpon>201603292020009_addedPublicPrivateFlag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

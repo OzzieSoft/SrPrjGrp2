@@ -68,6 +68,13 @@ namespace CareerTracker.Controllers
 			return View(user);
 		}
 
+		[AllowAnonymous]
+		public ActionResult AdminProfileView(string id) {
+			User prof;
+			UserManager manager = new UserManager();
+			prof = manager.FindById(id);
+			return View(prof);
+		}
 
 		protected override void Dispose(bool disposing) {
 			db.Dispose();
