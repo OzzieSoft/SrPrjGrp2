@@ -161,7 +161,7 @@ namespace CareerTracker.Controllers
                         ViewBag.message = result.Errors.FirstOrDefault();
                     }
 
-                    //return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
                 {

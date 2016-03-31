@@ -89,6 +89,7 @@ namespace CareerTracker.Models
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Alphanumeric("The password must have at least 1 number and 1 letter.")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -116,6 +117,41 @@ namespace CareerTracker.Models
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [Display(Name = "Email Address")]
         public string Email { get; set; }
+    }
+
+    public class AlphanumericAttribute : ValidationAttribute
+    {
+        public AlphanumericAttribute(string errorMessage)
+            : base(errorMessage)
+        { }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            ValidationResult validationResult = ValidationResult.Success;
+            string pw = value.ToString();
+
+            bool num = false;
+            bool letter = false;
+            foreach (char c in pw)
+            {
+                if (Char.IsDigit(c))
+                {
+                    num = true;
+                }
+                else
+                {
+                    if (Char.IsLetter(c))
+                    {
+                        letter = true;
+                    }
+                }
+            }
+            if (!num || !letter)
+            {
+                validationResult = new ValidationResult(ErrorMessageString);
+            }
+            return validationResult;
+        }
     }
 
     public class ExternalLogin
