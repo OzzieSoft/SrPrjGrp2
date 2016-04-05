@@ -106,8 +106,8 @@ div.inline-block {
 /* main layout
 ----------------------------------------------------------*/
 .content-wrapper {
-    margin: 0 auto;
-    max-width: 960px;
+    margin: auto;
+    max-width: 1000px;
 }
 
 #body {
@@ -190,29 +190,40 @@ color: #c8c8c8;
 /* menu
 ----------------------------------------------------------*/
 ul#menu {
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0 0 5px;
+    list-style-type: none;
+    margin: 0;
+    /*align-self:center;*/
+    /*padding: 0px 40px 0px 40px ;*/
     padding: 0;
-    text-align: right;
+    overflow:hidden;
+    background-color:#808080;
+    /*position:fixed;*/
+    top: 0;
+    width: 100%;
+
+
+    
 }
 
     ul#menu li {
-        display: inline;
-        list-style: none;
-        padding-left: 5px;
-    }
+    float:right;
+    color:#ffffff;
+
+}
 
         ul#menu li a {
-            background: none;
-            color: #999;
-            text-decoration: none;
-        }
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color:#c8c8c8;
+}
 
         ul#menu li a:hover {
-            color: #333;
-            text-decoration: none;
-        }
+    background-color: #2969d6;
+}
+
 
 
 /* page elements

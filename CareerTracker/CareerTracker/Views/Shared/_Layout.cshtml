@@ -7,39 +7,83 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+
+        @*<style>
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+            }
+
+            li {
+                float: left;
+            }
+
+               li a {
+                    display: block;
+                    color: white;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                }
+
+                  li a:hover:not(.active) {
+                        background-color: #111;
+                    }
+
+            .active {
+                background-color: #4CAF50;
+            }
+        </style>*@
+
+
     </head>
     <body>
+        
+
         <header>
             <div class="content-wrapper">
-                <div class="float-left">
+                @*<div class="float-left">
                     <a href="/" class="site-title">
                             <img src="~/Images/logo.png" style="height:38px;" />
                             Career Portfolio Tracker
                     </a>
-                </div>
-                <div class="float-right">
+                </div>*@
+                <div>
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                     </section>
                     <nav>
                         <ul id="menu">
+                            
+                            
                             @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                           
-                             @if(HttpContext.Current.User.Identity.IsAuthenticated){
-                                <li>@Html.ActionLink("Artifacts", "Index", "Artifact")</li>
+
+                            @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Artifacts", "Index", "Artifact") </li>
                                 <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
-                                <li>@Html.ActionLink("Goals", "Index","Goal")</li>
+                                <li>@Html.ActionLink("Goals", "Index", "Goal")</li>
                                 <li>@Html.ActionLink("My Account", "ViewProfile", "Account")</li>
-                             }
-                             
-                            @using (Html.BeginForm("SearchIndex", "Account", FormMethod.Get)) {
+                            }
+                            
                             <li>
-                                @Html.TextBox("SearchString", null, new { style = "padding:1px" })
-                                <input type="submit" value="Search" class="searchBar" style="padding:0px;"/>
+                                <a href="/" class="site-title">
+                                    <img src="~/Images/logo.png" style="height:28px;" />
+                                    Career Portfolio Tracker
+                                </a>
                             </li>
-                            } 
+
+                            @*@using (Html.BeginForm("SearchIndex", "Account", FormMethod.Get)) {
+            <li>
+                @Html.TextBox("SearchString", null, new { style = "padding:1px; border:3px double #848484; outline:0;"})
+                <input type="submit" value="Search" class="searchBar" style="padding:0px;"/>
+            </li>
+            }*@
                         </ul>
                     </nav>
                 </div>
