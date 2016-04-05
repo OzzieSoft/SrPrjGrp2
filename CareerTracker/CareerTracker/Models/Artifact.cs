@@ -8,13 +8,14 @@ namespace CareerTracker.Models
         [Key]
         public int ID { get; set; }
         public bool IsResume { get; set; }
+		[Required]
         public string Name { get; set; }
         public string Description { get; set; }
         [Display(Name = "File Name")]
         public string Location { get; set; }
 
-		[Display(Name= "Public or Private?")]
-		public bool Visible { get; set; }
+		[Display(Name= "Private?")]
+		public bool Private { get; set; }
 
         public virtual User User { get; set; }
         public virtual ICollection<Category> Categories { get; set; }

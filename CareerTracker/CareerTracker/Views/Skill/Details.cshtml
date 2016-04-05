@@ -22,6 +22,12 @@
     <div class="display-field left-padded">
         @Html.DisplayFor(model => model.Description)
     </div>
+    <div class="display-label bold">
+        <b>@Html.DisplayNameFor(model => model.Private)</b>
+    </div>
+    <div class="display-field left-padded">
+        @Html.DisplayFor(model => model.Private)
+    </div>
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |

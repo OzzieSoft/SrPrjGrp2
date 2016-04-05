@@ -23,6 +23,12 @@
     <div class="display-field">
         &nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(model => model.Description)
     </div>
+    <div class="display-label">
+        <b> @Html.DisplayNameFor(model => model.Private)</b>
+    </div>
+    <div class="display-field">
+        &nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(model => model.Private)
+    </div>
 </fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()

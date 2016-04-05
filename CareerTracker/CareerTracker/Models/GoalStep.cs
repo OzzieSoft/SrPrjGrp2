@@ -9,11 +9,12 @@ namespace CareerTracker.Models
     {
         [Key]
         public int ID { get; set; }
+		[Required]
         public string Name { get; set; }
         public string Description { get; set; }
 
-		[Display(Name = "Public or Private?")]
-		public bool Visible { get; set; }
+		[Display(Name = "Private?")]
+		public bool Private { get; set; }
 
 		[Display(Name = "Due Date")]
         [DataType(DataType.Date)]

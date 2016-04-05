@@ -17,24 +17,31 @@ namespace CareerTracker.Controllers
     {
         private CTContext db = new CTContext();
 
+
 		[Authorize]
-		public ActionResult TeacherIndex() 
-		{
+		public ActionResult TeacherEdit(string id) {
 			UserManager manager = new UserManager();
-			var userId = (ClaimsIdentity)User.Identity;
-			//if(!manager.hasClaim(userId.NameClaimType, userId.RoleClaimType))
-			//{
-			//	return RedirectToAction("Index", "Home");
-			//}
-			return View(db.Users.ToList());
+			User user = manager.findById(id);
+			if (user == null) {
+				return HttpNotFound();
+			}
+
+			return View(user);
 		}
 
-		[AllowAnonymous]
-		public ActionResult TeacherProfileView(string id) {
-			User prof;
+		////
+		//// POST: /Administrator/Edit/5
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult TeacherEdit(User input) {
 			UserManager manager = new UserManager();
-			prof = manager.FindById(id);
-			return View(prof);
+			User user = manager.findById(input.Id);
+			if (ModelState.IsValid) {
+				return RedirectToAction("Index");
+			}
+			manager.AddClaim(input.Id, new Claim(ClaimTypes.Role, "teacher"));
+			return View(user);
 		}
 
         //
@@ -46,11 +53,13 @@ namespace CareerTracker.Controllers
 			var claims = userId.Claims;
 			var roleClaimType = userId.RoleClaimType;
 			var roles = claims.Where(x => x.Type == ClaimTypes.Role).ToList();
+			UserManager manager = new UserManager();
+			bool test = manager.hasClaim(User.Identity.Name, "admin", "admin");
 			if(roles.Count == 0)
 			{
 				return RedirectToAction("Index", "Home");
 			}
-			UserManager manager = new UserManager();
+			//UserManager manager = new UserManager();
             return View(db.Users.ToList());
         }
 

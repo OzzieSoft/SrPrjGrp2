@@ -30,6 +30,13 @@
     <div class="display-field left-padded">
         @Html.DisplayFor(model => model.Description)
     </div>
+
+    <div class="display-label bold">
+        @Html.DisplayNameFor(model => model.Private)
+    </div>
+    <div class="display-field left-padded">
+        @Html.DisplayFor(model => model.Private)
+    </div>
 </fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
