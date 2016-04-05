@@ -1,0 +1,134 @@
+﻿@model CareerTracker.Models.User
+@{
+    ViewBag.Title = "User Profile";
+}
+
+<h3>User Info</h3>
+<p>
+    @Model.FirstName @Model.LastName's Profile
+</p>
+<p>
+    Username: @Model.UserName
+</p>
+<p>
+    Email: @Model.Email
+</p>
+<h4>
+    Description
+</h4>
+<p>
+    @Model.Description
+</p>
+
+<br />
+
+<table class="model-table">
+
+    <tr>
+        <th class="name-header">
+            @Html.DisplayName("Name")
+        </th>
+        <th class="description-header">
+            @Html.DisplayName("Description")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model.Artifacts) {
+        if (item.Visible == true) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+<p style="height:20px;" />
+
+<table class="model-table">
+
+    <tr>
+        <th class="name-header">
+            @Html.DisplayName("Name")
+        </th>
+        <th class="description-header">
+            @Html.DisplayName("Description")
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model.Skills) {
+        if (item.Visible.Equals(true)) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+<p style="height:20px;" />
+
+<table class="model-table">
+
+    <tr>
+        <th class="name-header">
+            @Html.DisplayName("Name")
+        </th>
+        <th class="description-header">
+            @Html.DisplayName("Description")
+        </th>
+        <th>
+            @Html.DisplayName("Due Date")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Goals) {
+        if (item.Visible == true) {
+            <tr style="border-top: 1px solid lightgray">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDate)
+                </td>
+            </tr>
+            foreach (var step in item.Steps) {
+                if (item.Visible == true) {
+                    <tr>
+                        <td style="padding-left:3%">
+                            @Html.DisplayFor(modelItem => step.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => step.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => step.DueDate)
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    }
+</table>

@@ -17,6 +17,26 @@ namespace CareerTracker.Controllers
     {
         private CTContext db = new CTContext();
 
+		[Authorize]
+		public ActionResult TeacherIndex() 
+		{
+			UserManager manager = new UserManager();
+			var userId = (ClaimsIdentity)User.Identity;
+			//if(!manager.hasClaim(userId.NameClaimType, userId.RoleClaimType))
+			//{
+			//	return RedirectToAction("Index", "Home");
+			//}
+			return View(db.Users.ToList());
+		}
+
+		[AllowAnonymous]
+		public ActionResult TeacherProfileView(string id) {
+			User prof;
+			UserManager manager = new UserManager();
+			prof = manager.FindById(id);
+			return View(prof);
+		}
+
         //
         //// GET: /Administrator/
 		[Authorize]

@@ -395,6 +395,8 @@
     <Content Include="Views\Home\NotActive.cshtml" />
     <Content Include="Views\Account\EditDesc.cshtml" />
     <Content Include="Views\Administrator\AdminProfileView.cshtml" />
+    <Content Include="Views\Administrator\TeacherIndex.cshtml" />
+    <Content Include="Views\Administrator\TeacherProfileView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
