@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.AspNet.Identity.EntityFramework;
 using CareerTracker.DAL;
 using CareerTracker.Models;
+using System.Security.Claims;
 
 namespace CareerTracker.Security
 {
@@ -56,7 +57,18 @@ namespace CareerTracker.Security
             }
             return returnval;
         }
+
+		public bool hasClaim(string name, string claim) {
+			return hasClaim(name, claim, "");
+		}
+		public bool hasClaim(string name, string claim, string claimVal) {
+			bool retval;
+			Claim toSearch = new Claim(claim, claimVal);
+			retval = this.GetClaims(getIdFromUsername(name)).Contains(toSearch);
+			return retval;
+		}
     }
+
 
 
         public class SQLPasswordHasher : PasswordHasher

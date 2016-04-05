@@ -21,9 +21,6 @@
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
-        <th>
             User Profile
         </th>
         <th></th>
@@ -44,13 +41,7 @@
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @Html.ActionLink("Change Status", "Edit", new { id=item.Id })
-        </td>
-        <td>
-            @Html.ActionLink("User Info", "AdminProfileView", new { id = item.Id })
+            @Html.ActionLink("User Info", "TeacherProfileView", new { id = item.Id })
         </td>
     </tr>
 }
