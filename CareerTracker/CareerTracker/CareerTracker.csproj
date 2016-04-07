@@ -332,6 +332,9 @@
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\CareerTracker.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\concreteb.jpg" />
+    <Content Include="Images\fenceb.jpg" />
+    <Content Include="Images\sky-texture.jpg" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

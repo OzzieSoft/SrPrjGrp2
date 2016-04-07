@@ -114,6 +114,9 @@ div.inline-block {
     background-color: #efeeef;
     clear: both;
     padding-bottom: 35px;
+   
+    /*width:80%;*/
+    background-size:80%;
 }
 
     .main-content {
@@ -145,11 +148,12 @@ p.site-title {
 a.site-title, a.site-title:hover, a.site-title:active {
 color: #c8c8c8;
     font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
-    font-size: 2.3em;
+    font-size: 1.8em;
     margin: 0;
     background: none;
     outline: none;
     text-decoration: none;
+    padding:0;
 }
 
 
@@ -196,18 +200,16 @@ ul#menu {
     /*padding: 0px 40px 0px 40px ;*/
     padding: 0;
     overflow:hidden;
-    background-color:#808080;
+    background-color:#99bbff;
     /*position:fixed;*/
     top: 0;
-    width: 100%;
-
-
-    
+    width: 100%;    
 }
 
     ul#menu li {
-    float:right;
-    color:#ffffff;
+    float:left;
+    color:#e6e6e6;
+    
 
 }
 
@@ -217,11 +219,12 @@ ul#menu {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    color:#c8c8c8;
+    color:#e6e6e6;
 }
 
         ul#menu li a:hover {
-    background-color: #2969d6;
+    background-color: #4d79ff;
+    color:#ffffff;
 }
 
 
@@ -234,10 +237,7 @@ ul#menu {
 }
 
     .featured .content-wrapper {
-        background: -moz-linear-gradient(top, #c4c4c4 0%, #2989d8 0%, #207cca 49%, #3174af 98%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #c4c4c4 0%,#2989d8 0%,#207cca 49%,#3174af 98%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #c4c4c4 0%,#2989d8 0%,#207cca 49%,#3174af 98%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c4c4c4', endColorstr='#3174af',GradientType=0 ); /* IE6-9 */
+   background-image:url("../Images/sky-texture.jpg");
         color: #272727;
         padding: 20px 40px 30px 40px;
     }

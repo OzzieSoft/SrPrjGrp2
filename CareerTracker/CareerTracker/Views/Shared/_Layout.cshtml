@@ -58,25 +58,26 @@
                     <nav>
                         <ul id="menu">
                             
-                            
-                            @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-
-                            @if (HttpContext.Current.User.Identity.IsAuthenticated)
-                            {
-                                <li>@Html.ActionLink("Artifacts", "Index", "Artifact") </li>
-                                <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
-                                <li>@Html.ActionLink("Goals", "Index", "Goal")</li>
-                                <li>@Html.ActionLink("My Account", "ViewProfile", "Account")</li>
-                            }
-                            
                             <li>
                                 <a href="/" class="site-title">
-                                    <img src="~/Images/logo.png" style="height:28px;" />
+                                    <img src="~/Images/logo.png" style="height:30px;" />
                                     Career Portfolio Tracker
                                 </a>
                             </li>
+                            
+                            @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+                            <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("About", "About", "Home")</li>
+                            <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                            @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                            {
+                                <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("Artifacts", "Index", "Artifact") </li>
+                                <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("Skills", "Index", "Skill")</li>
+                                <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("Goals", "Index", "Goal")</li>
+                                <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("My Account", "ViewProfile", "Account")</li>
+                            }
+                            
+                           
 
                             @*@using (Html.BeginForm("SearchIndex", "Account", FormMethod.Get)) {
             <li>
