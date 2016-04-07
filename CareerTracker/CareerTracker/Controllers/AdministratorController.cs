@@ -38,9 +38,9 @@ namespace CareerTracker.Controllers
 			UserManager manager = new UserManager();
 			User user = manager.findById(input.Id);
 			if (ModelState.IsValid) {
+				manager.AddClaim(input.Id, new Claim(ClaimTypes.Role, "teacher")); 
 				return RedirectToAction("Index");
 			}
-			manager.AddClaim(input.Id, new Claim(ClaimTypes.Role, "teacher"));
 			return View(user);
 		}
 
@@ -49,13 +49,9 @@ namespace CareerTracker.Controllers
 		[Authorize]
         public ActionResult Index()
         {
-			var userId = (ClaimsIdentity)User.Identity;
-			var claims = userId.Claims;
-			var roleClaimType = userId.RoleClaimType;
-			var roles = claims.Where(x => x.Type == ClaimTypes.Role).ToList();
 			UserManager manager = new UserManager();
-			bool test = manager.hasClaim(User.Identity.Name, "admin", "admin");
-			if(roles.Count == 0)
+			bool role = manager.hasClaim(User.Identity.Name, ClaimTypes.Role, "admin");
+			if(!role)
 			{
 				return RedirectToAction("Index", "Home");
 			}

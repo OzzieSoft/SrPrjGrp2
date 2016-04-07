@@ -22,10 +22,9 @@ namespace CareerTracker.Controllers
 		{
 			UserManager manager = new UserManager();
 			var userId = (ClaimsIdentity)User.Identity;
-			var claims = userId.Claims;
-			var roleClaimType = userId.RoleClaimType;
-			var roles = claims.Where(x => x.Type == ClaimTypes.Role).ToList();
-			if (roles.Count == 0) {
+			bool teacher = manager.hasClaim(User.Identity.Name, ClaimTypes.Role, "teacher");
+			bool admin = manager.hasClaim(User.Identity.Name, ClaimTypes.Role, "admin");
+			if (!teacher && !admin) {
 				return RedirectToAction("Index", "Home");
 			}
 			return View(db.Users.ToList());

@@ -64,7 +64,7 @@ namespace CareerTracker.Security
 		public bool hasClaim(string name, string claim, string claimVal) {
 			bool retval;
 			Claim toSearch = new Claim(claim, claimVal);
-			retval = this.GetClaims(getIdFromUsername(name)).Contains(toSearch);
+			retval = this.GetClaims(getIdFromUsername(name)).Where(c => (c.Type==claim) && (c.Value == claimVal)).Count()>0;
 			return retval;
 		}
     }
