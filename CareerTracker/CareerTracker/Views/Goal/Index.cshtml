@@ -37,14 +37,16 @@
             @Html.DisplayFor(modelItem => item.DueDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            
             @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
             @if (item.Steps.Count == 0)
             {
+                @Html.ActionLink("Edit ", "Edit", new { id = item.ID }, new { @style = "white-space: nowrap;" })
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
             }
             else
             {
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @style = "white-space:nowrap;" })
                 <a title="Please delete this goal's steps first!" class="no-delete">Delete</a>
             }
         </td>

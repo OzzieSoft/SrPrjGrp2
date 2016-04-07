@@ -67,6 +67,7 @@
                             
                             @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
                             <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("About", "About", "Home")</li>
+
                             <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("Contact", "Contact", "Home")</li>
 
                             @if (HttpContext.Current.User.Identity.IsAuthenticated)
@@ -77,14 +78,16 @@
                                 <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("My Account", "ViewProfile", "Account")</li>
                             }
                             
-                           
+                            <li>
 
-                            @*@using (Html.BeginForm("SearchIndex", "Account", FormMethod.Get)) {
-            <li>
-                @Html.TextBox("SearchString", null, new { style = "padding:1px; border:3px double #848484; outline:0;"})
-                <input type="submit" value="Search" class="searchBar" style="padding:0px;"/>
-            </li>
-            }*@
+                                @*@using (Html.BeginForm("SearchIndex", "Account", FormMethod.Get))
+                                {
+
+                                    @Html.TextBox("SearchString", null, new { style = "padding:1px; border:3px double #848484; outline:0;" })
+                                    <input type="submit" value="Search" class="searchBar" style="padding:0px;" />
+
+                                }*@
+                            </li>
                         </ul>
                     </nav>
                 </div>

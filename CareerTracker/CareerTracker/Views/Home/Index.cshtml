@@ -9,20 +9,22 @@
                 <h2>@ViewBag.Message</h2>
             </hgroup>
             <p>
-                This web application was made by and for 
-                <a href="http://unf.edu" title="UNF Website">UNF</a>
-                 students as an online resource for aggregating skills, expirences, and documents relevent to your 
-                professtional interests and asperations. 
+                <b>
+                    This web application was made by and for
+                    <a href="http://unf.edu" title="UNF Website">UNF</a>
+                    students as an online resource for aggregating skills, expirences, and documents relevent to your
+                    professtional interests and asperations.
+                </b>
                 <br />
                 <br />
                 @if (!HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    <span>Please log in to work on your online resume or keep track of your professional goals.</span>
+                    <span><b>Please log in to work on your online resume or keep track of your professional goals.</b></span>
                 }
-                @if (HttpContext.Current.User.Identity.IsAuthenticated)
-                {
-                    <span>Hello, </span>@HttpContext.Current.User.Identity.Name<span>, welcome to the Ozziesoft Career Tracker.</span>
-                }
+                                @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                                {
+                                    <b> <span>Hello, </span>@HttpContext.Current.User.Identity.Name<span>, welcome to the Ozziesoft Career Tracker.</span></b>
+                                }
             </p>
         </div>
     </section>

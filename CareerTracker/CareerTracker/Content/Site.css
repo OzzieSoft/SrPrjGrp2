@@ -163,7 +163,7 @@ color: #c8c8c8;
     display: block;
     font-size: .85em;
     margin: 0 0 10px;
-    text-align: right;
+    text-align: left;
 }
 
     #login a {
@@ -172,6 +172,7 @@ color: #c8c8c8;
         margin-right: 3px;
         padding: 2px 3px;
         text-decoration: none;
+        /*float:left;*/
     }
 
     #login a.username {
@@ -179,6 +180,7 @@ color: #c8c8c8;
         margin: 0;
         padding: 0;
         text-decoration: underline;
+        
     }
 
     #login ul {
