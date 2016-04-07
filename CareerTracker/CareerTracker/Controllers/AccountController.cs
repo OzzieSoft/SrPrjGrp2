@@ -61,14 +61,19 @@ namespace CareerTracker.Controllers
             User user = userManager.Find(model.UserName, model.Password);
             if (user != null)
             {
-				if (user.Active != true) 
+				if (!user.Active) 
 				{
 					return RedirectToAction("NotActive", "Home");
 				}
                 var authManager = System.Web.HttpContext.Current.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
-                
+				if (userManager.hasClaim(user.Id, ClaimTypes.Role, "admin")) {
+					ViewBag.admin = true;
+				}
+				if (userManager.hasClaim(user.Id, ClaimTypes.Role, "teacher")) {
+					ViewBag.teacher = true;
+				}
                 return RedirectToAction("Index", "Home");
             }
 
