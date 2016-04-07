@@ -59,23 +59,23 @@
                         <ul id="menu">
                             
                             <li>
-                                <a href="/" class="site-title">
+                                <a href="/" class="site-title" style="padding:14px 20px;">
                                     <img src="~/Images/logo.png" style="height:30px;" />
                                     Career Portfolio Tracker
                                 </a>
                             </li>
                             
                             @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-                            <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("About", "About", "Home")</li>
+                            <li style="font-size:20px; height:64px;">@Html.ActionLink("About", "About", "Home")</li>
 
-                            <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li style="font-size:20px; height:64px;">@Html.ActionLink("Contact", "Contact", "Home")</li>
 
                             @if (HttpContext.Current.User.Identity.IsAuthenticated)
                             {
-                                <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("Artifacts", "Index", "Artifact") </li>
-                                <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("Skills", "Index", "Skill")</li>
-                                <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("Goals", "Index", "Goal")</li>
-                                <li style="font-size:20px; padding-top:8px;">@Html.ActionLink("My Account", "ViewProfile", "Account")</li>
+                                <li style="font-size:20px; height:64px;">@Html.ActionLink("Artifacts", "Index", "Artifact") </li>
+                                <li style="font-size:20px; height:64px;">@Html.ActionLink("Skills", "Index", "Skill")</li>
+                                <li style="font-size:20px; height:64px;">@Html.ActionLink("Goals", "Index", "Goal")</li>
+                                <li style="font-size:20px; height:64px;">@Html.ActionLink("My Account", "ViewProfile", "Account")</li>
                             }
                             
                             <li>
