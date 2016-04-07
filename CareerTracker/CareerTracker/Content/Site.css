@@ -241,15 +241,19 @@ ul#menu {
     .featured .content-wrapper {
    background-image:url("../Images/sky-texture.jpg");
         color: #272727;
-        padding: 20px 40px 30px 40px;
+        padding: 20px 0px 30px 0px;
     }
 
         .featured hgroup.title h1, .featured hgroup.title h2 {
             color: #fff;
+            max-width:950px;
+            padding: 0px 40px;
         }
 
         .featured p {
             font-size: 1.1em;
+            max-width:950px;
+            padding: 0px 25px;
         }
 
 /* page titles */
