@@ -7,11 +7,22 @@
 <h2>Skills</h2>
 
 <p>
-    @*@Html.ActionLink("Create New", "Create")*@
+    
     <button type="button" onclick="location.href='@Url.Action("create", "skill")'">
         Create New
     </button>
-    @*<button type="button" onclick="@Html.ActionLink("Create New", "Create")">Click Me!</button>*@
+</p>
+<p>
+    @ViewBag.Cat
+    <form action="@Url.Action(actionName: "Index", controllerName: "Skill")" method="post">
+        <select name="category" id="category">
+            @foreach (var cat in ViewBag.Cats) {
+                <option title="@cat.Description">@cat.Name</option>
+            }
+        </select>
+        <input type="submit" value="Filter"/>
+    </form>
+    
 </p>
 <table class="model-table">
     <tr>

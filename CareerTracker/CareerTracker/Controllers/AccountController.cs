@@ -32,7 +32,7 @@ namespace CareerTracker.Controllers
         {
             UserManager manager = new UserManager();
             User prof;
-            //prof = db.UserProfiles.Find(4);
+			ViewBag.Cats = db.Categories.ToList();
             prof = manager.findByUserName(User.Identity.Name);
             return View(prof);
         }
@@ -303,6 +303,7 @@ namespace CareerTracker.Controllers
 		[AllowAnonymous]
 		public ActionResult OutsideProfileView(string id) {
 			User prof;
+			ViewBag.Cats = db.Categories.ToList();
             UserManager manager = new UserManager();
 			prof = manager.FindById(id);
 			return View(prof);

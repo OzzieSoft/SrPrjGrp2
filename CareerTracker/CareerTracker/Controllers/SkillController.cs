@@ -18,7 +18,7 @@ namespace CareerTracker.Controllers
         //
         // GET: /Skill/
 		[Authorize]
-        public ActionResult Index()
+        public ActionResult Index1()
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -26,19 +26,47 @@ namespace CareerTracker.Controllers
                 List<Skill> returnList = new List<Skill>();
                 try
                 {
-                    foreach (Skill s in db.Skills.ToList())
-                    {
-                        if (s.User.Id.Equals(manager.getIdFromUsername(User.Identity.Name)))
-                        {
-                            returnList.Add(s);
-                        }
-                    }
+					if (true) {
+						foreach (Skill s in db.Skills.ToList()) {
+							if (s.User.Id.Equals(manager.getIdFromUsername(User.Identity.Name))) {
+								returnList.Add(s);
+							}
+						} 
+					}
                 }
                 catch (NullReferenceException e) { }
+
+				ViewBag.Cats = db.Categories.ToList();
                 return View(returnList);
             }
             return RedirectToAction("NotLoggedIn", "Home");
         }
+		// GET: /Skill/?category=
+		[Authorize]
+		public ActionResult Index(string category) {
+			Category cat = db.Categories.FirstOrDefault(c => c.Name == category);
+			if (cat == null) {return Index1();}	// run the default index if the given category doesn't exist.
+
+			if (User.Identity.IsAuthenticated) {
+				UserManager manager = new UserManager();
+				List<Skill> returnList = new List<Skill>();
+				try {
+					if (true) {
+						foreach (Skill s in db.Skills.ToList()) {
+							if (s.User.Id.Equals(manager.getIdFromUsername(User.Identity.Name)) && hasCat(s.Categories, cat)) {
+								returnList.Add(s);
+							}
+						}
+					}
+				}
+				catch (NullReferenceException e) { }
+
+				ViewBag.Cats = db.Categories.ToList();
+				ViewBag.Cat = category;
+				return View(returnList);
+			}
+			return RedirectToAction("NotLoggedIn", "Home");
+		}
 
         //
         // GET: /Skill/Details/5
@@ -64,6 +92,7 @@ namespace CareerTracker.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
+				ViewBag.Cats = db.Categories.ToList();
                 return View();
             }
             return RedirectToAction("NotLoggedIn", "Home");
@@ -78,6 +107,7 @@ namespace CareerTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+				ViewBag.data = skill.Categories;
                 UserManager manager = new UserManager(db);
                 skill.User = manager.findByUserName(User.Identity.Name);
                 db.Skills.Add(skill);
@@ -100,6 +130,8 @@ namespace CareerTracker.Controllers
                 {
                     return HttpNotFound();
                 }
+
+				ViewBag.Cats = db.Categories.ToList();
                 return View(skill);
             }
             return RedirectToAction("NotLoggedIn", "Home");
@@ -156,5 +188,17 @@ namespace CareerTracker.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+		private bool hasCat(ICollection<Category> cats, Category cat) {
+			bool flag = false;
+			foreach (Category c in cats) {
+				if (c.Name.Equals(cat.Name)) {
+					flag = true;
+					break;
+				}
+			}
+			return flag;
+		}
     }
+
 }

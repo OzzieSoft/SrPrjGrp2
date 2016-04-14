@@ -34,6 +34,7 @@ namespace CareerTracker.Controllers
                     }
                 }
                 catch (NullReferenceException e) { }
+				ViewBag.Cats = db.Categories.ToList();
                 return View(returnList);
             }
             return RedirectToAction("NotLoggedIn", "Home");
@@ -63,6 +64,7 @@ namespace CareerTracker.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
+				ViewBag.Cats = db.Categories.ToList();
                 return View();
             }
             return RedirectToAction("NotLoggedIn", "Home");
@@ -99,6 +101,8 @@ namespace CareerTracker.Controllers
                 {
                     return HttpNotFound();
                 }
+
+				ViewBag.Cats = db.Categories.ToList();
                 Session["goal"] = id;
                 return View(goal);
             }
