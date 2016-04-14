@@ -65,6 +65,11 @@ namespace CareerTracker.Controllers
 		public ActionResult Edit(string id) {
 			UserManager manager = new UserManager();
 			User user = manager.findById(id);
+			bool role = manager.hasClaim(User.Identity.Name, ClaimTypes.Role, "admin");
+			if (role) {
+				ViewBag.AdminLockout = "Do not try to lock yourself out!";
+				return RedirectToAction("Index", "Administrator");
+			}
 			if (user == null) {
 				return HttpNotFound();
 			}
@@ -80,6 +85,7 @@ namespace CareerTracker.Controllers
 		public ActionResult Edit(User input) {
             UserManager manager = new UserManager();
             User user = manager.findById(input.Id);
+			
             if (ModelState.IsValid) {
                 //db.Users.Attach(userprofile);
                 //db.Entry(userprofile).Property(x => x.Active).IsModified = true;
