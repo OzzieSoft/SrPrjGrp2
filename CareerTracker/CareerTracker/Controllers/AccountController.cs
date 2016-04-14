@@ -74,10 +74,10 @@ namespace CareerTracker.Controllers
                 var authManager = System.Web.HttpContext.Current.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
-				if (userManager.hasClaim(user.Id, ClaimTypes.Role, "admin")) {
+				if (userManager.HasClaim(user.Id, ClaimTypes.Role, "admin", false)) {
 					ViewBag.admin = true;
 				}
-				if (userManager.hasClaim(user.Id, ClaimTypes.Role, "teacher")) {
+				if (userManager.HasClaim(user.Id, ClaimTypes.Role, "teacher", false)) {
 					ViewBag.teacher = true;
 				}
                 return RedirectToAction("Index", "Home");
