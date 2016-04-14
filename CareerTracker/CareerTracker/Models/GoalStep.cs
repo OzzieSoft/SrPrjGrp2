@@ -18,7 +18,7 @@ namespace CareerTracker.Models
 
 		[Display(Name = "Due Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/dd/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MMM-yy}")]
         public DateTime DueDate { get; set; }
 
         public virtual Goal Goal { get; set; }
