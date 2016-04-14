@@ -59,15 +59,15 @@ namespace CareerTracker.Security
         }
 
 		public bool hasClaim(string name, string claim) {
-			return HasClaim(name, claim, "");
+			return hasClaim(name, claim, "");
 		}
 
         //Checks to see if the user, identified by name, has a claim of a certain claim type, will return true of false
-        public bool HasClaim(string name, string claimType, string claimVal)
+        public bool hasClaim(string name, string claimType, string claimVal)
         {
-            return HasClaim(name, claimType, claimVal, true);
+            return hasClaim(name, claimType, claimVal, true);
         }
-		public bool HasClaim(string nameOrId, string claimType, string claimVal, bool name) {
+		public bool hasClaim(string nameOrId, string claimType, string claimVal, bool name) {
 			bool retval;
 			Claim toSearch = new Claim(claimType, claimVal);
             string id = name ? getIdFromUsername(nameOrId) : nameOrId;
