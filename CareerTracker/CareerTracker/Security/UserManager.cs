@@ -63,10 +63,15 @@ namespace CareerTracker.Security
 		}
 
         //Checks to see if the user, identified by name, has a claim of a certain claim type, will return true of false
-		public bool hasClaim(string name, string claimType, string claimVal) {
+        public bool hasClaim(string name, string claimType, string claimVal)
+        {
+            return hasClaim(name, claimType, claimVal, true);
+        }
+		public bool hasClaim(string nameOrId, string claimType, string claimVal, bool name) {
 			bool retval;
 			Claim toSearch = new Claim(claimType, claimVal);
-			retval = this.GetClaims(getIdFromUsername(name)).Where(c => (c.Type==claimType) && (c.Value == claimVal)).Count()>0;
+            string id = name ? getIdFromUsername(nameOrId) : nameOrId;
+			retval = this.GetClaims(id).Where(c => (c.Type==claimType) && (c.Value == claimVal)).Count()>0;
 			return retval;
 		}
     }
