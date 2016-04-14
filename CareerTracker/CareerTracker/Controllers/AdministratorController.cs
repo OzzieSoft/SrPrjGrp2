@@ -96,6 +96,7 @@ namespace CareerTracker.Controllers
 		[AllowAnonymous]
 		public ActionResult AdminProfileView(string id) {
 			User prof;
+			ViewBag.Role = db.Categories.ToList();
 			UserManager manager = new UserManager();
 			prof = manager.FindById(id);
 			return View(prof);

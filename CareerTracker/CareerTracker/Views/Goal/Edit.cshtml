@@ -43,6 +43,17 @@
             @Html.ValidationMessageFor(model => model.Description)
         </div>
         <div class="editor-label">
+            @Html.LabelFor(model => model.Categories)
+        </div>
+        <div class="editor-field">
+            @foreach (var cat in ViewBag.Cats) {
+                <div class="category-disp"><label title="@cat.Description"><input type="checkbox" name="" />&nbsp;&nbsp;@cat.Name</label></div>
+            }
+        </div>
+
+
+        @Html.LabelFor(model => model.Steps)
+        <div class="editor-label">
             <table>
                 <tr>
                     <th class="name-header">
