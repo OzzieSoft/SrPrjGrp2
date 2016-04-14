@@ -13,9 +13,11 @@
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
+    @ViewBag.DateValidation
 
     <fieldset>
         <legend>Registration Form</legend>
+
         <ol>
             <li>
                 @Html.LabelFor(m => m.UserName)

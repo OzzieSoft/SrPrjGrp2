@@ -110,6 +110,7 @@ namespace CareerTracker.Models
         [Required]
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
+		//[Range(typeof(DateTime), "1/1/1900", "1/1/2099", ErrorMessage = "Date must be between 1/1/1900 to 1/1/2099")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DateOfBirth { get; set; }
 
