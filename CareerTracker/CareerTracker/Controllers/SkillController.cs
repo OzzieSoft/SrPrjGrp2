@@ -18,7 +18,7 @@ namespace CareerTracker.Controllers
         //
         // GET: /Skill/
 		[Authorize]
-        public ActionResult Index1()
+        public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -36,16 +36,17 @@ namespace CareerTracker.Controllers
                 }
                 catch (NullReferenceException e) { }
 
-				ViewBag.Cats = db.Categories.ToList();
+				//ViewBag.Cats = db.Categories.ToList();
                 return View(returnList);
             }
             return RedirectToAction("NotLoggedIn", "Home");
         }
-		// GET: /Skill/?category=
+		// Post: /Skill/?category=
 		[Authorize]
+		[HttpPost]
 		public ActionResult Index(string category) {
 			Category cat = db.Categories.FirstOrDefault(c => c.Name == category);
-			if (cat == null) {return Index1();}	// run the default index if the given category doesn't exist.
+			if (cat == null) {return Index();}	// run the default index if the given category doesn't exist.
 
 			if (User.Identity.IsAuthenticated) {
 				UserManager manager = new UserManager();
@@ -61,8 +62,8 @@ namespace CareerTracker.Controllers
 				}
 				catch (NullReferenceException e) { }
 
-				ViewBag.Cats = db.Categories.ToList();
-				ViewBag.Cat = category;
+				//ViewBag.Cats = db.Categories.ToList();
+				//ViewBag.Cat = category;
 				return View(returnList);
 			}
 			return RedirectToAction("NotLoggedIn", "Home");
@@ -92,7 +93,7 @@ namespace CareerTracker.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-				ViewBag.Cats = db.Categories.ToList();
+				//ViewBag.Cats = db.Categories.ToList();
                 return View();
             }
             return RedirectToAction("NotLoggedIn", "Home");
@@ -127,11 +128,11 @@ namespace CareerTracker.Controllers
             {
                 Skill skill = db.Skills.Find(id);
                 if (skill == null)
-                {
+                { 
                     return HttpNotFound();
                 }
 
-				ViewBag.Cats = db.Categories.ToList();
+				//ViewBag.Cats = db.Categories.ToList();
                 return View(skill);
             }
             return RedirectToAction("NotLoggedIn", "Home");

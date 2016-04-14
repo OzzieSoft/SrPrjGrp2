@@ -52,14 +52,14 @@
             <label for=" file">Upload New File</label>
             <input type="file" name="file" id="file" />
         </div>
-        <div class="editor-label">
+        @*<div class="editor-label">
             @Html.LabelFor(model => model.Categories)
         </div>
         <div class="editor-field">
             @foreach (var cat in ViewBag.Cats) {
                 <div class="category-disp"><label title="@cat.Description"><input type="checkbox" name="" />&nbsp;&nbsp;@cat.Name</label></div>
             }
-        </div>
+        </div>*@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Private)

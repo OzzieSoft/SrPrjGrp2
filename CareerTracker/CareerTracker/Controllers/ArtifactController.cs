@@ -22,7 +22,7 @@ namespace CareerTracker.Controllers
         public ActionResult Index()
         {
 
-			ViewBag.Cats = db.Categories.ToList();
+			//ViewBag.Cats = db.Categories.ToList();
             List<Artifact> returnList = ArtifactRepo.getUserArtifacts(User.Identity.Name.ToString());
             return View(returnList);
         }
@@ -46,7 +46,7 @@ namespace CareerTracker.Controllers
         public ActionResult Create()
         {
 
-			ViewBag.Cats = db.Categories.ToList();
+			//ViewBag.Cats = db.Categories.ToList();
             return View();
         }
 
@@ -119,7 +119,7 @@ namespace CareerTracker.Controllers
                 return HttpNotFound();
             }
 
-			ViewBag.Cats = db.Categories.ToList();
+			//ViewBag.Cats = db.Categories.ToList();
             return View(artifact);
         }
 
