@@ -6,7 +6,7 @@
 
 body {
     background-color: #fff;
-    border-top: solid 10px #000;
+    
     color: #333;
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
@@ -114,6 +114,7 @@ div.inline-block {
     background-color: #efeeef;
     clear: both;
     padding-bottom: 35px;
+    min-height:550px;
    
     /*width:80%;*/
     background-size:80%;
@@ -210,7 +211,7 @@ ul#menu {
 
     ul#menu li {
     float:left;
-    color:#e6e6e6;
+    color:#737373;
     
 
 }
@@ -221,7 +222,7 @@ ul#menu {
     text-align: center;
     padding: 18px 16px;
     text-decoration: none;
-    color:#e6e6e6;
+    color:#737373;
 }
 
         ul#menu li a:hover {
@@ -239,7 +240,8 @@ ul#menu {
 }
 
     .featured .content-wrapper {
-   background-image:url("../Images/sky-texture.jpg");
+   /*background-image:url("../Images/sky-texture.jpg");*/
+   background-color:#99bbff;
         color: #272727;
         padding: 20px 0px 30px 0px;
     }
@@ -784,12 +786,14 @@ tr.pager td {
     footer .float-left,
     footer .float-right {
         float: none;
+
     }
 
     footer {
         text-align: center;
         height: auto;
         padding: 10px 0;
+
     }
 
         footer p {

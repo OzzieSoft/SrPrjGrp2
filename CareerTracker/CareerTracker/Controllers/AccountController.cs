@@ -27,6 +27,7 @@ namespace CareerTracker.Controllers
     {
         private CTContext db = new CTContext();
 
+        //This method gets the information needed to log in by finding the user name through the name passed into the viewbag.
         [AllowAnonymous]
         public ActionResult ViewProfile()
         {
@@ -40,6 +41,7 @@ namespace CareerTracker.Controllers
         //
         // GET: /Account/Login
 
+        //This method returns the log in process to the home page and sends a cookie in the process.
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -51,20 +53,24 @@ namespace CareerTracker.Controllers
         //
         // POST: /Account/Login
 
+        //For the login page
         [HttpPost]
         [AllowAnonymous]
         //[ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-
+            //Creates the usermanager and finds the user name and password
             UserManager userManager = new UserManager();
             User user = userManager.Find(model.UserName, model.Password);
+            //If there is a user
             if (user != null)
             {
+                //If the user is inactive, redirects them to the warning
 				if (!user.Active) 
 				{
 					return RedirectToAction("NotActive", "Home");
 				}
+                //Authenticates the user and signs them in, checking for the user being a admin or teacher and redirects them to the home page
                 var authManager = System.Web.HttpContext.Current.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
@@ -133,6 +139,7 @@ namespace CareerTracker.Controllers
                 // Attempt to register the user
                 try
                 {
+                    //Sets the user's infomation
                     UserManager manager = new UserManager();
                     User user = new User() {
                         UserName = model.UserName,
@@ -142,6 +149,7 @@ namespace CareerTracker.Controllers
                         Email = model.Email,
                         Active = true
                     };
+                    //And creates them in the manager
                     IdentityResult result = manager.Create(user, model.Password);
 
                     if (result.Succeeded)
