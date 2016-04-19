@@ -139,10 +139,10 @@ namespace CareerTracker.Controllers
                 // Attempt to register the user
                 try
                 {
-					int checkYear = 1960;
+					int checkYear = 1900;
 					int inYear = model.DateOfBirth.Year;
 					if (inYear < checkYear) {
-						ViewBag.DateValidation = "Please enter a date between 1960 and today";
+						ViewBag.DateValidation = "Please enter a date between 1900 and today";
 						return View();
 					}
 
