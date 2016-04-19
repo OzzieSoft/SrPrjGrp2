@@ -59,6 +59,7 @@ namespace CareerTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 if (file != null && file.ContentLength > 0)
                 {
                     try

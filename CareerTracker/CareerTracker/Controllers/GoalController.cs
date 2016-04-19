@@ -79,6 +79,13 @@ namespace CareerTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                int checkYear = 1900;
+
+                    int inYear = goal.DueDate.Year;
+					if (inYear < checkYear) {
+                            ViewBag.DateValidation = "Please enter a date between 1900 and now.";
+                            return View();
+					}
                 UserManager manager = new UserManager(db);
                 goal.User = manager.findByUserName(User.Identity.Name);
                 db.Goals.Add(goal);
@@ -116,13 +123,22 @@ namespace CareerTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Goal goal)
         {
+            Goal oldGoal = db.Goals.Find(goal.ID);
             if (ModelState.IsValid)
             {
+                
+                int checkYear = 1900;
+
+                    int inYear = goal.DueDate.Year;
+					if (inYear < checkYear) {
+                            ViewBag.DateValidation = "Please enter a date between 1900 and now.";
+                            return View(oldGoal);
+					}
                 db.Entry(goal).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(goal);
+            return View(oldGoal);
         }
 
         //

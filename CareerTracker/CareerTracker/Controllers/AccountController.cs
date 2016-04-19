@@ -139,11 +139,14 @@ namespace CareerTracker.Controllers
                 // Attempt to register the user
                 try
                 {
+                    //Checks that they are born after 1900 and before the current date minus 15.
 					int checkYear = 1900;
+                    int checkYear2 =  DateTime.Now.Year - 15;
+
 					int inYear = model.DateOfBirth.Year;
-					if (inYear < checkYear) {
-						ViewBag.DateValidation = "Please enter a date between 1900 and today";
-						return View();
+					if (inYear < checkYear || checkYear2 < inYear) {
+                            ViewBag.DateValidation = "Please enter a date between 1900 and " + checkYear2 + ".";
+                            return View();
 					}
 
                     //Sets the user's infomation
