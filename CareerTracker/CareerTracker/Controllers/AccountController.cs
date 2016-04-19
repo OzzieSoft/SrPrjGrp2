@@ -139,7 +139,7 @@ namespace CareerTracker.Controllers
                 // Attempt to register the user
                 try
                 {
-                    //Checks that they are born after 1900 and before the current date minus 15.
+                    //Checks that they are born after 1900 and before the current year minus 15.
 					int checkYear = 1900;
                     int checkYear2 =  DateTime.Now.Year - 15;
 
