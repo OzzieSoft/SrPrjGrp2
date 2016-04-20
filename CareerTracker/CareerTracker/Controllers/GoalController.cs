@@ -34,7 +34,6 @@ namespace CareerTracker.Controllers
                     }
                 }
                 catch (NullReferenceException e) { }
-				//ViewBag.Cats = db.Categories.ToList();
                 return View(returnList);
             }
             return RedirectToAction("NotLoggedIn", "Home");
@@ -64,8 +63,7 @@ namespace CareerTracker.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-				//ViewBag.Cats = db.Categories.ToList();
-                return View();
+                return View(new GoalView());
             }
             return RedirectToAction("NotLoggedIn", "Home");
         }
@@ -75,18 +73,33 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Goal goal)
+        public ActionResult Create(GoalView goalView)
         {
             if (ModelState.IsValid)
             {
+                List<Category> cats = db.Categories.ToList();           // get the category list from the db only once.
+                goalView.GoalObj.Categories = new List<Category>();   // initialize the Goal's Category List, since it starts null.
+                foreach (string k in goalView.CategoriesList.Keys)
+                {
+                    // if the user selected this key name
+                    if (goalView.CategoriesList[k])
+                    {
+                        Category cat = cats.First(c => c.Name == k);
+                        // add the category matching the key name
+                        goalView.GoalObj.Categories.Add(cat);
+                        cat.Goals.Add(goalView.GoalObj);
+                        db.Entry(cat).State = EntityState.Modified;
+                    }
+                }
+
                 UserManager manager = new UserManager(db);
-                goal.User = manager.findByUserName(User.Identity.Name);
-                db.Goals.Add(goal);
+                goalView.GoalObj.User = manager.findByUserName(User.Identity.Name);
+                db.Goals.Add(goalView.GoalObj);
                 db.SaveChanges();
-                return RedirectToAction("Edit", new { id = goal.ID });
+                return RedirectToAction("Edit", new { id = goalView.GoalObj.ID });
             }
 
-            return View(goal);
+            return View(goalView);
         }
 
         //
@@ -102,9 +115,8 @@ namespace CareerTracker.Controllers
                     return HttpNotFound();
                 }
 
-				//ViewBag.Cats = db.Categories.ToList();
                 Session["goal"] = id;
-                return View(goal);
+                return View(new GoalView(goal));
             }
             return RedirectToAction("NotLoggedIn", "Home");
         }
@@ -114,15 +126,30 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Goal goal)
+        public ActionResult Edit(GoalView goalView)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(goal).State = EntityState.Modified;
+                List<Category> cats = db.Categories.ToList();           // get the category list from the db only once.
+                goalView.GoalObj.Categories = new List<Category>();   // initialize the Goal's Category List, since it starts null.
+                foreach (string k in goalView.CategoriesList.Keys)
+                {
+                    // if the user selected this key name
+                    if (goalView.CategoriesList[k])
+                    {
+                        Category cat = cats.First(c => c.Name == k);
+                        // add the category matching the key name
+                        goalView.GoalObj.Categories.Add(cat);
+                        cat.Goals.Add(goalView.GoalObj);
+                        db.Entry(cat).State = EntityState.Modified;
+                    }
+                }
+
+                db.Entry(goalView.GoalObj).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(goal);
+            return View(goalView);
         }
 
         //
