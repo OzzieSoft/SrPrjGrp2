@@ -64,6 +64,15 @@ namespace CareerTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                int checkYear = 1900;
+                //int checkYear2 = DateTime.Now.Year - 15;
+
+                int inYear = goalstep.DueDate.Year;
+                if (inYear < checkYear)
+                {
+                    ViewBag.DateValidation = "Please enter a date between 1900 and now.";
+                    return View();
+                }
                 Goal goal = db.Goals.Find(goalid);
                 goalstep.Goal = goal;
                 goal.Steps.Add(goalstep);
@@ -83,6 +92,15 @@ namespace CareerTracker.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 GoalStep goalstep = db.GoalSteps.Find(id);
+                int checkYear = 1900;
+                //int checkYear2 = DateTime.Now.Year - 15;
+
+                int inYear = goalstep.DueDate.Year;
+                if (inYear < checkYear)
+                {
+                    ViewBag.DateValidation = "Please enter a date between 1900 and now.";
+                    return View();
+                }
                 if (goalstep == null)
                 {
                     return HttpNotFound();

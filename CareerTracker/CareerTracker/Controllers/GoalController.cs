@@ -77,6 +77,14 @@ namespace CareerTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                int checkYear = 1900;
+
+                int inYear = goalView.GoalObj.DueDate.Year;
+                if (inYear < checkYear)
+                {
+                    ViewBag.DateValidation = "Please enter a date after 1900";
+                    return View(goalView);
+                }
                 List<Category> cats = db.Categories.ToList();           // get the category list from the db only once.
                 goalView.GoalObj.Categories = new List<Category>();   // initialize the Goal's Category List, since it starts null.
                 foreach (string k in goalView.CategoriesList.Keys)
@@ -130,6 +138,17 @@ namespace CareerTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                DateTime oldDate = db.Goals.Find(goalView.GoalObj.ID).DueDate;
+                int checkYear = 1900;
+                int inYear = goalView.GoalObj.DueDate.Year;
+                if (inYear < checkYear)
+                {
+                    // reset the date if an invalid one is entered, then return the view with a validation error.
+                    goalView.GoalObj.DueDate = oldDate;
+                    ViewBag.DateValidation = "Please enter a date after " + checkYear + ".";
+                    return View(goalView);
+                }
+
                 List<Category> cats = db.Categories.ToList();           // get the category list from the db only once.
                 goalView.GoalObj.Categories = new List<Category>();   // initialize the Goal's Category List, since it starts null.
                 foreach (string k in goalView.CategoriesList.Keys)
@@ -144,7 +163,7 @@ namespace CareerTracker.Controllers
                         db.Entry(cat).State = EntityState.Modified;
                     }
                 }
-
+                
                 db.Entry(goalView.GoalObj).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

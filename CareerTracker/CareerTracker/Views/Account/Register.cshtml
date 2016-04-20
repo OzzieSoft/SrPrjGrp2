@@ -25,6 +25,7 @@
             </li>
             <li>
                 @Html.LabelFor(m => m.Password)
+                <div>Passwords require six characters, including at least one letter and one number.</div>
                 @Html.PasswordFor(m => m.Password, htmlAttributes: new { placeholder = "Password"})
             </li>
             <li>

@@ -10,6 +10,7 @@
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    @ViewBag.DateValidation
 
     <fieldset>
         <legend>Goal</legend>
@@ -36,10 +37,6 @@
         <div class="editor-field">
             @Html.TextBoxFor(model => model.DueDate, "{0:MM/dd/yyyy}", new { type = "date", placeholder = "MM/dd/yyyy" })
             @Html.ValidationMessageFor(model => model.DueDate)
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Description)
-            @Html.ValidationMessageFor(model => model.Description)
         </div>
         @*<div class="editor-label">
             @Html.LabelFor(model => model.Categories)

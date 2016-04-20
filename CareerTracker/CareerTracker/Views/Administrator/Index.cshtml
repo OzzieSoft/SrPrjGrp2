@@ -52,7 +52,10 @@
             @Html.ActionLink("Change Status", "Edit", new { id=item.Id })
         </td>
         <td>
-            @Html.ActionLink("Make Teahcer", "TeacherEdit", new { id = item.Id })
+            @Html.ActionLink("Make Teacher", "TeacherEdit", new { id = item.Id })
+        </td>
+        <td>
+            @Html.ActionLink("Remove Teacher", "TeacherRemove", new { id = item.Id })
         </td>
     </tr>
 }

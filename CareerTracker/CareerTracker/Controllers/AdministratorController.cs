@@ -44,6 +44,32 @@ namespace CareerTracker.Controllers
 			return View(user);
 		}
 
+		[Authorize]
+		public ActionResult TeacherRemove(string id) {
+			UserManager manager = new UserManager();
+			User user = manager.findById(id);
+			if (user == null) {
+				return HttpNotFound();
+			}
+
+			return View(user);
+		}
+
+		////
+		//// POST: /Administrator/Edit/5
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult TeacherRemove(User input) {
+			UserManager manager = new UserManager();
+			User user = manager.findById(input.Id);
+			if (ModelState.IsValid) {
+				manager.RemoveClaim(input.Id, new Claim(ClaimTypes.Role, "teacher"));
+				return RedirectToAction("Index");
+			}
+			return View(user);
+		} 
+
         //
         //// GET: /Administrator/
 		[Authorize]
@@ -65,7 +91,7 @@ namespace CareerTracker.Controllers
 		public ActionResult Edit(string id) {
 			UserManager manager = new UserManager();
 			User user = manager.findById(id);
-			bool role = manager.hasClaim(User.Identity.Name, ClaimTypes.Role, "admin");
+			bool role = manager.hasClaim(id, ClaimTypes.Role, "admin", false);
 			if (role) {
 				ViewBag.AdminLockout = "Do not try to lock yourself out!";
 				return RedirectToAction("Index", "Administrator");

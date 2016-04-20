@@ -8,16 +8,16 @@ namespace CareerTracker.Models
     {
         [Key]
         public int ID { get; set; }
-		[Required]
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
-		
-		[Display(Name="Private?")]
-		public bool Private { get; set; }
 
-		[Display(Name="Due Date")]
+        [Display(Name = "Private?")]
+        public bool Private { get; set; }
+
+        [Display(Name = "Due Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MMM-yy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DueDate { get; set; }
 
         public virtual ICollection<GoalStep> Steps { get; set; }
