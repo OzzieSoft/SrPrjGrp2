@@ -11,13 +11,18 @@ using CareerTracker.Security;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 
+/*
+ * This class controls the admin class, there are no pregenerated code in here. 
+ * The methods here allow the admin to create and remove teachers, disable users, and and view people complete profiles.
+ */
+
 namespace CareerTracker.Controllers
 {
     public class AdministratorController : Controller
     {
         private CTContext db = new CTContext();
 
-
+        //The get method for the implementing teachers
 		[Authorize]
 		public ActionResult TeacherEdit(string id) {
 			UserManager manager = new UserManager();
@@ -31,7 +36,8 @@ namespace CareerTracker.Controllers
 
 		////
 		//// POST: /Administrator/Edit/5
-
+        //The post method for adding a teacher claim.
+        //Adds the teacher claim to users.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult TeacherEdit(User input) {
@@ -44,6 +50,7 @@ namespace CareerTracker.Controllers
 			return View(user);
 		}
 
+        //Get method to remove teachers.
 		[Authorize]
 		public ActionResult TeacherRemove(string id) {
 			UserManager manager = new UserManager();
@@ -57,6 +64,7 @@ namespace CareerTracker.Controllers
 
 		////
 		//// POST: /Administrator/Edit/5
+        // Allows the admin to remove the teacher tag.
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
@@ -72,6 +80,7 @@ namespace CareerTracker.Controllers
 
         //
         //// GET: /Administrator/
+        //Gets the index
 		[Authorize]
         public ActionResult Index()
         {
@@ -87,13 +96,14 @@ namespace CareerTracker.Controllers
 
         ////
         //// GET: /Administrator/Edit/5
+        //Allows the administrator to turn off a user account so they can't access the system.
 		[Authorize]
 		public ActionResult Edit(string id) {
 			UserManager manager = new UserManager();
 			User user = manager.findById(id);
 			bool role = manager.hasClaim(id, ClaimTypes.Role, "admin", false);
 			if (role) {
-				ViewBag.AdminLockout = "Do not try to lock yourself out!";
+				//ViewBag.AdminLockout = "Do not try to lock yourself out!";
 				return RedirectToAction("Index", "Administrator");
 			}
 			if (user == null) {
@@ -105,7 +115,7 @@ namespace CareerTracker.Controllers
 
         ////
         //// POST: /Administrator/Edit/5
-
+        //Allows the admin to edit a user to allow them to not access the application.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(User input) {
@@ -125,6 +135,7 @@ namespace CareerTracker.Controllers
 			return View(user);
 		}
 
+        //allows the admin to view any persons profile with nothing hidden.
 		[AllowAnonymous]
 		public ActionResult AdminProfileView(string id) {
 			User prof;

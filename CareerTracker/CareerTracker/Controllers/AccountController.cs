@@ -18,6 +18,15 @@ using Microsoft.Owin.Security;
 using System.Web.Helpers;
 using System.Security.Claims;
 using System.Threading.Tasks;
+/*
+ * This is the account controller, containing methods related to profiles and logging in/registering.
+ * Anything involving claims can be found within the user manger class found in the security folder.
+ * There is pre generated code within here, it will be marked. We did not use the pregenerated code, but did not delete it just in case someone works on this in the future. 
+ */
+
+
+
+
 
 namespace CareerTracker.Controllers
 {
@@ -88,6 +97,8 @@ namespace CareerTracker.Controllers
             return View(model);
         }
 
+
+        //Pregend code, have not used.
         private void SetANewRequestVerificationTokenManuallyInCookieAndOnTheForm()
         {
             if (Response == null)
@@ -98,6 +109,7 @@ namespace CareerTracker.Controllers
             SetCookie("__RequestVerificationToken", cookieToken);
             ViewBag.FormToken = formToken;
         }
+        //Pregened code.
         private void SetCookie(string name, string value)
         {
             if (Response.Cookies.AllKeys.Contains(name))
@@ -111,6 +123,7 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
+        //Gets the post for log off, uses pregenerated code.
         public ActionResult LogOff()
         {
             System.Web.HttpContext.Current.GetOwinContext().Authentication.SignOut();
@@ -119,7 +132,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Account/Register
-
+        //Get for register, just returns the form.
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -132,8 +145,10 @@ namespace CareerTracker.Controllers
         [HttpPost]
         [AllowAnonymous]
         //[ValidateAntiForgeryToken]
+        //The post method for registering a user, the exact details can be found below.
         public ActionResult Register(RegisterModel model)
         {
+            //checks if the model is valid
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
@@ -162,12 +177,13 @@ namespace CareerTracker.Controllers
                     //And creates them in the manager
                     IdentityResult result = manager.Create(user, model.Password);
 
+                    //if the user was created
                     if (result.Succeeded)
                     {
-                        ViewBag.Title = string.Format("User {0} was created successfully!", user.UserName);
+                        //ViewBag.Title = string.Format("User {0} was created successfully!", user.UserName);
                         
                         // for testing, this will be taken out.
-                        if (model.UserName.Equals("admin2"))
+                        if (model.UserName.Equals("SymAdmin"))
                         {
                             manager.AddClaim(manager.getIdFromUsername(model.UserName), new Claim(ClaimTypes.Role, "admin"));
                             ViewBag.message = manager.GetClaims(manager.getIdFromUsername(model.UserName)).FirstOrDefault();
@@ -198,7 +214,7 @@ namespace CareerTracker.Controllers
 
         //
         // POST: /Account/Disassociate
-
+        //Pregend code, did not use.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Disassociate(string provider, string providerUserId)
@@ -227,7 +243,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Account/Manage
-
+        //Pregend code.
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -242,7 +258,7 @@ namespace CareerTracker.Controllers
 
         //
         // POST: /Account/Manage
-
+        //Pregend code to allow the user to change thier passwords.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Manage(LocalPasswordModel model)
@@ -302,6 +318,7 @@ namespace CareerTracker.Controllers
             return View(model);
         }
 
+        //Searches for a user based on thier first name, last name and user name.
 		[AllowAnonymous]
 		public ActionResult SearchIndex(string searchString) 
 		{
@@ -317,7 +334,7 @@ namespace CareerTracker.Controllers
 			return View(users);
 		}
 
-		
+		//Sets up the outside profile view.
 		[AllowAnonymous]
 		public ActionResult OutsideProfileView(string id) {
 			User prof;
@@ -327,6 +344,7 @@ namespace CareerTracker.Controllers
 			return View(prof);
 		}
 
+        //The get for the editing of description.
 		[Authorize]
 		public ActionResult EditDesc(string id) {
 			UserManager manager = new UserManager();
@@ -338,7 +356,7 @@ namespace CareerTracker.Controllers
 			return View(user);
 		}
 
-
+        //Posts the description when you edit it.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult EditDesc(User input) {
