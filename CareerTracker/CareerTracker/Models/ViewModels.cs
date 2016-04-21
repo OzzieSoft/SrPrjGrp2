@@ -99,8 +99,12 @@ namespace CareerTracker.Models {
     {
         public AdminTeacherCheck(string name)
         {
-            UserManager mgr = new UserManager();
             access = 0;
+            if (name.Equals("") || name == null)
+            {
+                return;
+            }
+            UserManager mgr = new UserManager();
             if (mgr.hasClaim(name, "teacher"))
             {
                 access++;
