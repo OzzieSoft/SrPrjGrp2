@@ -154,6 +154,15 @@ namespace CareerTracker.Controllers
                 // Attempt to register the user
                 try
                 {
+                    UserManager manager = new UserManager();
+
+                    // checks to see if the username exists.
+                    if (manager.FindByName(model.UserName) != null)
+                    {
+                        ViewBag.UserNameValidation = "That username is taken!";
+                        return View(model);
+                    }
+
                     //Checks that they are born after 1900 and before the current year minus 15.
 					int checkYear = 1900;
                     int checkYear2 =  DateTime.Now.Year - 15;
@@ -161,11 +170,11 @@ namespace CareerTracker.Controllers
 					int inYear = model.DateOfBirth.Year;
 					if (inYear < checkYear || checkYear2 < inYear) {
                             ViewBag.DateValidation = "Please enter a date between 1900 and " + checkYear2 + ".";
-                            return View();
+                            return View(model);
 					}
 
                     //Sets the user's infomation
-                    UserManager manager = new UserManager();
+                    
                     User user = new User() {
                         UserName = model.UserName,
                         FirstName = model.FirstName,

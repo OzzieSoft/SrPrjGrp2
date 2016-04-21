@@ -12,6 +12,7 @@
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
+    @ViewBag.UserNameValidation
     @Html.ValidationSummary()
     @ViewBag.DateValidation
 
