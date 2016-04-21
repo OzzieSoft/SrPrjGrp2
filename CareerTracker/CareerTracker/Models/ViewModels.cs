@@ -91,4 +91,26 @@ namespace CareerTracker.Models {
 
 		}
 	}
+
+    /*
+     * Admin/Teacher check
+     */
+    public class AdminTeacherCheck
+    {
+        public AdminTeacherCheck(string name)
+        {
+            UserManager mgr = new UserManager();
+            access = 0;
+            if (mgr.hasClaim(name, "teacher"))
+            {
+                access++;
+            }
+            if (mgr.hasClaim(name, "admin"))
+            {
+                access += 2;
+            }
+        }
+
+        public int access { get; set; }
+    }
 }

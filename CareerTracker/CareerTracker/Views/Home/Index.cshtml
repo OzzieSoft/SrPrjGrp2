@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CareerTracker.Models.AdminTeacherCheck
+@{
     ViewBag.Title = "Welcome";
 }
 @section featured {
@@ -45,6 +46,14 @@
         <h3>We suggest the following:</h3>
         <div>
             <ul>
+                @if (Model.access > 0)
+                {
+                    <li>@Html.ActionLink("Teacher Portal", "Index", "Teacher")</li>
+                }
+                @if (Model.access > 1)
+                {
+                    <li>@Html.ActionLink("Admin Portal", "Index", "Administrator")</li>
+                }
                 <li>@Html.ActionLink("Artifacts", "Index", "Artifact")</li>
                 <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
                 <li>@Html.ActionLink("Goals", "Index", "Goal")</li>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CareerTracker.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,7 @@ namespace CareerTracker.Controllers
         {
             ViewBag.Message = ""; 
 
-            return View();
+            return View(new AdminTeacherCheck(User.Identity.Name));
         }
 
         public ActionResult About()
