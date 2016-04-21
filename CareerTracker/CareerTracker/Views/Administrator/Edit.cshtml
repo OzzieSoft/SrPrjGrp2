@@ -13,7 +13,10 @@
     <fieldset>
         <legend>User</legend>
         @Html.Display(Model.UserName)
-        @Model.UserName + @Model.LastName
+        User Name: @Model.UserName <br/>
+        First Name @Model.FirstName <br />
+        Last Name: @Model.LastName  <br />
+        <br />
         @Html.HiddenFor(model => model.Id)
         <div class="editor-label">
             Activate user?
