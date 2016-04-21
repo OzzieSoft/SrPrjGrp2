@@ -8,7 +8,7 @@
 <table>
     <tr id="adminuserlist">
         <th>
-            User Name
+            @Html.DisplayNameFor(model => model.UserName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -48,13 +48,13 @@
         <td>
             @Html.ActionLink("User Info", "AdminProfileView", new { id = item.Id })
         </td>
-        <td style="text-align:center">
+        <td>
             @Html.ActionLink("Change Status", "Edit", new { id=item.Id })
         </td>
-        <td style="text-align:center">
+        <td>
             @Html.ActionLink("Make Teacher", "TeacherEdit", new { id = item.Id })
         </td>
-        <td style="text-align:center">
+        <td>
             @Html.ActionLink("Remove Teacher", "TeacherRemove", new { id = item.Id })
         </td>
     </tr>
