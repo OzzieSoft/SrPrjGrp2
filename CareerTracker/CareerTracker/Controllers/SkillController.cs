@@ -89,7 +89,7 @@ namespace CareerTracker.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 // null Skill object, but populated category list
-                return View(new SkillView());
+                return View();
             }
             return RedirectToAction("NotLoggedIn", "Home");
         }
@@ -99,32 +99,32 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(SkillView skillView)
+        public ActionResult Create(Skill skill)
         {
             if (ModelState.IsValid)
             {
                 List<Category> cats = db.Categories.ToList();           // get the category list from the db only once.
-                skillView.SkillObj.Categories = new List<Category>();   // initialize the Skill's Category List, since it starts null.
-                foreach (string k in skillView.CategoriesList.Keys)
-                {
-                    // if the user selected this key name
-                    if (skillView.CategoriesList[k]) {
-                        Category cat = cats.First(c => c.Name == k);
-                        // add the category matching the key name
-                        skillView.SkillObj.Categories.Add(cat);
-                        cat.Skills.Add(skillView.SkillObj);
-                        db.Entry(cat).State = EntityState.Modified;
-                    }
-                }
+                //skill.Categories = new List<Category>();   // initialize the Skill's Category List, since it starts null.
+                //foreach (string k in skill.CategoriesList.Keys)
+                //{
+                //    // if the user selected this key name
+                //    if (skill.CategoriesList[k]) {
+                //        Category cat = cats.First(c => c.Name == k);
+                //        // add the category matching the key name
+                //        skill.Categories.Add(cat);
+                //        cat.Skills.Add(skill);
+                //        db.Entry(cat).State = EntityState.Modified;
+                //    }
+                //}
 
                 UserManager manager = new UserManager(db);
-                skillView.SkillObj.User = manager.findByUserName(User.Identity.Name);
-                db.Skills.Add(skillView.SkillObj);
+                skill.User = manager.findByUserName(User.Identity.Name);
+                db.Skills.Add(skill);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(skillView);
+            return View(skill);
         }
 
         //
@@ -140,7 +140,7 @@ namespace CareerTracker.Controllers
                     return HttpNotFound();
                 }
 
-                return View(new SkillView(skill));
+                return View(skill);
             }
             return RedirectToAction("NotLoggedIn", "Home");
         }
@@ -150,32 +150,32 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(SkillView skillView)
+        public ActionResult Edit(Skill skill)
         {
             if (ModelState.IsValid)
             {
                 // get the category list from the db only once.
                 List<Category> cats = db.Categories.ToList();
-                // initialize the Skill's Category List. We're adding any that are still selected anyway, and don't want ones that were deselected to stick around.
-                skillView.SkillObj.Categories = new List<Category>();
-                foreach (string k in skillView.CategoriesList.Keys)
-                {
-                    // if the user selected this key name
-                    if (skillView.CategoriesList[k])
-                    {
-                        Category cat = cats.First(c => c.Name == k);
-                        // add the category matching the key name
-                        skillView.SkillObj.Categories.Add(cat);
-                        // also add the skill to the category. gotta make sure the foreign keys are set properly.
-                        cat.Skills.Add(skillView.SkillObj);
-                        db.Entry(cat).State = EntityState.Modified;
-                    }
-                }
-                db.Entry(skillView.SkillObj).State = EntityState.Modified;
+                //// initialize the Skill's Category List. We're adding any that are still selected anyway, and don't want ones that were deselected to stick around.
+                //skill.Categories = new List<Category>();
+                //foreach (string k in skill.CategoriesList.Keys)
+                //{
+                //    // if the user selected this key name
+                //    if (skill.CategoriesList[k])
+                //    {
+                //        Category cat = cats.First(c => c.Name == k);
+                //        // add the category matching the key name
+                //        skill.Categories.Add(cat);
+                //        // also add the skill to the category. gotta make sure the foreign keys are set properly.
+                //        cat.Skills.Add(skill);
+                //        db.Entry(cat).State = EntityState.Modified;
+                //    }
+                //}
+                db.Entry(skill).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(skillView);
+            return View(skill);
         }
 
         //
