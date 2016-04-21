@@ -59,7 +59,7 @@ namespace CareerTracker.Security
         }
 
 		public bool hasClaim(string name, string claim) {
-			return hasClaim(name, ClaimTypes.Role, claim);
+			return hasClaim(name, claim, "");
 		}
 
         //Checks to see if the user, identified by name, has a claim of a certain claim type, will return true of false

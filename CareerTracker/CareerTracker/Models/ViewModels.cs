@@ -1,5 +1,4 @@
 ﻿using CareerTracker.DAL;
-using CareerTracker.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,25 +84,4 @@ namespace CareerTracker.Models
         public Artifact ArtifactObj { get; set; }
         public Dictionary<string,bool> CategoriesList { get; set; }
     }
-
-	public class UserView {
-
-		public User Users { get; set; }
-		public string userRole { get; set; }
-
-		public UserView(User user) {
-			UserManager manager = new UserManager();
-			Users = user;
-			if (manager.hasClaim(user.UserName, "teacher")) {
-				userRole = "Teacher";
-			}
-			else if (manager.hasClaim(user.UserName, "admin")) {
-				userRole = "Admin";
-			}
-			else {
-				userRole = "Student";
-			}
-			
-		}
-	}
 }
