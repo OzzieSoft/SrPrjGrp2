@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CareerTracker.Models.User>
+﻿@model IEnumerable<CareerTracker.Models.UserView>
 
 @{
     ViewBag.Title = "Index";
@@ -8,19 +8,19 @@
 <table>
     <tr id="adminuserlist">
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.First().Users.UserName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.First().Users.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.First().Users.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.First().Users.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Active)
+            @Html.DisplayNameFor(model => model.First().Users.Active)
         </th>
         <th>
             User Profile
@@ -31,32 +31,41 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)
+            @Html.DisplayFor(modelItem => item.Users.UserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Email)
+            @Html.DisplayFor(modelItem => item.Users.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LastName)
+            @Html.DisplayFor(modelItem => item.Users.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
+            @Html.DisplayFor(modelItem => item.Users.FirstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Active)
+            @Html.DisplayFor(modelItem => item.Users.Active)
         </td>
         <td>
-            @Html.ActionLink("User Info", "AdminProfileView", new { id = item.Id })
+            @Html.DisplayFor(modelItem => item.userRole)
         </td>
         <td>
-            @Html.ActionLink("Change Status", "Edit", new { id=item.Id })
+            @Html.ActionLink("User Info", "AdminProfileView", new { id = item.Users.Id })
         </td>
+        @if (item.userRole != "Admin") { 
         <td>
-            @Html.ActionLink("Make Teacher", "TeacherEdit", new { id = item.Id })
+            @Html.ActionLink("Change Status", "Edit", new { id=item.Users.Id })
         </td>
+        }
+        @if (item.userRole == "Student") { 
         <td>
-            @Html.ActionLink("Remove Teacher", "TeacherRemove", new { id = item.Id })
+            @Html.ActionLink("Make Teacher", "TeacherEdit", new { id = item.Users.Id })
         </td>
+        }
+        @if (item.userRole == "Teacher") { 
+        <td>
+            @Html.ActionLink("Remove Teacher", "TeacherRemove", new { id = item.Users.Id })
+        </td>
+        }
     </tr>
 }
 

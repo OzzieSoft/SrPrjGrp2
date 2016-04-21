@@ -82,7 +82,12 @@ namespace CareerTracker.Controllers
 				return RedirectToAction("Index", "Home");
 			}
 			//UserManager manager = new UserManager();
-            return View(db.Users.ToList());
+			List<UserView> Determination = new List<UserView>();
+			foreach (var user in db.Users.ToList())
+			{
+				Determination.Add(new UserView(user));
+			}
+            return View(Determination);
         }
 
         ////

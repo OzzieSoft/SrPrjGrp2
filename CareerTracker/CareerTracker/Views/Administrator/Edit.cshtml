@@ -12,6 +12,8 @@
 
     <fieldset>
         <legend>User</legend>
+        @Html.Display(Model.UserName)
+        @Model.UserName + @Model.LastName
         @Html.HiddenFor(model => model.Id)
         <div class="editor-label">
             Activate user?
