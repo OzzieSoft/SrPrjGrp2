@@ -17,15 +17,16 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Goal/
-		[Authorize]
+        [Authorize]
         public ActionResult Index()
         {
-            if(User.Identity.IsAuthenticated){
+            if (User.Identity.IsAuthenticated)
+            {
                 UserManager manager = new UserManager();
                 List<Goal> returnList = new List<Goal>();
                 try
                 {
-                    foreach (Goal g in db.Goals.ToList()) 
+                    foreach (Goal g in db.Goals.ToList())
                     {
                         if (g.User.Id.Equals(manager.getIdFromUsername(User.Identity.Name)))
                         {
@@ -34,6 +35,7 @@ namespace CareerTracker.Controllers
                     }
                 }
                 catch (NullReferenceException e) { }
+                //ViewBag.Cats = db.Categories.ToList();
                 return View(returnList);
             }
             return RedirectToAction("NotLoggedIn", "Home");
@@ -41,7 +43,7 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Goal/Details/5
-		[Authorize]
+        [Authorize]
         public ActionResult Details(int id = 0)
         {
             if (User.Identity.IsAuthenticated)
@@ -58,12 +60,13 @@ namespace CareerTracker.Controllers
 
         //
         // GET: /Goal/Create
-		[Authorize]
+        [Authorize]
         public ActionResult Create()
         {
             if (User.Identity.IsAuthenticated)
             {
-                return View(new GoalView());
+                //ViewBag.Cats = db.Categories.ToList();
+                return View();
             }
             return RedirectToAction("NotLoggedIn", "Home");
         }
@@ -73,46 +76,31 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(GoalView goalView)
+        public ActionResult Create(Goal goal)
         {
             if (ModelState.IsValid)
             {
                 int checkYear = 1900;
 
-                int inYear = goalView.GoalObj.DueDate.Year;
+                int inYear = goal.DueDate.Year;
                 if (inYear < checkYear)
                 {
-                    ViewBag.DateValidation = "Please enter a date after 1900";
-                    return View(goalView);
+                    ViewBag.DateValidation = "Please enter a date between 1900 and now.";
+                    return View();
                 }
-                List<Category> cats = db.Categories.ToList();           // get the category list from the db only once.
-                goalView.GoalObj.Categories = new List<Category>();   // initialize the Goal's Category List, since it starts null.
-                foreach (string k in goalView.CategoriesList.Keys)
-                {
-                    // if the user selected this key name
-                    if (goalView.CategoriesList[k])
-                    {
-                        Category cat = cats.First(c => c.Name == k);
-                        // add the category matching the key name
-                        goalView.GoalObj.Categories.Add(cat);
-                        cat.Goals.Add(goalView.GoalObj);
-                        db.Entry(cat).State = EntityState.Modified;
-                    }
-                }
-
                 UserManager manager = new UserManager(db);
-                goalView.GoalObj.User = manager.findByUserName(User.Identity.Name);
-                db.Goals.Add(goalView.GoalObj);
+                goal.User = manager.findByUserName(User.Identity.Name);
+                db.Goals.Add(goal);
                 db.SaveChanges();
-                return RedirectToAction("Edit", new { id = goalView.GoalObj.ID });
+                return RedirectToAction("Edit", new { id = goal.ID });
             }
 
-            return View(goalView);
+            return View(goal);
         }
 
         //
         // GET: /Goal/Edit/5
-		[Authorize]
+        [Authorize]
         public ActionResult Edit(int id = 0)
         {
             if (User.Identity.IsAuthenticated)
@@ -123,8 +111,9 @@ namespace CareerTracker.Controllers
                     return HttpNotFound();
                 }
 
+                //ViewBag.Cats = db.Categories.ToList();
                 Session["goal"] = id;
-                return View(new GoalView(goal));
+                return View(goal);
             }
             return RedirectToAction("NotLoggedIn", "Home");
         }
@@ -134,46 +123,30 @@ namespace CareerTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(GoalView goalView)
+        public ActionResult Edit(Goal goal)
         {
+            //Goal oldGoal = db.Goals.Find(goal.ID);
             if (ModelState.IsValid)
             {
-                DateTime oldDate = db.Goals.Find(goalView.GoalObj.ID).DueDate;
+
                 int checkYear = 1900;
-                int inYear = goalView.GoalObj.DueDate.Year;
+
+                int inYear = goal.DueDate.Year;
                 if (inYear < checkYear)
                 {
-                    // reset the date if an invalid one is entered, then return the view with a validation error.
-                    goalView.GoalObj.DueDate = oldDate;
-                    ViewBag.DateValidation = "Please enter a date after " + checkYear + ".";
-                    return View(goalView);
+                    ViewBag.DateValidation = "Please enter a date between 1900 and now.";
+                    return View(goal);
                 }
-
-                List<Category> cats = db.Categories.ToList();           // get the category list from the db only once.
-                goalView.GoalObj.Categories = new List<Category>();   // initialize the Goal's Category List, since it starts null.
-                foreach (string k in goalView.CategoriesList.Keys)
-                {
-                    // if the user selected this key name
-                    if (goalView.CategoriesList[k])
-                    {
-                        Category cat = cats.First(c => c.Name == k);
-                        // add the category matching the key name
-                        goalView.GoalObj.Categories.Add(cat);
-                        cat.Goals.Add(goalView.GoalObj);
-                        db.Entry(cat).State = EntityState.Modified;
-                    }
-                }
-                
-                db.Entry(goalView.GoalObj).State = EntityState.Modified;
+                db.Entry(goal).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(goalView);
+            return View(goal);
         }
 
         //
         // GET: /Goal/Delete/5
-		[Authorize]
+        [Authorize]
         public ActionResult Delete(int id = 0)
         {
             if (User.Identity.IsAuthenticated)
