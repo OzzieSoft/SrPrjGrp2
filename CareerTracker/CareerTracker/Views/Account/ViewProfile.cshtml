@@ -36,7 +36,7 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.ActionLink(item.Location, "Download", new { fileName = item.Location })
+                    @Html.ActionLink(item.Location, "Download",controllerName: "Artifact", routeValues: new { fileName = item.Location }, htmlAttributes:null)
                 </td>
             </tr>
         }

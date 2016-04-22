@@ -49,7 +49,7 @@ Username: @Model.UserName
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Location)
+                @Html.ActionLink(item.Location, "Download", controllerName: "Artifact", routeValues: new { fileName = item.Location }, htmlAttributes: null)
             </td>
         </tr>
         }
