@@ -45,6 +45,7 @@
         </div>
         <div class="editor-label">
             <p>Click here to download your file. Please back up your files before uploading a new file to the server.</p>
+            @Html.HiddenFor(model => model.Location)
             @Html.ActionLink(Model.Location, "Download", new { fileName = Model.Location })
             <p></p>
         </div>

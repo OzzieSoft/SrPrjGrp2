@@ -155,8 +155,6 @@ namespace CareerTracker.Controllers
                         }
                         file.SaveAs(path);
                         artifact.Location = file.FileName;
-                        db.Entry(artifact).State = EntityState.Modified;
-                        db.SaveChanges();
                         //ArtifactRepo.createArtifact(artifact, User.Identity.Name.ToString());
                         return RedirectToAction("Index");
                         //ViewBag.Message = "File uploaded successfully";
@@ -166,6 +164,9 @@ namespace CareerTracker.Controllers
                         ViewBag.Message = "ERROR:" + ex.Message.ToString();
                     }
                 }
+
+                db.Entry(artifact).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(artifact);
