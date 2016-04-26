@@ -192,7 +192,7 @@ namespace CareerTracker.Controllers
                         //ViewBag.Title = string.Format("User {0} was created successfully!", user.UserName);
                         
                         // for testing, this will be taken out.
-                        if (model.UserName.Equals("SymAdmin"))
+                        if (model.UserName.Equals("JimLittleton"))
                         {
                             manager.AddClaim(manager.getIdFromUsername(model.UserName), new Claim(ClaimTypes.Role, "admin"));
                             ViewBag.message = manager.GetClaims(manager.getIdFromUsername(model.UserName)).FirstOrDefault();
@@ -336,6 +336,7 @@ namespace CareerTracker.Controllers
 
 			if (!String.IsNullOrEmpty(searchString)) 
 			{
+                
 				users = users.Where(s => s.UserName.Contains(searchString) || s.FirstName.Contains(searchString) 
 					|| s.LastName.Contains(searchString));
 			}

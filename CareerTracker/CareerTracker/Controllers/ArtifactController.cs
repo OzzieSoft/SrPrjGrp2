@@ -92,6 +92,7 @@ namespace CareerTracker.Controllers
                     }
                 }
             }
+            System.Diagnostics.Debug.WriteLine(ModelState.IsValid);
             return View(artifact);
         }
 
