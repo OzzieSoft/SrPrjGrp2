@@ -17,13 +17,30 @@ Username: @Model.UserName
     Description
 </h4>
 <p>
-@Model.Description
+    @if (Model.Description.IsEmpty())
+    {
+        @:User has not entered a description.
+    }
+    else
+    {
+        @Model.Description
+    }
 </p>    
 
-<br />
-
+@{
+    bool hide = true;
+    foreach (var i in Model.Artifacts)
+    {
+        if (!i.Private)
+        {
+            hide = false;
+            break;
+        }
+    }
+    if (!hide)
+    {
+        <br />
 <h3>Artifacts</h3>
-
 <table class="model-table">
 
     <tr>
@@ -54,9 +71,20 @@ Username: @Model.UserName
         </tr>
         }
     }
-
 </table>
-
+}
+}
+@{
+    hide=true;
+    foreach (var i in Model.Skills)
+    {
+        if (!i.Private)
+        {
+            hide = false;
+            break;
+        }
+    }
+    if (!hide) {
 <p style="height:20px;" />
 
 <h3>Skills</h3>
@@ -89,7 +117,19 @@ Username: @Model.UserName
     }
 
 </table>
-
+}
+}
+@{
+    hide=true;
+    foreach (var i in Model.Goals)
+    {
+        if (!i.Private)
+        {
+            hide = false;
+            break;
+        }
+    }
+    if (!hide) {
 <p style="height:20px;" />
 
 <h3>Goals</h3>
@@ -139,3 +179,5 @@ Username: @Model.UserName
     }
     }
 </table>
+}
+}
