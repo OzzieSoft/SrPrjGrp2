@@ -10,6 +10,7 @@ using CareerTracker.DAL;
 
 namespace CareerTracker.Controllers
 {
+    //See goal controller
     public class GoalStepController : Controller
     {
         private CTContext db = new CTContext();

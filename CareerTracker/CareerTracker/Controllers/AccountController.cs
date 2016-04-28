@@ -192,6 +192,8 @@ namespace CareerTracker.Controllers
                         //ViewBag.Title = string.Format("User {0} was created successfully!", user.UserName);
                         
                         // for testing, this will be taken out.
+                        // If you want to take it out, run the app, create the JimLittleton admin account and delete this.
+                        // WARNING; THIS WILL HAVE TO BE REPEATED EVERY DATA BASE TRANSFER.
                         if (model.UserName.Equals("JimLittleton"))
                         {
                             manager.AddClaim(manager.getIdFromUsername(model.UserName), new Claim(ClaimTypes.Role, "admin"));
@@ -267,7 +269,7 @@ namespace CareerTracker.Controllers
 
         //
         // POST: /Account/Manage
-        //Pregend code to allow the user to change thier passwords.
+        //Pregend code to allow the user to change thier passwords. DOES NOT WORK, WITH THE CLAIM SYSTEM THEY DO NOT HAVE A LOCAL ACCOUNT.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Manage(LocalPasswordModel model)

@@ -11,6 +11,7 @@ using CareerTracker.Security;
 
 namespace CareerTracker.Controllers
 {
+    //See goal controller
     public class SkillController : Controller
     {
         private CTContext db = new CTContext();

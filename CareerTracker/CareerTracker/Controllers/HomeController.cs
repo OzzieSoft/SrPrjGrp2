@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace CareerTracker.Controllers
 {
+    //Literally nothing
     public class HomeController : Controller
     {
         public ActionResult Index()

@@ -10,7 +10,7 @@ namespace CareerTracker.DataRepository
     public static class ArtifactRepo
     {
         //private static CTContext db = new CTContext();
-
+        //The artifact controller was moved here as a request by our mentor, as such most of the things here are very similar to goals and skills
         public static List<Artifact> getUserArtifacts(string username)
         {
             CTContext db = new CTContext();
@@ -46,6 +46,7 @@ namespace CareerTracker.DataRepository
             }
         }
 
+        //See the artifact controller for more details
         public static void FileDeletion(string fileName, string userName)
         {
             var Request = HttpContext.Current.Request;

@@ -17,6 +17,10 @@ namespace CareerTracker.Controllers
     {
         private CTContext db = new CTContext();
 
+        /// <summary>
+        /// If the user has a admin or teacher claim, takes them to the index.
+        /// </summary>
+        /// <returns></returns>
 		[Authorize]
 		public ActionResult Index() 
 		{

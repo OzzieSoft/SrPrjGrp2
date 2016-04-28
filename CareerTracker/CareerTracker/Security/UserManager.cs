@@ -60,6 +60,14 @@ namespace CareerTracker.Security {
 		public bool hasClaim(string name, string claimType, string claimVal) {
 			return hasClaim(name, claimType, claimVal, true);
 		}
+        /// <summary>
+        /// Checks for claims based on id
+        /// </summary>
+        /// <param name="nameOrId">Enter a name or id here</param>
+        /// <param name="claimType">Where the claims are stored(See already done implementation in the admin controller for an example)</param>
+        /// <param name="claimVal">What claim you're looking for</param>
+        /// <param name="name">True for name, false for id</param>
+        /// <returns></returns>
 		public bool hasClaim(string nameOrId, string claimType, string claimVal, bool name) {
 			bool retval;
 			Claim toSearch = new Claim(claimType, claimVal);
@@ -69,8 +77,9 @@ namespace CareerTracker.Security {
 		}
 	}
 
-
-
+    /// <summary>
+    /// Below is pregenerated code for password hashing
+    /// </summary>
 	public class SQLPasswordHasher : PasswordHasher {
 		public override string HashPassword(string password) {
 			return base.HashPassword(password);

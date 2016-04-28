@@ -11,6 +11,8 @@ using CareerTracker.Security;
 
 namespace CareerTracker.Controllers
 {
+
+    //Mostly getters and setters in here with the some date validation, should be easy to bug fix as issues arise.
     public class GoalController : Controller
     {
         private CTContext db = new CTContext();
